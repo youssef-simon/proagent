@@ -53,10 +53,10 @@ import { usePage } from '@inertiajs/vue3';
       </nav>
 	 <template v-if="!user" >
       <a class="btn btn-outline-primary" href="/register">Sign up</a>
-      <a class="btn btn-outline-primary" href="/login">Login</a>
+      <a class="btn btn-outline-primary" href="/user_login">Login</a>
      </template>
 	 <template v-if="user" >
-      <a class="btn btn-outline-primary" href="/my_profile">My Account</a>
+      <a class="btn btn-outline-primary" href="/my_dashboard">my Dashboard</a>
      
      </template>
 	</div>

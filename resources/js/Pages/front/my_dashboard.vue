@@ -34,7 +34,7 @@ export default{
 		<div class="col-md-3">
 		 
 		<div class="userImg">
-	 	<img :src="user.image_path_show" />
+	 	<img class="userImgCont" :src="user.image_path_show" />
 		</div>
 				<ul class="dashBoardList">
 					<li> <a href="/service_list">

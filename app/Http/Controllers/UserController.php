@@ -163,23 +163,22 @@ class UserController extends Controller
 				]);	
 				
     }
-	
-	
-	 /**
-     * Remove the specified resource from storage.
-     */
+	  
     public function changeDepart($id)
     { 
- 		     $serviceCategories = ServiceCategory::where('department_id',$id)->get();
-			 
-			 
-			return response()->json([
+ 		     $serviceCategories = ServiceCategory::where('department_id',$id)->whereNull('parent_id')->get();
+			 return response()->json([
 							'data' =>$serviceCategories ,   
 				]);	
-				
-    }
+     }
 	
-	
+	public function changeCategory($id)
+    { 
+ 		     $serviceCategories = ServiceCategory::where('parent_id',$id)->get();
+			 return response()->json([
+							'data' =>$serviceCategories ,   
+				]);	
+     }
 	
     /**
      * Update the specified resource in storage.

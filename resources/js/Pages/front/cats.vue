@@ -13,23 +13,7 @@ export default{
 		  serviceCats:Object, 
 		  errors:Object,
 	 },setup(){
-		 const form = reactive({
-				first_name: '',
-				lsst_name: '',
-				email: '',
-				password: '',
-				phone: '',
-				password_confirmation: '',
-				salary: '',
-				department_id: 0,
-				
-					imagpath: null,
-                main_image_id: null,
-                user_categories: [],
-				
-			 
-			})
-			return { form }
+		 
 	 }, methods:{
 	  
 	
@@ -40,18 +24,19 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="card-deck mb-3 text-center">
+    <div class="container">
 	<div class="col-md-12">
 			<h2>Services Taxanomy</h2>
 	</div>
       <div class="row">
-			  <div class="col-md-6"  v-for="serviceCatItm in  serviceCats ">
+	  
+			  <div class="col-md-4"  v-for="(serviceCatItm, index) in  serviceCats ">
 						  
 								<h2>{{ serviceCatItm.name }}</h2>
 								<ul style="margin-left:20px;">
 								  <li  v-for="childernItm in  serviceCatItm.chidern">
+										 <a :href="'/service_by_category/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>
 										 
-										<label>{{ childernItm.title }}</label>
 									
 								  </li>
 								</ul>

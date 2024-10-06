@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Department;
+use App\Models\ServiceCategory;
 
 
 class ServiceCategory extends Model
 {
     protected $fillable = [
         'title',
-        'desc',
-        'parent',
+        'description',
+        'parent_id',
         'department_id',
     
     ];
@@ -27,5 +28,12 @@ class ServiceCategory extends Model
 	public function department(){
 		 return $this->belongsTo(Department::class, 'department_id');
 	}
+	
+	
+	
+	public function childCategories(){
+		 return $this->hasMany(ServiceCategory::class, 'parent_id');
+	}
+	
 	
 }

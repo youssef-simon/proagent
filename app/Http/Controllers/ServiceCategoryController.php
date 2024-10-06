@@ -31,12 +31,12 @@ class ServiceCategoryController extends Controller
      */
     public function create()
     {
-		$serviceCategories = ServiceCategory::all(); 
 		
-        return Inertia::render('servicecategory/create',[
-				'serviceCategories'=>$serviceCategories   
-	   
-	   ]  );
+		$departments = Department::all(); 
+		  
+		  return Inertia::render('servicecategory/create',[
+						'departments'=>$departments ,   
+				]);
     }
 
     /**
@@ -65,7 +65,6 @@ class ServiceCategoryController extends Controller
     {
 		$data	= $request->all();
  
-	 
 		$serviceCategory = serviceCategory::find($id); 
 		$serviceCategory->update($data);
 		

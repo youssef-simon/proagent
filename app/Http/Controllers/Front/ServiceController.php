@@ -43,7 +43,7 @@ class ServiceController extends Controller
     public function taxservice()
     {
 	  
-		 $serviceCategories = ServiceCategory::with('department')->get(); 
+		 $serviceCategories = ServiceCategory::whereNull('parent_id')->with('department')->get(); 
 		$serviceCats=[]; 
 		foreach($serviceCategories as $depItm){
 			
@@ -53,10 +53,8 @@ class ServiceController extends Controller
 		} 
 		   
 	   return Inertia::render('front/cats',[
-
-	   "serviceCats"=>$serviceCats , 
-	   
-	   ]);
+			"serviceCats"=>$serviceCats , 
+	    ]);
     }
 
 
@@ -180,4 +178,42 @@ class ServiceController extends Controller
 			 ]);
 	  //  return Inertia::render('front/service/edit',[ 'services'=>$services  ]);
     }
+	
+	
+	
+	
+	
+	
+	public function serviceAll($id){
+		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
+		//dd($categories);
+		 
+		$services =  Service::where('department_id',$id)-> paginate(24);
+		return Inertia::render('front/service_all',[
+		'categories'=>$categories ,
+		'services'=>$services ,
+		'dep_id'=>$id ,
+		]);
+	}
+	
+	
+	public function serviceByCategory($depId,$id){ 
+	    $categories =  ServiceCategory::where('department_id',$depId)->whereNull('parent_id')->with("childCategories")->get();
+		$services =  Service:: leftJoin('service_categories', 'services.category_id', '=', 'service_categories.id')
+									  -> where('services.category_id',$id)
+									  ->orWhere('service_categories.parent_id',$id)
+									 // ->groupBy('services.id')
+									  ->select('services.*')
+									-> paginate(24);
+		 
+		return Inertia::render('front/service_cat',[
+				'dep_id'=>$depId ,
+				'categories'=>$categories,
+				'services'=>$services,
+		]);
+	}
+	
+	
+	
+	
 }

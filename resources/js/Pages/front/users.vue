@@ -36,15 +36,18 @@ export default{
 		<div class="col-md-12">
 			<h3>Users</h3>
 	</div>
-      <div class="row">
-			<div   v-for="userItm in users.data" class="col-md-4">
-						<a :href="'/user_details/'+userItm.id">
-						 <img :src="userItm.image_path_show" />  
-						 </a>
-						  <h3>{{ userItm.full_name	 }}</h3>  
-						  
-							
-						</div>
+      <div class="container">
+			<div   v-for="userItm in users.data" class="proItem row">
+						<div class="col-md-2">
+							<a :href="'/user_details/'+userItm.id">
+							 <img style="width:150px;height:150px;"  :src="userItm.image_path_show" />  
+							 </a>
+						 </div>
+						 <div class="col-md-10">
+						  <h4>{{ userItm.full_name }}</h4>  
+						  <h6>Electronic Engineer</h6>
+						   </div>
+					 </div>
 			</div>
 	  </div>
 	  

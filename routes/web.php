@@ -66,7 +66,9 @@ Route::post('/register_store',[AuthController::class,'registerStore'])->name('re
 Route::get('/user_login',[AuthController::class,'login'])->name('home.login');
 Route::post('/login_check',[AuthController::class,'login_check'])->name('login_check.login');
 
-
+Route::get('/service_all/{id}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
+Route::get('/service_by_category/{depId}/{id}',[ServiceFrontController::class,'serviceByCategory'])->name('service_by_category');
+	
 
 Route::group(['middleware' => ['auth:web']], function () {
 	
@@ -125,16 +127,14 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
 Route::get('changedepart/{id}', [UserController::class, 'changeDepart'])->name('get.changeDepart');
+Route::get('changecategory/{id}', [UserController::class, 'changeCategory'])->name('get.changeCategory');
 
 
 
 
 Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.show');
-
-
- 	
-
-	Route::group(['prefix'=>'admin','middleware' => ['auth:admin']], function () {
+ 
+	    Route::group(['prefix'=>'admin','middleware' => ['auth:admin']], function () {
 		Route::get('/admin',[DashboardController::class,'show'])->name('admin.login-view');
   
 		Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
@@ -188,15 +188,10 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::get('service_category/edit/{id}', [ServiceCategoryController::class, 'edit'])->name('service_category.edit');
 		Route::post('service_category/update/{id}', [ServiceCategoryController::class, 'update'])->name('service_category.update');
 		 
-		 	Route::get('searchusers', [UserController::class, 'searchByName'])->name('searchusers.search');
-			Route::get('getuser/{id}', [UserController::class, 'getUserdata'])->name('get.user');
+		Route::get('searchusers', [UserController::class, 'searchByName'])->name('searchusers.search');
+		Route::get('getuser/{id}', [UserController::class, 'getUserdata'])->name('get.user');
 			
-			
-			
-				
-			
-
-			  
+		 	  
 });
  
  

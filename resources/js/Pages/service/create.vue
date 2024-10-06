@@ -18,8 +18,7 @@ export default{
 					}
 		  } 
 	 
-	 ,props:{
-		//	serviceCategories:Object,
+	 ,props:{ 
 			departments:Object,
 			errors:Object
 	 },setup(){
@@ -42,10 +41,23 @@ export default{
 						});
 		}
 		,departmentChange(){
-		
 		 
 		  var self = this;
 				   axios.get("/changedepart/"+ this.form.department_id)
+					  .then( function(response) {
+											const getData =response.data.data;
+											 
+											self.serviceCategories = getData;
+											 
+									}
+							)
+					  .catch(error => {
+						console.error(error);
+					  });
+		},categoryChange(){
+		 
+		  var self = this;
+				   axios.get("/changecategory/"+ this.form.category_id)
 					  .then( function(response) {
 											const getData =response.data.data;
 											 

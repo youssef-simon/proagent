@@ -30,11 +30,11 @@ import axios from 'axios';
 							axios.get("/message_threads_list")
 								  .then( function(response) { 
 												self.left_messages=response.data.data;
-												console.log(response.data);
+												//console.log(response.data);
 												
-												  var scrollableDiv = document.getElementById("messageCont");
+												 // var scrollableDiv = document.getElementById("messageCont");
 												   
-													scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+													//scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 											}
 										)
 								  .catch(error => {
