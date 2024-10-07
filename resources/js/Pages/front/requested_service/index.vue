@@ -3,6 +3,7 @@ import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3' 
+ 
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import { router } from '@inertiajs/vue3'
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>service Requests</h1>
+            <h1>services</h1>
           </div>
          
         </div>
@@ -20,28 +21,29 @@ import { router } from '@inertiajs/vue3'
 
     <div class="card">
 	
-	   
+	 
+			  
 			   
 <table class="table table-bordered table-hover dataTable dtr-inline">
 
 <tr>
-	<td>ID</td>
-	<td>services</td> 
+	<td>ID</td> 
+	<td>Image</td> 
+	<td>name</td> 
 </tr>
-<tr  v-for="service in serviceRequests.data">
-	<td>{{ service.id }}</td>
-	 
+<tr  v-for="request in serviceRequests.data">
+	<td>{{ request.id }}</td> 
+	<td><img  :src="request.service.image_path_show" style="width:250px;height:250px;" /></td> 
+	<td>{{ request.service.title }}</td> 
 	<td>
 	
 		<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
                    
-                    :href="'/service_edit/'+service.id"
-                    v-html="'edit'"
+                    :href="'/request_view/'+request.id"
+                    v-html="'view'"
                 />
 				
-			 <Link class="btn-primary btn" @click="destroy( service.id)" >
-                                                Delete
-                                            </Link> 
+			 
 				</td>
 </tr>
 </table>
@@ -83,7 +85,16 @@ export default {
   },  components: {
         Link,
     },methods:{
- 
+		  destroy(id) {
+				if (confirm("Are you sure you want to Delete")) {
+         
+					router.delete(route("service.delete", id));
+				}
+			},
+/* 	 submit( ) {
+		 
+			 router.get('/availableslots/index',this.form);
+	 } */
 			
 	}
   

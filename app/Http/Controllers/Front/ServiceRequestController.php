@@ -23,7 +23,7 @@ class ServiceRequestController extends Controller
 	 public function index()
     {
 		$user = \Auth::guard('web')->user();
-		 $serviceRequests = ServiceRequest::where('user_make_id',$user->id)->paginate(10); 
+		 $serviceRequests = ServiceRequest::where('user_make_id',$user->id)->with('service')->paginate(10); 
 		  
 	   return Inertia::render('front/requested_service/index',[
 			"serviceRequests"=>$serviceRequests , 
@@ -75,7 +75,7 @@ class ServiceRequestController extends Controller
 		
 	 public function chatRoomMessages($id,Request $request)
     {
-		   $chatRoomMessages =	RequestMessage::where('request_id',$id)->orderBy('id','desc')->paginate(10);
+		   $chatRoomMessages =	RequestMessage::where('request_id',$id)->with('sender')->orderBy('id','desc')->paginate(10);
 		  
 		  return response()->json([
 		      'data' =>$chatRoomMessages,  

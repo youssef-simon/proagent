@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ServiceImage;
 use  App\Models\User;
+use  App\Models\ServiceCategory;
 
 class Service extends Model
 {
@@ -49,9 +50,10 @@ class Service extends Model
 	public function user(){
 		 return $this->belongsTo(User::class, 'user_id');
 	}
-   /*  public function user() 
-    {
-        return $this->hasMany(ServiceImage::class);
-    } */
+	 
+	public function category(){
+		 return $this->belongsTo(ServiceCategory::class, 'category_id');
+	}
+ 
     
 }

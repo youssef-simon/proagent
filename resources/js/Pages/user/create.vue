@@ -39,7 +39,7 @@ export default{
 	 
 	 submit() {
 		 console.log();
-			 router.post('/user/store', this.form)
+			 router.post('/admin/user/store', this.form)
 	}
 	,departmentChange(){
 		 

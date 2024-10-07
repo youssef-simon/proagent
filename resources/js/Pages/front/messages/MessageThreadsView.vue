@@ -1,9 +1,11 @@
 <script> 
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
-import axios from 'axios'; 
+import axios from 'axios';  
 
  export default {
-	 
+	 components:{
+		AppLayout 
+	 },
   data() {
     return { 
 		raw_messages:[], 
@@ -20,6 +22,8 @@ import axios from 'axios';
 
    ,props:{ 
 		  rec_id:String,  
+	 },setup(props){
+		 
 	 }
 	, methods: { 
 						async fetchData(id) { 
@@ -186,37 +190,28 @@ import axios from 'axios';
 				  </div>
 								  <div class="col-md-8 serviceCont">
 													<h1>Messages Threads</h1>
-													
-													
-													
+													 
 												<div id="messageCont" class="messageContainer">	
+													
 													<div  v-for="(item, indexe) in messages.slice().reverse()" class="item" :key="indexe">
-															 <b>From : {{  item.sender.email }}</b>
-																<br>
-															<b>created at : {{  item.created_at }}</b>
+															<div class="row">
+																		<div class="col-md-2">
+																			<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
+																		</div>
+																		<div class="col-md-10">
+																				<p>From : {{  item.sender.full_name }}</p>
+																					<p>created at : {{  item.created_at }}</p>
+																					<div class="message">  {{ item.message }}</div>
+																			</div> 
+															</div> 
 															
 															
-															
-															<br> 
-															
-															<div class="message"> {{ item.id }} {{ item.message }}</div>
-															<div v-if="item.sender_type=='App\\Models\\Admin'">
-																	<h4><i class="fa fa-modx"></i>Admin</h4>
-															</div>
-													<div v-if="item.sender_type=='App\\Models\\User'">
-														<div v-if="item.sender.id==user_id">
-																
-																<a @click="removeMsg(item.id)" class="btn btn-primary commentBtm" href="javascript:void(0)">REMOVE</a>
-														</div>		
-													</div>		
-														
-														
 													</div>
 													
 													<div class="mb-3 message-container">
 														<label for="firstName" class="form-label">Message</label>
 														<textarea v-model="message_send" class="form-control"></textarea>
-														<button @click="postComment()" >send</button>
+														<button class="btn btn-danger" @click="postComment()" >send</button>
 													</div>
 										
 									</div>	

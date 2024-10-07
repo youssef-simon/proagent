@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\ServiceCategory;
+use App\Models\UserProject;
 
 class UserController extends Controller
 {
@@ -28,14 +29,58 @@ class UserController extends Controller
     {
 		 $user = User::find($id); 
 		  
-		  $services = Service::where('user_id',$id)->get();
+		  $services = Service::where('user_id',$id)
+		  ->with('category')->with('category.parentCategory')
+		  ->get();
 		  
-	   return Inertia::render('front/user_view',[
+	   return Inertia::render('front/userdetails/user_view',[
 			"user"=>$user ,  
 			"services"=>$services ,  
 			]);
     }
 	
+	
+	 public function user_services($id)
+    {
+		 $user = User::find($id); 
+		  
+		  $services = Service::where('user_id',$id)
+		  ->with('category')->with('category.parentCategory')
+		  ->paginate(24);
+		  
+	   return Inertia::render('front/userdetails/user_services',[
+			"user"=>$user ,  
+			"services"=>$services ,  
+			]);
+    }
+	
+	
+	 public function user_works($id)
+    {
+		 $user = User::find($id); 
+		  
+		  $userprojects = UserProject::where('user_id',$id) 
+		  ->paginate(24);
+		  
+	   return Inertia::render('front/userdetails/user_projects',[
+			"user"=>$user ,  
+			"userprojects"=>$userprojects ,  
+			]);
+    }
+	
+	
+	 public function work_view($id)
+    {
+		 $user = User::find($id); 
+		  
+		  $userprojects = UserProject::where('user_id',$id) 
+		  ->paginate(24);
+		  
+	   return Inertia::render('front/userdetails/user_projects',[
+			"user"=>$user ,  
+			"userprojects"=>$userprojects ,  
+			]);
+    }
 	
 	
 	

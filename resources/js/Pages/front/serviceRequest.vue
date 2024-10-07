@@ -261,17 +261,17 @@ export default{
 											<div id="messageCont" class="messageContainer">	
 										 
 																	<div  v-for="(item, indexe) in messages.slice().reverse()" class="item" :key="indexe">
-																			 
-																				<br>
-																			<b>created at : {{  item.created_at }}</b>
-																			 <br>  
-																			<div class="message"> {{ item.id }} {{ item.message }}</div>
-																			<div v-if="item.sender_type=='App\\Models\\Admin'">
-																					<h4><i class="fa fa-modx"></i>Admin</h4>
-																			</div>
-																	<div v-if="item.sender_type=='App\\Models\\User'">
-																		 		
-																	</div>		
+																	<div class="row">
+																	<div class="col-md-2">
+																		<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
+																		</div>
+																		<div class="col-md-10">
+																		<p>From : {{  item.sender.full_name }}</p>
+																			<p>created at : {{  item.created_at }}</p>
+																			<div class="message">  {{ item.message }}</div>
+																			</div> 
+																			</div> 
+																	 
 																 </div>
 										
 											</div>	

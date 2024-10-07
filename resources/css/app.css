@@ -91,3 +91,15 @@ div.carts {
 
 .userImgCont{ width:200px; height:200px; display:inline-block; }
 .userImg{ text-align:center; padding:10px; margin:10px; border:1px solid #000; }
+
+.containerBig{ width:1420px!important; }
+
+.item.leftItm{
+	padding:5px;
+	margin:5px;
+	border:1px solid #000;
+	margin-bottom:20px;
+	
+}
+
+.messageContainer .item{ padding:5px; margin:5px; border:1px solid; }

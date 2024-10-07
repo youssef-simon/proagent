@@ -60,7 +60,7 @@ import { usePage } from '@inertiajs/vue3';
      
      </template>
 	</div>
-<div class="container">
+<div class="container containerBig">
 
 		<slot />
    

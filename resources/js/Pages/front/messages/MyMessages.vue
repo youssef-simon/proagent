@@ -1,9 +1,12 @@
 <script> 
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import axios from 'axios'; 
+import { usePage } from '@inertiajs/vue3';
 
  export default {
-	 
+	 components:{
+		AppLayout 
+	 },
   data() {
     return { 
 		raw_messages:[], 
@@ -13,7 +16,7 @@ import axios from 'axios';
 		next_link:'', 
 		message_send:'', 
 		thread_id:'', 
-		 
+		   user: usePage().props.auth.user, 
 		  message_reciver:null , 
     }
   } 
@@ -75,14 +78,19 @@ import axios from 'axios';
 				  
 				  <div class="col-md-12">
 							<div  v-for="(item, indexe) in left_messages" class="item leftItm"  >
+							
 								<p>
+								<template v-if="item.sender">
 									  <b>From : {{  item.sender.email }}</b>
+								</template>	  
 																<br>
 															<b>created at : {{  item.created_at }}</b>
 								</p>
 										<h5> {{ item.message }}</h5> 
 										
-									 	<a class="btn btn-danger" :href="'/message_thread/'+item.sec_user_id">Send Message</a>
+										
+									 	<a  v-if="user.id!=item.sec_user_id" class="btn btn-danger" :href="'/message_thread/'+item.sec_user_id">Send Message</a>
+									 	<a  v-if="user.id!=item.user_id" class="btn btn-danger" :href="'/message_thread/'+item.user_id">Send Message</a>
 							</div>
 				  </div>
 								 

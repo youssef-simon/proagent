@@ -21,7 +21,7 @@ class MyPurchasesController extends Controller
 	 public function index(Request $request)
     {
 		 $user = \Auth::guard('web')->user();
-		 $serviceRequests = ServiceRequest::where('user_id', $user->id )->with('service')->paginate(10); 
+		 $serviceRequests = ServiceRequest::where('user_req_id', $user->id )->with('service')->paginate(10); 
 		
 		return Inertia::render('front/my_purchases/index',[
 			"serviceRequests"=>$serviceRequests , 

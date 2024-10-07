@@ -32,7 +32,12 @@ export default{
 	  
 			  <div class="col-md-4"  v-for="(serviceCatItm, index) in  serviceCats ">
 						  
-								<h2>{{ serviceCatItm.name }}</h2>
+								<h2>
+								<a :href="'/service_all/'+serviceCatItm.id">
+										{{ serviceCatItm.name }}
+									 
+								</a>
+								</h2>
 								<ul style="margin-left:20px;">
 								  <li  v-for="childernItm in  serviceCatItm.chidern">
 										 <a :href="'/service_by_category/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>

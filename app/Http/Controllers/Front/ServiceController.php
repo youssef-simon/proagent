@@ -48,6 +48,7 @@ class ServiceController extends Controller
 		foreach($serviceCategories as $depItm){
 			
 			$serviceCats[$depItm->department->id]['name'] = $depItm->department->name;
+			$serviceCats[$depItm->department->id]['id'] = $depItm->department->id;
 			$serviceCats[$depItm->department->id]['chidern'][] =[ 'title'=>$depItm->title , 'id'=>$depItm->id];
 			
 		} 
@@ -65,7 +66,11 @@ class ServiceController extends Controller
     public function serviceView($id)
     {
 	  
-		 $service = Service::where('id',$id)->with('serviceImages')->with('user') ->first();; 
+		 $service = Service::where('id',$id)
+		 ->with('serviceImages')
+		   ->with('category')
+		   ->with('category.parentCategory')
+		 ->with('user') ->first();; 
 		 
 		   
 	   return Inertia::render('front/serviceView',[
@@ -188,7 +193,7 @@ class ServiceController extends Controller
 		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
 		//dd($categories);
 		 
-		$services =  Service::where('department_id',$id)-> paginate(24);
+		$services =  Service::where('department_id',$id)->with('category')->with('category.parentCategory')-> paginate(24);
 		return Inertia::render('front/service_all',[
 		'categories'=>$categories ,
 		'services'=>$services ,
@@ -201,8 +206,9 @@ class ServiceController extends Controller
 	    $categories =  ServiceCategory::where('department_id',$depId)->whereNull('parent_id')->with("childCategories")->get();
 		$services =  Service:: leftJoin('service_categories', 'services.category_id', '=', 'service_categories.id')
 									  -> where('services.category_id',$id)
+									  ->with('category.parentCategory')
 									  ->orWhere('service_categories.parent_id',$id)
-									 // ->groupBy('services.id')
+									 
 									  ->select('services.*')
 									-> paginate(24);
 		 

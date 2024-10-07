@@ -59,6 +59,9 @@ Route::get('/service_view/{id}',[ServiceFrontController::class,'serviceView'])->
 Route::get('/taxservice',[ServiceFrontController::class,'taxservice'])->name('home.taxservice');
 Route::get('/users',[UserFrontController::class,'index'])->name('home.users');
 Route::get('/user_details/{id}',[UserFrontController::class,'details'])->name('home.user_details');
+Route::get('/user_services/{id}',[UserFrontController::class,'user_services'])->name('home.user_services');
+Route::get('/user_works/{id}',[UserFrontController::class,'user_works'])->name('home.user_works');
+Route::get('/work_view/{id}',[UserFrontController::class,'work_view'])->name('home.work_view');
 
 Route::get('/register',[AuthController::class,'register'])->name('register.create');
 Route::post('/register_store',[AuthController::class,'registerStore'])->name('register.store');
@@ -99,11 +102,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::get('/my_purchases',[MyPurchasesController::class,'index'])->name('my_purchases');
 		Route::get('/my_requested_service',[ServiceRequestFrontController::class,'index'])->name('my_requested_service');
 		
-		
-		 
-	
-	//	Route::get('/message_threads', [\App\Http\Controllers\Front\MessageController::class, 'message_threads']);
-		Route::get('/message_thread/{id}', [\App\Http\Controllers\Front\MessageController::class, 'message_thread']);
+	 	Route::get('/message_thread/{id}', [\App\Http\Controllers\Front\MessageController::class, 'message_thread']);
 		
 		Route::get('/message_thread_view/{id}', [\App\Http\Controllers\Front\MessageController::class, 'message_thread_view']);
 		
