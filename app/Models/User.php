@@ -41,7 +41,10 @@ class User extends Authenticatable
 	    'salary',  	 
         'department_id',  	 
         'imagpath',  	 
-        'biograph',  	 
+        'biograph',  	
+		
+        'work_title',  	 
+        'small_bio',  	 
     ];
 
     /**
@@ -100,7 +103,7 @@ class User extends Authenticatable
 	 {
 	  return Attribute::make(
 				
-					get: fn (mixed $value, array $attributes) => strtolower( $attributes['first_name'].' '.$attributes['last_name']),
+					get: fn (mixed $value, array $attributes) => $attributes['first_name'].' '.$attributes['last_name'],
 			 );
 	 }
 	  

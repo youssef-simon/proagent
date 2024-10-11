@@ -15,8 +15,12 @@ import axios from 'axios';
 		next_link:'', 
 		message_send:'', 
 		thread_id:'', 
-		 
 		  message_reciver:null , 
+		  
+		  form:{
+			  pathshow:'',
+			  path:''
+		  }
     }
   } 
 
@@ -79,12 +83,23 @@ import axios from 'axios';
 						}   ,
 						async postComment() { 
 							 
-									var msgJson= {"receiver_id":this.rec_id, "message":this.message_send , "thread_id" : this.thread_id};
+									var msgJson= {
+										"receiver_id":this.rec_id
+										, "message":this.message_send 
+										, "thread_id" : this.thread_id
+										, "file_path" : this.form.path
+										, "file_name" : this.form.file_name
+										//, "thread_id" : this.pathshow
+										
+										};
 									 
 									 var self=  this;
 						 const doctorslist = await axios.post("/post_message",msgJson).then((dd) => {
 													self.fetchData(self.rec_id); 
 													self.message_send="";
+													 
+													self.form.pathshow="";
+													self.form.path="";
 						});
 					 
 					},async removeMsg(id){
@@ -146,6 +161,36 @@ import axios from 'axios';
 													
 												}
  	
+	
+	
+	
+				
+		, uploadFile(event, index) {
+                var self = this;
+                // this.form.refields[index].img="Ddd";
+
+                const URL = '/api/uploadfile';
+
+                let data = new FormData();
+                data.append('name', 'my-picture');
+                data.append('file', event.target.files[0]);
+
+                let config = {
+                    header: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+
+                axios.post(URL,data,config).then(function (response) { 
+								 //let result = response.data.path.replace("public", "storage");
+								self.form.file_name =  response.data.file_name;
+								self.form.pathshow =  response.data.pathshow;
+								self.form.path =  response.data.path; 
+								return true; 
+					}
+                )
+            }, 	   
+	
 		  } 
 		  
 		  
@@ -202,6 +247,8 @@ import axios from 'axios';
 																				<p>From : {{  item.sender.full_name }}</p>
 																					<p>created at : {{  item.created_at }}</p>
 																					<div class="message">  {{ item.message }}</div>
+																					<div v-if="item.file_path" class="file"> <a :href="item.file_path_show">{{ item.file_name }}</a></div>
+																					
 																			</div> 
 															</div> 
 															
@@ -212,6 +259,24 @@ import axios from 'axios';
 														<label for="firstName" class="form-label">Message</label>
 														<textarea v-model="message_send" class="form-control"></textarea>
 														<button class="btn btn-danger" @click="postComment()" >send</button>
+													
+													
+														 <div class="repeater col-md-12 p15">
+																<h3>File Upload</h3> 
+																<div class="row">
+																	<div class="col-md-4" >
+																		<div class="control-group w-100">
+																			 
+																			<input type="file" accept="image/*" @change="uploadFile($event,index)" id="file-input">
+																		 
+																			<a :href="form.pathshow">{{ form.path }}</a>
+																		</div>
+																	</div>
+																</div>  
+															</div>
+													
+													
+													
 													</div>
 										
 									</div>	

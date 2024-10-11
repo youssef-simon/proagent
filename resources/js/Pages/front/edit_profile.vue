@@ -18,6 +18,8 @@ export default{
 		 const form = reactive({
 						first_name: props.user.first_name,
 						last_name: props.user.last_name,
+						work_title: props.user.work_title,
+						small_bio: props.user.small_bio,
 						email: props.user.email, 
 						phone: props.user.phone,  
 						biograph: props.user.biograph,  
@@ -95,6 +97,15 @@ export default{
 			  <div class="form-group">
 					  <label for="name">  last_name:</label>
 					<input id="last_name" class="form-control" v-model="form.last_name" />
+              </div>
+			   <div class="form-group">
+					  <label for="name">  work_title:</label>
+					<input id="work_title" class="form-control" v-model="form.work_title" />
+              </div>
+			  
+			 <div class="form-group">
+					  <label for="name">small_bio:</label>
+					<textarea id="small_bio" class="form-control" v-model="form.small_bio"  ></textarea>
               </div>
 			  
 			    <div class="form-group">

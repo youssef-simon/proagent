@@ -71,14 +71,12 @@ class UserController extends Controller
 	
 	 public function work_view($id)
     {
-		 $user = User::find($id); 
+		 $userproject = UserProject::where('id',$id)->with('user')->with('projectImages')->first(); 
 		  
-		  $userprojects = UserProject::where('user_id',$id) 
-		  ->paginate(24);
+		 
+	   return Inertia::render('front/workView',[
 		  
-	   return Inertia::render('front/userdetails/user_projects',[
-			"user"=>$user ,  
-			"userprojects"=>$userprojects ,  
+			"userproject"=>$userproject ,  
 			]);
     }
 	

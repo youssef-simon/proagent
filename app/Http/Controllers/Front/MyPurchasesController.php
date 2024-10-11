@@ -22,7 +22,7 @@ class MyPurchasesController extends Controller
     {
 		 $user = \Auth::guard('web')->user();
 		 $serviceRequests = ServiceRequest::where('user_req_id', $user->id )->with('service')->paginate(10); 
-		
+	 
 		return Inertia::render('front/my_purchases/index',[
 			"serviceRequests"=>$serviceRequests , 
 			]);

@@ -1,6 +1,6 @@
 <script>
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
+ 
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 
@@ -15,32 +15,30 @@ export default{
 					}
 		  } 
 	 ,props:{
-		    service:Object, 
-		  	serviceCategories:Object,
-		  	serviceImageArr:Object,
-		  	departments:Object,
+		  userproject:Object,  
+		  userProjectImageArr:Object,
 		  errors:Object
 	 },setup(props){ 
 		 const form = reactive({ 
-			    title:  props.service.title , 
-				description:  props.service.description ,
-				price_from:  props.service.price_from ,
-				category_id:  props.service.category_id ,
-				imgfields:  props.serviceImageArr ,
-				imagpath:  props.service.imagpath ,
-				imagpathshow:  props.service.image_path_show ,
-				 department_id:  props.service.department_id ,
-				 serviceCategories:  props.serviceCategories ,
+			    title:  props.userproject.title , 
+				description:  props.userproject.description ,
+				
+				
+				imgfields:  props.userProjectImageArr ,
+				imagpath:  props.userproject.imagpath ,
+				imagpathshow:  props.userproject.image_path_show ,
 			 })
-			const service=props.service;
-			return { form ,service }
+			const userproject=props.userproject;
+			return { form ,userproject }
 	 }, methods:{
 			  submit() {
-				     router.post('/service_update/'+this.service.id, this.form)
+				     router.post('/update_work/'+this.userproject.id, this.form)
 			  }
 			  
 			  
-			  , uploadImage(event, index) {
+			  /***************************/
+		
+		, uploadImage(event, index) {
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
@@ -57,7 +55,7 @@ export default{
                 };
 
                 axios.post(URL,data,config).then(function (response) { 
-						//		 let result = response.data.path.replace("public", "storage");
+								 //let result = response.data.path.replace("public", "storage");
 								self.form.imagpathshow =  response.data.pathshow;
 								self.form.imagpath =  response.data.path;
 								self.form.main_image_id = response.data.img_id;
@@ -87,31 +85,20 @@ export default{
                         data,
                         config
                         ).then(function (response) {
-                    console.log(self.form.imgfields[index].img);
-						let result = response.data.path.replace("public", "storage");
-						
-                         self.form.imgfields[index].path =  response.data.path;
-                    self.form.imgfields[index].imagpathshow =  response.data.pathshow;
-                    self.form.imgfields[index].img_id = response.data.img_id;
-                    return true;
+								self.form.imgfields[index].path =  response.data.path;
+								self.form.imgfields[index].imagpathshow =  response.data.pathshow;
+							 
+								self.form.imgfields[index].img_id = response.data.img_id;
+								return true;
 
                 }
                 )
-            } ,departmentChange(){
-					var self = this;
-				   axios.get("/changedepart/"+ this.form.department_id)
-					  .then( function(response) {
-											const getData =response.data.data;
-											 
-											self.form.serviceCategories = getData;
-											 
-									}
-							)
-					  .catch(error => {
-						console.error(error);
-					  });
-		}
-		 ,AddField: function () {
+            } 
+			
+			
+			
+			
+			 ,AddField: function () {
                 this.form.imgfields.push({
                     title: '',
                     img: '',
@@ -122,21 +109,13 @@ export default{
             }, removeField: function (index) {
                 this.form.imgfields.splice(index, 1);
             },
+		/***************************/
 		
 		
-	 },created(){
-		 	  var self = this;
-				   axios.get("/changedepart/"+ this.form.department_id)
-					  .then( function(response) {
-											const getData =response.data.data; 
-											self.form.serviceCategories = getData;
-											self.form.category_id = self.service.category_id;
-											 
-									}
-							)
-					  .catch(error => {
-						console.error(error);
-					  });  
+			
+			
+			
+			
 	 }
 }
 </script>
@@ -147,7 +126,7 @@ export default{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit service</h1>
+            <h1>تعديل المنطقة</h1>
           </div>
          
         </div>
@@ -176,40 +155,15 @@ export default{
 				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
 					 <div class="error_val" v-if="errors.description">description</div>
 			   </div>
+			    
 			   
-			     <div class="form-group">
-					  <label for="price_from">price_from</label>
-				 	  <input id="price_from" class="form-control" v-model="form.price_from" />
-					 <div class="error_val" v-if="errors.price_from">price_from</div>
-			   </div>
-			   
-			   
-			      <div class="form-group">
-										<label for="category_id">departement</label>
-											<select   @change="departmentChange" class="form-control" v-model="form.department_id">
-												 <option v-for="departmentItm in departments"  
-														 :value="departmentItm.id">
-														 {{ departmentItm.name }}
-												 </option> 
-											</select>
-										<div class="error_val" v-if="errors.category_id">هذا الحقل مطلوب</div>
-				</div>
-			   
-			    <div class="form-group">
-										<label for="category_id">category</label>
-											<select   class="form-control" v-model="form.category_id">
-												 <option v-for="serviceCategory in form.serviceCategories"  
-														 :value="serviceCategory.id">
-														 {{ serviceCategory.title }}
-												 </option> 
-											</select>
-										<div class="error_val" v-if="errors.category_id">هذا الحقل مطلوب</div>
-				</div>
-			   
-			   
-			   
-			   
-			    <div class="repeater col-md-12 p15">
+			    
+				
+				
+				
+				
+				
+				 <div class="repeater col-md-12 p15">
                         <h3>photo</h3> 
                         <div class="row">
                             <div class="col-md-4" >
@@ -248,8 +202,6 @@ export default{
 			   
 			   
 			   
-			   
-			   
 			   <div class="row">
 							<div class="col-12">
 								 	<button   class="btn btn-primary" v-if="submit_form==false"	type="submit">save</button>
@@ -264,7 +216,9 @@ export default{
        </div>
       
 	 </form> 
-    </section> </AppLayout>
+    </section>
+
+	</AppLayout>
 </template>
 
  

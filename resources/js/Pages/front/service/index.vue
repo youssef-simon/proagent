@@ -32,27 +32,30 @@ import { router } from '@inertiajs/vue3'
 <tr>
 	<td>ID</td>
 	<td>services</td> 
-	<td>Description</td> 
+	<!--<td>Description</td> -->
 	<td>Price</td> 
 </tr>
 <tr  v-for="service in services.data">
 	<td>{{ service.id }}</td>
 	<td>{{ service.title }}</td> 
-	<td>{{ service.description }}</td> 
-	<td>{{ service.from_price }}</td> 
+	<!--<td>{{ service.description }}</td> -->
+	<td>{{ service.price_from }}</td> 
 	<td><img :src="service.image_path_show" style="width:150px;height:150px;" /></td> 
 	<td>
 	
-		<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
-                   
-                    :href="'/service_edit/'+service.id"
+		<Link  class="btn-primary btn"
+                      :href="'/service_edit/'+service.id"
                     v-html="'edit'"
                 />
 				
 			 <Link class="btn-primary btn" @click="destroy( service.id)" >
                                                 Delete
                                             </Link> 
-				</td>
+				
+				
+				 <Link class="btn-primary btn"     :href="'/service_view/'+service.id"
+                    v-html="'View'" />
+			 </td>
 </tr>
 </table>
  
@@ -96,7 +99,7 @@ export default {
 		  destroy(id) {
 				if (confirm("Are you sure you want to Delete")) {
          
-					router.delete(route("service.delete", id));
+					router.delete(route("service_front.delete", id));
 				}
 			},
 /* 	 submit( ) {

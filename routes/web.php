@@ -93,6 +93,8 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::get('/service_edit/{id}',[ServiceFrontController::class,'service_edit'])->name('service_edit');
 		Route::post('/service_update/{id}',[ServiceFrontController::class,'service_update'])->name('service_update');
 		
+		Route::delete('service/delete/{id}', [ServiceFrontController::class, 'destroy'])->name('service_front.delete');
+		
 		Route::get('/request_view/{id}',[ServiceRequestFrontController::class,'request_view'])->name('request_view');
 		Route::get('/chat_room/{id}', [ServiceRequestFrontController::class, 'chatRoomMessages']);
 		Route::post('/post_room_message', [ServiceRequestFrontController::class, 'sendRoomMsg']);
@@ -121,6 +123,10 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::get('/create_work',[MyProjectController::class,'create'])->name('create_work');
 		Route::post('/store_work',[MyProjectController::class,'store'])->name('store_work');
 		Route::get('/edit_work/{id}',[MyProjectController::class,'edit'])->name('edit_work');
+		Route::post('/update_work/{id}',[MyProjectController::class,'update'])->name('update_work');
+		 
+		Route::delete('delete_work/{id}', [MyProjectController::class, 'destroy'])->name('delete_work_front');
+		
 	
 });
 
@@ -196,16 +202,8 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
  
  
 
-Route::get('/employee/login',[LoginController::class,'empLogin'])->name('admin.employeeLogin');
-Route::post('/employee/login',[LoginController::class,'postEmpLogin'])->name('admin.postemplogin');
- 
- 	Route::group(['middleware' => ['auth:web']], function () {
- 
-			Route::get('/employee',[EmpDashboardController::class,'show'])->name('emp.dashboard');
-		Route::get('employee/tasks', [TaskController::class, 'tasksEmp'])->name('emp.taskemp');
-		Route::get('employee/task/{id}', [TaskController::class, 'editStatus'])->name('emp.changetaskedit');
-		Route::post('employee/task/{id}', [TaskController::class, 'updateStatus'])->name('emp.changetaskupdate');
-	});
+	Route::get('/logout_user',[LoginController::class,'logout'])->name('userlogout.logout');
+	 
 	
 	
 	

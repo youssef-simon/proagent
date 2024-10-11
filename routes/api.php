@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 		
 	Route::post('/uploadimg', [\App\Http\Controllers\API\ImageUploadController::class, 'uploadimg']); 
+	Route::post('/uploadfile', [\App\Http\Controllers\API\FileUploadController::class, 'uploadfile']); 

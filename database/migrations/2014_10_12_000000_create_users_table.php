@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('last_name')->nullable(); 
 			
             $table->string('username')->nullable();	
+            $table->string('work_title')->nullable();	
             $table->string('phone')->nullable();
             $table->string('email')->unique();
 			
+            $table->text('small_bio')->nullable();
             $table->text('biograph')->nullable();
             $table->string('imagpath')->nullable();
 			

@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -94,6 +95,21 @@ class LoginController extends Controller
 	
 	
 	
+	 /**
+     * Log out account user.
+     *
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+       
+
+        \Auth::guard('web')->logout();
+          
+	   
+  Session::flush();
+        return redirect('/');
+    }
 	
 	
 	

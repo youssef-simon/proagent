@@ -90,8 +90,7 @@ class UserProjectController extends Controller
     {
 		$data	= $request->all();
  
-	// dd($data);
-		$userProject = UserProject::find($id); 
+	 	$userProject = UserProject::find($id); 
 		$userProject->update($data);
 		
 		

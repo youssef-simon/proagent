@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Storage;
+
 
 class Message extends Model
 {
@@ -23,8 +25,18 @@ class Message extends Model
         'sender_type',
         'receiver_type',
         'message',
+        'file_path',
+        'file_name',
          
     ];
+	
+	
+	protected $appends = ['file_path_show'];
+		 
+    protected function getFilePathShowAttribute() 
+    {						
+		 return Storage::url( $this->file_path);
+     }
 	
 	    /**
      * Get the parent imageable model (user or post).

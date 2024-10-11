@@ -12,7 +12,7 @@ import { router } from '@inertiajs/vue3'
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>services</h1>
+            <h1>My Purchases</h1>
           </div>
          
         </div>

@@ -16,11 +16,9 @@ return new class extends Migration
 		  
 		   	 $table->integer('user_id')->unsigned()->nullable();
 		     $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-			 
-			 
-				$table->string('title');
-				
-					$table->string('imagpath')->nullable();
+			  
+			  $table->string('title');
+			  $table->string('imagpath')->nullable();
 				
 				$table->text('description');
 				

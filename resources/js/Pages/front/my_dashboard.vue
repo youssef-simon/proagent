@@ -36,6 +36,9 @@ export default{
 		<div class="userImg">
 	 	<img class="userImgCont" :src="user.image_path_show" />
 		</div>
+		
+		<h2>{{ user.full_name }} </h2>
+		<h4>{{ user.work_title }} </h4>
 				<ul class="dashBoardList">
 					<li> <a href="/service_list">
 					
