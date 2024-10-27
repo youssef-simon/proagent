@@ -7,9 +7,19 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\ServiceImage;
 use  App\Models\User;
 use  App\Models\ServiceCategory;
+use  App\Models\Department;
 
 class Service extends Model
 {
+	
+	
+	const STATUS_PENDING=1;
+	const STATUS_ACCEPTED=2;
+	const STATUS_REFUSED=3;
+ 
+	
+	
+	
     protected $fillable = [
         'title',
         'description',
@@ -22,6 +32,7 @@ class Service extends Model
         'imagpath',
         'category_id',
         'department_id',
+        'status',
     
     ];
     
@@ -55,5 +66,8 @@ class Service extends Model
 		 return $this->belongsTo(ServiceCategory::class, 'category_id');
 	}
  
-    
+    public function department(){
+		 return $this->belongsTo(Department::class, 'department_id');
+	}
+	
 }

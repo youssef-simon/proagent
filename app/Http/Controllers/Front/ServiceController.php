@@ -119,7 +119,8 @@ class ServiceController extends Controller
 		 $user = \Auth::guard('web')->user();
 		 
 		 $data['user_id']= $user->id;
-	 
+		 $data['status']=1;
+		 
 		$service  = Service::create($data);
 	 
 	 
@@ -190,15 +191,18 @@ class ServiceController extends Controller
 	
 	
 	public function serviceAll($id){
+		
+	$department =	Department::find($id);
 		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
-		//dd($categories);
+		 
 		 
 		$services =  Service::where('department_id',$id)->with('category')->with('category.parentCategory')-> paginate(24);
 		return Inertia::render('front/service_all',[
-		'categories'=>$categories ,
-		'services'=>$services ,
-		'dep_id'=>$id ,
-		]);
+					'categories'=>$categories ,
+					'services'=>$services ,
+					'dep_id'=>$id ,
+					'department'=>$department ,
+			]);
 	}
 	
 	
@@ -212,10 +216,14 @@ class ServiceController extends Controller
 									  ->select('services.*')
 									-> paginate(24);
 		 
+		 	$department =	Department::find($depId);
+		 
+		 
 		return Inertia::render('front/service_cat',[
 				'dep_id'=>$depId ,
 				'categories'=>$categories,
 				'services'=>$services,
+				'department'=>$department ,
 		]);
 	}
 	

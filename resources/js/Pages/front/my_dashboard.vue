@@ -30,15 +30,18 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
+    <div class="whContAll">
   <div class="row">
 		<div class="col-md-3">
-		 
-		<div class="userImg">
-	 	<img class="userImgCont" :src="user.image_path_show" />
-		</div>
-		
-		<h2>{{ user.full_name }} </h2>
-		<h4>{{ user.work_title }} </h4>
+		 <div class="userDetailCont">
+				<div class="userImg">
+				<img class="userImgCont" :src="user.image_path_show" />
+				</div>
+				
+				<h2>{{ user.full_name }} </h2>
+				<h6>{{ user.work_title }} </h6>
+			</div>
+			
 				<ul class="dashBoardList">
 					<li> <a href="/service_list">
 					
@@ -71,7 +74,7 @@ export default{
 		</div>  
 		<div class="col-md-9">
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 						
 						<h3>Total Money</h3>
@@ -79,14 +82,14 @@ export default{
 						</div>
 					</div>
 					
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 							<h3>Total Money</h3>
 						<h4>0 $</h4	>
 						
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 						
 							<h3>Total Money</h3>
@@ -96,7 +99,7 @@ export default{
 				</div>
 				
 					<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 						
 						<h3>Total Money</h3>
@@ -104,14 +107,14 @@ export default{
 						</div>
 					</div>
 					
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 							<h3>Total Money</h3>
 						<h4>0 $</h4	>
 						
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="cardCont">
 						
 							<h3>Total Money</h3>
@@ -120,6 +123,7 @@ export default{
 				
 				</div>
 		</div>
+	</div>  
 	</div>  
   </AppLayout>
 </template>

@@ -39,7 +39,7 @@ class AuthController extends Controller
 		
 		 $data = $request->all(); 
 		 
-		 
+		 $errors="";
 		$validatedData = $request->validate([
 			 'email' => 'required', 
 			 'password' => 'required', 
@@ -48,12 +48,13 @@ class AuthController extends Controller
 		 
 		  
 		  if (\Auth::guard('web')->attempt($request->only(['email','password']), $request->get('remember'))){
-    
-		return redirect('my_profile');
-			} 
+					return redirect('my_dashboard');
+			} else{
+					$errors="Wrong Username or Password";
+			}
 		
-		   return back()->withInput($request->only('email', 'remember'));
-	   return Inertia::render('front/auth/login' );
+	  // return back()->withInput($request->only('errors', 'remember'));
+	   return Inertia::render('front/auth/login' ,[ 'errors'=>$errors  ]);
     }
 
  

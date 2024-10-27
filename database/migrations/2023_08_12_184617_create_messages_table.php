@@ -21,6 +21,10 @@ return new class extends Migration
 					$table->unsignedInteger('sender_id');
 					$table->string('sender_type');
 					
+					$table->string('file_name')->nullable();
+					$table->string('file_path')->nullable();
+					 
+					
 					
 					$table->unsignedInteger('receiver_id');
 					$table->string('receiver_type');

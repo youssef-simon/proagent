@@ -17,6 +17,9 @@ export default{
 						showReq:false,   
 						reqdesc:false,   
 						user: usePage().props.auth.user, 
+							 showSlider:false, 
+							  current_image:'',
+								current_image_index:0,
 					}
 		  } 
 	  
@@ -38,6 +41,16 @@ export default{
 	,closeModal(){
 		this.showReq=false;
 	}
+	,
+	
+	 showPopup(i){
+					this.current_image_index=i;
+					this.current_image= this.service.service_images[i].image_path;
+					 this.showSlider=true;
+				 }, 
+				 hidePopup(){
+					 	 this.showSlider=false;
+				 },
 	 }
 }
 </script>
@@ -68,7 +81,7 @@ export default{
 
 
 
-    <div class="card-deck mb-3">
+    <div class="card-deck whContAll">
 	
 		<div class="col-md-12">
 			<h2>{{ service.title }}</h2>
@@ -89,10 +102,15 @@ export default{
 								<p>{{ service.description }}</p>
 								</div>
 								<div class="row">
-									<div v-for="serImg in service.service_images" class="col-md-12">
-									 
-										<img :src="serImg.image_path" />
-									
+										<div class="imgHeader col-md-12">
+											<h2>
+												Gallery
+											</h2>
+										</div>
+									<div v-for="(serImg, indexImg) in service.service_images" class="col-md-4">
+										<div class="imgCont" 	@click="showPopup(indexImg)">
+											<img   :src="serImg.image_path" />
+										</div>
 									</div>
 								</div>
 							  
@@ -137,7 +155,29 @@ export default{
 	  
 	  
 	  
-	  
+	  <div v-show="showSlider" class="fixedContainer">
+
+			<!--<div class="fixedLayer"></div>-->
+			<div class="w-lightbox-control w-lightbox-close" @click="hidePopup()" role="button" aria-label="close lightbox" tabindex="0"></div>
+			<div class="w-lightbox-backdrop">
+					
+					<div class="w-lightbox-content w-lightbox-group">
+						<div class="w-lightbox-view" tabindex="0" id="w-lightbox-view" style="opacity: 1;">
+							<div class="w-lightbox-frame">
+							<figure class="w-lightbox-figure">
+									<img class="w-lightbox-img w-lightbox-image" :src="current_image">
+							</figure>
+							</div> 
+						</div>
+						
+						 
+				 </div>
+				 
+				 
+	  	 </div>
+		 
+		 
+</div>
 	  
 	  
 

@@ -41,26 +41,132 @@ import { usePage } from '@inertiajs/vue3';
  
 <div class="wrapper">
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-	  
-	    <a class="p-2 text-dark" href="/home">Home</a>
-        <a class="p-2 text-dark" href="/service">Services</a>
-      
-        <a class="p-2 text-dark" href="/users">Users</a>
-        <a class="p-2 text-dark" href="/taxservice">taxanomy</a>
-      </nav>
-	 <template v-if="!user" >
-      <a class="btn btn-outline-primary" href="/register">Sign up</a>
-      <a class="btn btn-outline-primary" href="/user_login">Login</a>
-     </template>
-			 <template v-if="user" >
-			  <a class="btn btn-outline-primary" href="/my_dashboard">my Dashboard</a>
-			  <a class="btn btn-outline-primary" href="/logout_user">Log Out</a>
-			 
-			 </template>
-	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="/img/logo.png" style="width:55px;" />
+		<span>Pro</span>
+		</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+	  <ul class="navbar-collapse userMenu">
+					       <li class="nav-item">
+              
+                                
+                  <a style="position:relative;" class="nav-link" href="">
+                                      <i class="fa fa-envelope"></i>
+                                      
+                                  
+                                     
+                                     
+                                  <!-- <span style="padding: 5px;
+      color: #fff;
+      top: 20px;
+      background: #f23d3d;
+      border-radius: 100px; " class="couMsg">  </span>-->
+     </a>           
+     </li>
+         <li class="nav-item {% if app.request.attributes.get('_route') == 'writers_mynotifications' %}activeItm{% endif %}">
+     
+           <a style="position:relative;" class="nav-link" href="">
+                                      <i class="fa fa-bell"></i>
+                                      
+                      
+                                     
+                                   <!--  <span style="padding: 5px;
+      color: #fff;
+      top: 20px;
+      background: #f23d3d;
+      border-radius: 100px;" class="couMsg"> </span>-->
+     </a>
+                
+                                    
+          </li>
+					  
+				</ul>	 
+
+
+
+
+
+
+
+        <div class="  navbar-collapse" id="navbarsExample07">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <!--  <li class="nav-item">
+              <a class="nav-link"  href="/service">Services</a>
+            </li>-->
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Users</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="/taxservice">Taxanomy</a>
+            </li>
+			
+			
+			
+			
+			
+			<template v-if="!user" >
+						<li class="nav-item">
+							<a class="btn btn-outline-primary nav-link" href="/register">Sign up</a>
+					   </li>
+					   <li class="nav-item">
+							<a class="btn btn-outline-primary nav-link" href="/user_login">Login</a>
+					     </li>
+					 </template>
+							 <template v-if="user" >
+								<li class="nav-item bgBtm">
+										<a class="btn btn-dark" href="/my_dashboard">my Dashboard</a>
+							     </li>
+							   <li class="nav-item bgBtm">
+									<a class="btn btn-dark" href="/logout_user">Log Out</a>
+							    </li>
+							 </template>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 <div class="container containerBig">
 
 		<slot />

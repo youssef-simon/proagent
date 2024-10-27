@@ -20,7 +20,7 @@ import { router } from '@inertiajs/vue3'
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" href="/service/create">add service</a>
+					<a  class="btn btn-primary" href="/admin/service/create">add service</a>
 			  </div>
               </div>
 			  
@@ -30,20 +30,30 @@ import { router } from '@inertiajs/vue3'
 <tr>
 	<td>ID</td>
 	<td>services</td> 
+	<td>status</td> 
 </tr>
 <tr  v-for="service in services.data">
 	<td>{{ service.id }}</td>
 	<td>{{ service.title }}</td> 
+	<td> 
+		<span v-if="service.status==1" >Under Review</span>
+		<span v-if="service.status==2" >Approved</span>
+
+		</td>
 	<td>
 	
-		<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
-                   
-                    :href="'/service/edit/'+service.id"
+			<Link  class="btn-primary btn"
+                    :href="'/admin/service/edit/'+service.id"
                     v-html="'edit'"
                 />
 				
 			 <Link class="btn-primary btn" @click="destroy( service.id)" >
                                                 Delete
+                                            </Link> 
+											
+				
+			 <Link class="btn-primary btn"    :href="'/admin/service/view/'+service.id" >
+                                                View
                                             </Link> 
 				</td>
 </tr>

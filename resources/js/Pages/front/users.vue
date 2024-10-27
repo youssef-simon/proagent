@@ -31,12 +31,13 @@ export default{
 <template>
 <AppLayout title="Dashboard">
 <div>
-    <div class="card-deck">
+    <div class="card-deck whContAll userPage">
 	
-		<div class="col-md-12">
+	
+      <div class="container">
+	  	<div class="header">
 			<h3>Users</h3>
 	</div>
-      <div class="container">
 			<div   v-for="userItm in users.data" class="proItem row">
 						<div class="col-md-2">
 							<a :href="'/user_details/'+userItm.id">
@@ -44,8 +45,11 @@ export default{
 							 </a>
 						 </div>
 						 <div class="col-md-10">
-						  <h4>{{ userItm.full_name }}</h4>  
-						  <h6>Electronic Engineer</h6>
+						<a :href="'/user_details/'+userItm.id">	  <h4>{{ userItm.full_name }}</h4>  </a>
+						  <h6><i class="fa fa-suitcase"></i>{{ userItm.work_title }}</h6>
+						  <div class="txtCont">
+						  <p>{{ userItm.small_bio }}</p>
+						  </div>
 						   </div>
 					 </div>
 			</div>

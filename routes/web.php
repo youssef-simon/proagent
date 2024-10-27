@@ -67,7 +67,7 @@ Route::get('/register',[AuthController::class,'register'])->name('register.creat
 Route::post('/register_store',[AuthController::class,'registerStore'])->name('register.store');
 
 Route::get('/user_login',[AuthController::class,'login'])->name('home.login');
-Route::post('/login_check',[AuthController::class,'login_check'])->name('login_check.login');
+Route::post('/user_login',[AuthController::class,'login_check'])->name('login_check.login');
 
 Route::get('/service_all/{id}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
 Route::get('/service_by_category/{depId}/{id}',[ServiceFrontController::class,'serviceByCategory'])->name('service_by_category');
@@ -184,8 +184,11 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::get('service/index', [ServiceController::class, 'index'])->name('service.index');
 		Route::delete('service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
 		Route::get('service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+		Route::get('service/view/{id}', [ServiceController::class, 'view'])->name('service.view');
 		Route::post('service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
-		  
+		Route::post('/change_status',[ServiceController::class,'change_status'])->name('change_status');
+		
+		
 		Route::get('service_category/create', [ServiceCategoryController::class, 'create'])->name('service_category.create');
 		Route::post('service_category/store', [ServiceCategoryController::class, 'store'])->name('service_category.store');
 		Route::get('service_category/index', [ServiceCategoryController::class, 'index'])->name('service_category.index');

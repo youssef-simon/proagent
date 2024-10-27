@@ -85,7 +85,7 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="card-deck mb-3">
+    <div class="card-deck whContAll">
 	
 		<div class="col-md-12">
 			<h2>Services</h2>

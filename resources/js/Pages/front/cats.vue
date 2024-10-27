@@ -24,20 +24,20 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="container">
-	<div class="col-md-12">
-			<h2>Services Taxanomy</h2>
+    <div class="container whContAll taxaPage">
+	<div class="colHeader">
+			<h2>Taxanomy</h2>
 	</div>
       <div class="row">
 	  
-			  <div class="col-md-4"  v-for="(serviceCatItm, index) in  serviceCats ">
+			  <div class="col-md-4 taxItmCont"  v-for="(serviceCatItm, index) in  serviceCats ">
 						  
-								<h2>
+								<h6>
 								<a :href="'/service_all/'+serviceCatItm.id">
 										{{ serviceCatItm.name }}
 									 
 								</a>
-								</h2>
+								</h6>
 								<ul style="margin-left:20px;">
 								  <li  v-for="childernItm in  serviceCatItm.chidern">
 										 <a :href="'/service_by_category/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>

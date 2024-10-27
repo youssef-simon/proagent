@@ -31,16 +31,22 @@ import { router } from '@inertiajs/vue3'
 
 <tr>
 	<td>ID</td>
-	<td>services</td> 
-	<!--<td>Description</td> -->
+	<td>Services</td>  
 	<td>Price</td> 
+	<td>Image</td> 
+	<td>Status</td> 
+	<td>Acion</td> 
 </tr>
 <tr  v-for="service in services.data">
-	<td>{{ service.id }}</td>
-	<td>{{ service.title }}</td> 
-	<!--<td>{{ service.description }}</td> -->
-	<td>{{ service.price_from }}</td> 
-	<td><img :src="service.image_path_show" style="width:150px;height:150px;" /></td> 
+			<td>{{ service.id }}</td>
+			<td>{{ service.title }}</td>  
+			<td>{{ service.price_from }}</td> 
+			<td><img :src="service.image_path_show" style="width:150px;height:150px;" /></td> 
+		<td> 
+		<span v-if="service.status==1" >Under Review</span>
+		<span v-if="service.status==2" >Approved</span>
+
+		</td>
 	<td>
 	
 		<Link  class="btn-primary btn"
@@ -56,6 +62,7 @@ import { router } from '@inertiajs/vue3'
 				 <Link class="btn-primary btn"     :href="'/service_view/'+service.id"
                     v-html="'View'" />
 			 </td>
+			 
 </tr>
 </table>
  

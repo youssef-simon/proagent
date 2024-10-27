@@ -35,7 +35,7 @@ export default{
 	 
 	 submit() {
 		 
-			 router.post('/login_check', this.form)
+			 router.post('/user_login', this.form)
 	}
 	 
 	
@@ -49,28 +49,32 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="card-deck mb-3">
-			<h2>login</h2>
+    <div class="card-deck whContAll LoginPage">
 			
 			
-			   <form @submit.prevent="submit">
-								<div class="form-group">
-									<label for="title">email:</label>
-									<input id="title" class="form-control" v-model="form.email" />
-								</div>
-								
-								 	<div class="form-group">
-									<label for="title">password:</label>
-									<input id="title" class="form-control" type="password" v-model="form.password" />
-								</div>
-								
-								 
-												 
-								 
-								<button  
-								class="btn btn-primary"
-								type="submit">Submit</button>
-					  </form>
+			<div class="loginCont">
+						<h2>{{ errors }}</h2>
+						<h2>Login</h2>
+					   <form @submit.prevent="submit">
+										<div class="form-group">
+											<label for="title">Email:</label>
+											<input id="title" class="form-control" v-model="form.email" />
+										</div>
+										
+											<div class="form-group">
+											<label for="title">Password:</label>
+											<input id="title" class="form-control" type="password" v-model="form.password" />
+										</div>
+										
+										 
+														 
+										 
+										<button  
+										class="btn btn-primary"
+										type="submit">Login</button>
+							  </form>
+				</div>	  
+					  
 	</div>
   </AppLayout>
 </template>

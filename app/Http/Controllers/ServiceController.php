@@ -89,6 +89,54 @@ class ServiceController extends Controller
 		 'serviceCategories'=>$serviceCategories 
 		 ]);
     }
+	
+	
+	 public function view($id)
+    {
+		  
+		  
+		 $service = Service::where('id',$id)
+		 ->with('serviceImages')
+		   ->with('category')
+		   ->with('category.parentCategory')
+		 ->with('user') ->first();; 
+		 
+
+		 return Inertia::render('service/view',[
+	 
+		 'service'=>$service , 
+		 ]);
+		 
+		 
+    }
+	
+	
+	
+	
+	
+		
+	 public function change_status(Request $request)
+    {
+		  
+		  $service_id=$request->get('service_id');
+		  $status=$request->get('status');
+		
+
+		$service = Service::where('id',$service_id) ->first();; 
+		 $service->status=2;
+		 $service->save();
+
+		return to_route('service.index');
+		
+		
+    }
+	
+	
+	
+	
+	
+	
+	
  
     public function update($id,Request $request)
     {

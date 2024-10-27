@@ -87,7 +87,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
           </li>
 		  
 		  	<li class="nav-item">
-					<a href="/user/index"  :class="{ 'active': isCurrentPath('/user/index') }"  class="nav-link">
+					<a href="/admin/user/index"  :class="{ 'active': isCurrentPath('/user/index') }"  class="nav-link">
 					  <i class="nav-icon fas fa-th"></i>
 					  <p>
 						Users
@@ -98,7 +98,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 			
 			
 			<li class="nav-item">
-					<a href="/department/index"  :class="{ 'active': isCurrentPath('/department/index') }"  class="nav-link">
+					<a href="/admin/department/index"  :class="{ 'active': isCurrentPath('/department/index') }"  class="nav-link">
 					  <i class="nav-icon fas fa-th"></i>
 					  <p>
 						departments
@@ -107,7 +107,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 			</li>
 			  
 				<li class="nav-item">
-					<a href="/service_category/index"  :class="{ 'active': isCurrentPath('/service_category/index') }"  class="nav-link">
+					<a href="/admin/service_category/index"  :class="{ 'active': isCurrentPath('/service_category/index') }"  class="nav-link">
 					  <i class="nav-icon fas fa-th"></i>
 					  <p>
 						service category
@@ -115,7 +115,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 					</a>
 			</li>
 			<li class="nav-item">
-					<a href="/service/index"  :class="{ 'active': isCurrentPath('/service/index') }"  class="nav-link">
+					<a href="/admin/service/index"  :class="{ 'active': isCurrentPath('/admin/service/index') }"  class="nav-link">
 					  <i class="nav-icon fas fa-th"></i>
 					  <p>
 						services  

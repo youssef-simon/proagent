@@ -21,6 +21,11 @@ class CreateServicesTable extends Migration
 			$table->text('description');
 			
 			$table->integer('price_from')->nullable();
+			
+			$table->integer('status')->nullable();
+			
+			
+			$table->text('admin_note')->nullable();
 		  
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
