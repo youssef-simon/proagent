@@ -81,14 +81,14 @@ export default{
 
 
 
-    <div class="card-deck whContAll">
+    <div class="widthFull whContAll servicePage">
 	
 		<div class="col-md-12">
 			<h2>{{ service.title }}</h2>
-			<h4>
+			<h6>
 				<template v-if="service.category.parent_category">{{ service.category.parent_category.title }} /</template>
 				{{ service.category.title }} 
-			</h4>
+			</h6>
 							
 	</div>
       <div class="row">
@@ -131,10 +131,10 @@ export default{
 						 
 					<div class="row">	
 						<div class="col-md-3">
-							<img :src="service.user.image_path_show" style="width:150px;height:150px;" />
+							<a :href="'/user_details/'+service.user.id"><img :src="service.user.image_path_show" style="width:150px;height:150px;" /></a>
 						</div>
 						<div class="col-md-9">
-							<p>{{ service.user.full_name }}</p>
+							<h6><a href="'/user_details/'+service.user.id">{{ service.user.full_name }}</a></h6>
 							<p>Web Developer</p>
 							
 						<template v-if="user&&user.id!= service.user.id">	

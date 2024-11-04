@@ -3,10 +3,11 @@ import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
 export default{
 	components:{
-		AppLayout,reactive,router
+		AppLayout,reactive,router,SideMenu
 	 }
 	 ,props:{
 		  	  serviceCats:Object,
@@ -73,22 +74,50 @@ export default{
 <template>
 <AppLayout title="Dashboard">
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="whContAll">
+		  <div class="row">
+				<div class="col-md-3">
+			<SideMenu />
+				</div>  
+				<div class="col-md-9">
+					 <div class="card">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
      <!-- Main content -->
-    <section class="content">
+    <div class="content">
 	
 	 <form @submit.prevent="submit">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">General</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
+          
             <div class="card-body">
               <div class="form-group">
 					  <label for="name">  first_name:</label>
@@ -175,8 +204,52 @@ export default{
        </div>
       
 	 </form> 
-    </section>
-    <!-- /.content -->
+    </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+					</div>
+			   </div>
+			</div>  
+	</div> 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
   </AppLayout>
 </template>
 

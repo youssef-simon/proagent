@@ -61,7 +61,7 @@ import { usePage } from '@inertiajs/vue3';
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="/img/logo.png" style="width:55px;" />
+        <a class="navbar-brand" href="/"><img src="/img/logo.png" style="width:55px;" />
 		<span>Pro</span>
 		</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ import { usePage } from '@inertiajs/vue3';
       border-radius: 100px; " class="couMsg">  </span>-->
      </a>           
      </li>
-         <li class="nav-item {% if app.request.attributes.get('_route') == 'writers_mynotifications' %}activeItm{% endif %}">
+         <li class="nav-item  ">
      
            <a style="position:relative;" class="nav-link" href="">
                                       <i class="fa fa-bell"></i>
@@ -110,7 +110,7 @@ import { usePage } from '@inertiajs/vue3';
 
 
 
-        <div class="  navbar-collapse" id="navbarsExample07">
+        <div class="navbar-collapse proNav" id="navbarsExample07">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="/home">Home</a>
@@ -131,10 +131,10 @@ import { usePage } from '@inertiajs/vue3';
 			
 			<template v-if="!user" >
 						<li class="nav-item">
-							<a class="btn btn-outline-primary nav-link" href="/register">Sign up</a>
+							<a class="btn btn-outline-dark nav-link" href="/register">Sign up</a>
 					   </li>
 					   <li class="nav-item">
-							<a class="btn btn-outline-primary nav-link" href="/user_login">Login</a>
+							<a class="btn btn-outline-dark nav-link" href="/user_login">Login</a>
 					     </li>
 					 </template>
 							 <template v-if="user" >

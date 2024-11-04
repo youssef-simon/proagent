@@ -3,23 +3,27 @@ import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3' 
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
  
 </script>
 
+ 
+
+
+
+
+
+
+
 <template>
 <AppLayout title="Dashboard">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>My Purchases</h1>
-          </div>
-         
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <div class="card">
+    <div class="whContAll">
+		  <div class="row">
+				<div class="col-md-3">
+			<SideMenu />
+				</div>  
+				<div class="col-md-9">
+			<div class="card">
 	
 	 
 			  
@@ -70,9 +74,21 @@ import { router } from '@inertiajs/vue3'
     </div>
     </div>
 	  
-	 
+			  
+				</div>
+			</div>  
+	</div> 
+
+
+
+	
   </AppLayout>
 </template>
+
+
+ 
+
+
 
  <script>
 import { Link } from '@inertiajs/vue3'
@@ -83,7 +99,7 @@ export default {
       required: true,
     },
   },  components: {
-        Link,
+        Link
     },methods:{
 		  destroy(id) {
 				if (confirm("Are you sure you want to Delete")) {

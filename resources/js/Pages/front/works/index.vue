@@ -1,22 +1,58 @@
-<script setup>
+ <script>
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
+ 
 import { reactive } from 'vue'
-import { router } from '@inertiajs/vue3' 
+import { router } from '@inertiajs/vue3'
+import { usePage } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3'
+
+
+export default{
+	components:{
+		AppLayout,reactive,router,Link,SideMenu
+	 }
+	   ,
+	   data() {
+					return {
+						submit_form:false   ,
+				   user: usePage().props.auth.user, 
+					}
+		  } 
+	  
+	 ,props:{ 
+		 userProjects: {
+      type: Object,
+      required: true,
+    },
+	 },setup(){
+		 
+	 }, methods:{
+	  destroy(id) {
+				if (confirm("Are you sure you want to Delete")) {
+         
+					router.delete(route("service_front.delete", id));
+				}
+	  
+	
+	 }
+}
+}
 </script>
 
 <template>
 <AppLayout title="Dashboard">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>My Works</h1>
-          </div>
-         
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+    <div class="whContAll">
+  <div class="row">
+		<div class="col-md-3">
+	<SideMenu />
+		</div>  
+		<div class="col-md-9">
+
+
+
+
+
 
     <div class="card">
 	
@@ -86,33 +122,21 @@ import { router } from '@inertiajs/vue3'
     </div>
     </div>
 	  
-	 
+	
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>  
+	</div>  
   </AppLayout>
 </template>
 
- <script>
-import { Link } from '@inertiajs/vue3'
-export default {
-  props: {
-    userProjects: {
-      type: Object,
-      required: true,
-    },
-  },  components: {
-        Link,
-    },methods:{
-		  destroy(id) {
-				if (confirm("Are you sure you want to Delete")) {
-         
-					router.delete(route("delete_work_front", id));
-				}
-			},
-/* 	 submit( ) {
-		 
-			 router.get('/availableslots/index',this.form);
-	 } */
-			
-	}
-  
-};
-</script>
+ 

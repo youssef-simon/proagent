@@ -18,6 +18,10 @@ export default{
 	  
 	 ,props:{ 
 		  user:Object,  
+		  servicesCount:String,  
+		  worksCount:String,  
+		  myPurchases:String,  
+		  myRequested:String,  
 	 },setup(){
 		 
 	 }, methods:{
@@ -77,23 +81,23 @@ export default{
 					<div class="col-md-4">
 						<div class="cardCont">
 						
-						<h3>Total Money</h3>
-						<h4>0 $</h4	>
+						<h3>Servcies Count</h3>
+						<h4>{{ servicesCount }}</h4	>
 						</div>
 					</div>
 					
 					<div class="col-md-4">
 						<div class="cardCont">
-							<h3>Total Money</h3>
-						<h4>0 $</h4	>
+							<h3>Works/Achievement</h3>
+						<h4>{{ worksCount }}</h4	>
 						
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="cardCont">
 						
-							<h3>Total Money</h3>
-						<h4>0 $</h4	></div>
+							<h3>my Purchases</h3>
+						<h4>{{ myPurchases }}</h4	></div>
 					</div>
 				
 				</div>
@@ -102,11 +106,11 @@ export default{
 					<div class="col-md-4">
 						<div class="cardCont">
 						
-						<h3>Total Money</h3>
-						<h4>0 $</h4	>
+						<h3>My Requested service</h3>
+						<h4>{{ myRequested }}</h4	>
 						</div>
 					</div>
-					
+					<!--
 					<div class="col-md-4">
 						<div class="cardCont">
 							<h3>Total Money</h3>
@@ -119,7 +123,7 @@ export default{
 						
 							<h3>Total Money</h3>
 						<h4>0 $</h4	></div>
-					</div>
+					</div>-->
 				
 				</div>
 		</div>

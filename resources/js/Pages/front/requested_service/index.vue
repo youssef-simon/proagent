@@ -3,26 +3,29 @@ import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3' 
- 
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
+
 </script>
 
+  
 <template>
 <AppLayout title="Dashboard">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>services</h1>
-          </div>
-         
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <div class="card">
-	
-	 
-			  
+    <div class="whContAll">
+		  <div class="row">
+				<div class="col-md-3">
+			<SideMenu />
+				</div>  
+				<div class="col-md-9">
+					 <div class="card">
+			
+			  <div class="card-header">
+						<div>
+							<h3>Service Requests</h3>
+					  </div>
+					  </div>
+					  
+					   
+		  
 			   
 <table class="table table-bordered table-hover dataTable dtr-inline">
 
@@ -31,7 +34,7 @@ import { router } from '@inertiajs/vue3'
 	<td>Image</td> 
 	<td>name</td> 
 </tr>
-<tr  v-for="request in serviceRequests.data">
+ <tr  v-for="request in serviceRequests.data">
 	<td>{{ request.id }}</td> 
 	<td><img  :src="request.service.image_path_show" style="width:250px;height:250px;" /></td> 
 	<td>{{ request.service.title }}</td> 
@@ -46,6 +49,8 @@ import { router } from '@inertiajs/vue3'
 			 
 				</td>
 </tr>
+
+
 </table>
  
 
@@ -68,11 +73,25 @@ import { router } from '@inertiajs/vue3'
             </template>
         </div>
     </div>
-    </div>
-	  
-	 
+			</div>
+			  
+				</div>
+			</div>  
+	</div> 
+
+
+
+	
   </AppLayout>
 </template>
+
+
+
+
+
+
+
+
 
  <script>
 import { Link } from '@inertiajs/vue3'

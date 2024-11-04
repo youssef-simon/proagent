@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Models\ServiceCategory;
 use App\Models\UserProject;
+use App\Models\ServiceRequest;
 
 class UserController extends Controller
 {
@@ -129,11 +130,30 @@ class UserController extends Controller
  
 	public function my_dashboard(Request $request)  {
 					$user = \Auth::guard('web')->user();
-		
-			
-					return Inertia::render('front/my_dashboard',[
-			"user"=>$user ,    
-			] );
+				
+					$servicesCount = Service::where('user_id',$user->id)->count();
+					
+					$worksCount = UserProject::where('user_id',$user->id)->count();
+					
+					$myPurchases = ServiceRequest::where('user_req_id',$user->id)->count();
+					
+					$myRequested = ServiceRequest::where('user_make_id',$user->id)->count();
+					
+				//	$myRequested = Me::where('user_make_id',$user->id)->count();
+					
+					
+					
+					
+					return Inertia::render('front/my_dashboard',[ 
+					
+					"user"=>$user,
+					"servicesCount"=>$servicesCount,
+					"worksCount"=>$worksCount,
+					"myPurchases"=>$myPurchases,
+					"myRequested"=>$myRequested,
+
+
+					] );
 	}
  
  

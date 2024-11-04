@@ -146,7 +146,7 @@ div.carts {
 .menuTab ul li a.active{ background:#000; color:#fff; }
 .menuTab ul  { margin-bottom:5px; }
 
-.whContAll{ background:#fff; padding:15px; }
+.whContAll{ background:#fff; padding:25px; }
 
 .bgBtm{ margin-left:10px; }
 
@@ -180,7 +180,7 @@ div.carts {
 
 .header h2{ text-transform:capitalize; margin-bottom:20px; }
 
-.navbar-light .navbar-nav .nav-link{  color: #000 !important; }
+.navbar-light .navbar-nav .nav-link{  color: #000 ; }
 
 .userPage .proItem h4{ color:#666669; }
 .userPage .proItem h6{ color:#666669; }
@@ -549,3 +549,11 @@ div.carts {
 .w-lightbox-inactive,.w-lightbox-inactive:hover {
     opacity: 0
 }
+
+
+.proNav a{ margin-left:10px; }
+.proNav ul li .btn-outline-dark:hover{ color:#fff!important; }
+.imgContainer{ width:100%; }
+.widthFull{ width:100%;  }
+
+.servicePage h2 { text-transform:capitalize; }

@@ -2,10 +2,11 @@
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import axios from 'axios'; 
 import { usePage } from '@inertiajs/vue3';
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
  export default {
 	 components:{
-		AppLayout 
+		AppLayout ,SideMenu
 	 },
   data() {
     return { 
@@ -71,12 +72,23 @@ import { usePage } from '@inertiajs/vue3';
 <template>
 
 <AppLayout title="Dashboard">
-   <div class="container">
-			 
-				  <div class="containerx">
-				  <div class="row">
+    
 				  
-				  <div class="col-md-12">
+	<div class="whContAll">
+		<div class="row">
+		<div class="col-md-3">
+			<SideMenu />
+		</div>  
+		<div class="col-md-9">
+ 
+    <div class="card">
+	
+	  <div class="card-header">
+                
+              </div>
+			  
+			   
+	  <div class="col-md-12">
 							<div  v-for="(item, indexe) in left_messages" class="item leftItm"  >
 							
 							
@@ -110,11 +122,14 @@ import { usePage } from '@inertiajs/vue3';
 									</div>
 							</div>
 				  </div>
-								 
-								 
-				  </div>
-				  </div>
-				  </div>
+							
+    </div> 
+		</div>
+	</div>  
+	</div>  
+				  
+				  
+				     
    </AppLayout>
 </template>
 <style> 
@@ -126,3 +141,7 @@ import { usePage } from '@inertiajs/vue3';
    }
    .item p span { font-weight:bold; }
 </style>
+
+
+
+
