@@ -39,9 +39,7 @@
    .item p span { font-weight:bold; }
 </style>
 <script>
-import { Modal } from 'usemodal-vue3';
-import { fetchWrapper } from '@/helpers';
-import { useAuthStore } from '@/stores';
+import { Modal } from 'usemodal-vue3'; 
 
 
  export default {
@@ -61,7 +59,7 @@ import { useAuthStore } from '@/stores';
   }
 	, methods: {  
 				 async fetchAdmins() {
-						 const comments = await fetchWrapper.get("http://127.0.0.1:8000/api/message_threads").then((res) => {
+						 const comments = await fetchWrapper.get("/api/message_threads").then((res) => {
 																				this.users=res.data;  
 						 });
 				 }    

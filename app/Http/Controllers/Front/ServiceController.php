@@ -218,8 +218,9 @@ class ServiceController extends Controller
 		 
 		 	$department =	Department::find($depId);
 		 
-		 
+		  
 		return Inertia::render('front/service_cat',[
+				'curr_id'=>$id ,
 				'dep_id'=>$depId ,
 				'categories'=>$categories,
 				'services'=>$services,

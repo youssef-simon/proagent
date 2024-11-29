@@ -29,12 +29,18 @@ return new class extends Migration
 			
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+			
+			
+			
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-          //  $table->string('profile_photo_path', 2048)->nullable();
+            
 			
-			
-		  
+			$table->string('front_image_path')->nullable();
+		    $table->string('back_image_path')->nullable();
+		    $table->string('selffront_image_path')->nullable();
+			$table->boolean('vertified')->nullable();  
+			$table->integer('vertify_status')->nullable(); 
+		 
 	 
 			
             $table->timestamps();

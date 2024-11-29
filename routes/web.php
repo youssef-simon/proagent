@@ -15,6 +15,7 @@ use App\Http\Controllers\AttributeValueController;
 use App\Http\Controllers\DashboardController; 
 use App\Http\Controllers\ProductPackController; 
 use App\Http\Controllers\OrderController; 
+use App\Http\Controllers\VerifiedController; 
   
 use App\Http\Controllers\SubProductController; 
 use App\Http\Controllers\DepartmentController; 
@@ -28,6 +29,7 @@ use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\MyPurchasesController; 
 use App\Http\Controllers\Front\MyProjectController; 
 use App\Http\Controllers\Front\MessageController ; 
+use App\Http\Controllers\Front\VerificationController ; 
 use App\Http\Controllers\Front\UserController as UserFrontController; 
 use App\Http\Controllers\Front\ServiceController as ServiceFrontController; 
 use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontController; 
@@ -127,6 +129,9 @@ Route::group(['middleware' => ['auth:web']], function () {
 		 
 		Route::delete('delete_work/{id}', [MyProjectController::class, 'destroy'])->name('delete_work_front');
 		
+		
+		Route::get('/verify_create',[VerificationController::class,'verify_create'])->name('verify_create');
+		
 	
 });
 
@@ -198,6 +203,10 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		 
 		Route::get('searchusers', [UserController::class, 'searchByName'])->name('searchusers.search');
 		Route::get('getuser/{id}', [UserController::class, 'getUserdata'])->name('get.user');
+		
+		
+		Route::get('verified_users', [VerifiedController::class, 'index'])->name('get.verified_users');
+		Route::get('user_ver/{id}', [VerifiedController::class, 'view'])->name('get.verified_view');
 			
 		 	  
 });

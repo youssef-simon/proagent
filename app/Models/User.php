@@ -29,7 +29,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-	 
+
+	const VERIFIED_UNDER=1;
+	const VERIFIED_APPROVED=2;
+	const VERIFIED_REFUSED=3;
  
 	 
     protected $fillable = [
@@ -45,6 +48,14 @@ class User extends Authenticatable
 		
         'work_title',  	 
         'small_bio',  	 
+		
+        'front_image_path',  	 
+        'back_image_path',  	 
+        'selffront_image_path',  	 
+        'vertified',  	 
+        'vertify_status',  	 
+		
+		
     ];
 
     /**

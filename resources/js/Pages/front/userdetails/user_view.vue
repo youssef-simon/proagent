@@ -1,0 +1,147 @@
+<script>
+import AppLayout from '@/Layouts/AppFrontLayout.vue';
+import Welcome from '@/Components/Welcome.vue';
+import { reactive } from 'vue';
+import { router } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+
+import UserData from '@/Pages/front/Comp/userdata.vue';
+
+export default{
+	components:{
+		AppLayout,reactive,router,UserData
+	 }
+	   ,
+	   data() {
+					return {
+						submit_form:false   ,
+						cur_user: usePage().props.auth.user 
+					}
+		  } 
+	  
+	 ,props:{ 
+		  user:Object, 
+		  services:Object, 
+	 },setup(){
+		 
+	 }, methods:{
+	 
+	  
+	
+	 }
+}
+</script>
+
+<template>
+<AppLayout title="Dashboard">
+
+
+    <div class="card-deck">
+	<div class="container">
+	 	  <div class="userContIntro col-md-12">
+	 <div class="container">
+		 <div class="row">
+	
+			<div class="col-md-3">
+				<img :src="user.image_path_show" style="width:300px;height:350px;" /> 
+			</div>
+			<div class="col-md-9">
+			 
+						<h2>{{ user.full_name	 }}</h2>  
+						<h5>{{ user.work_title	 }}</h5>  
+						<div class="col-md-12">
+							<p>{{ user.small_bio }}</p> 
+		
+						<template v-if="cur_user&&user.id!= cur_user.id">								
+							<p><a class="btn btn-danger" :href="'/message_thread/'+user.id">Send Message</a></p>  
+							</template>
+						</div>
+						
+						<template v-if="user.vertified==1">
+							<span><i class="fa fa-check-circle"></i>Verfied</span>
+						</template>
+						<template v-if="!user.vertified">
+							<span><i class="fa fa-flushed"></i>Not Verfied</span>
+							 
+						</template>
+				</div>		
+						
+			</div>
+			<div class="colddd">
+					
+			</div>
+			</div>
+	 </div>
+	 
+	 
+	 
+	  
+
+	
+	 <div class="menuTab">
+						 <ul>
+								<li> <a  class="active"   :href="'/user_details/'+user.id">My Details</a> 	</li>
+							<li> <a :href="'/user_services/'+user.id">My Services</a> 	</li>
+							<li> <a :href="'/user_works/'+user.id">My Work</a> 	</li>
+						
+						 </ul>
+					</div>
+	  <div class="tabBigCont">
+	 <div class="col-md-12 bioCont">
+		<h2>My Bio</h2>
+		<div class="bioContTxt">
+		{{ user.biograph }}
+		</div>
+	 
+	 </div>
+	 
+	 <div class="col-md-12 bioCont">
+		<h2>My Services</h2>
+	      <div class="row">
+		  
+			<div   v-for="serviceItm in services" class="col-md-4">
+			
+						 <div class="serItm">
+								 <div class="imgContainer">
+								 
+									<a :href="'/service_view/'+serviceItm.id">
+											<img  style="width:100%;height:185px;" :src="serviceItm.image_path_show" /> 
+									 </a>
+								 </div>
+								<h5>{{ serviceItm.title }}</h5> 
+								<h5>{{ serviceItm.price_from }} $</h5>
+								
+								<p><template v-if="serviceItm.category.parent_category">{{ serviceItm.category.parent_category.title }} /</template> {{ serviceItm.category.title }}  </p>
+							
+							
+						</div>
+			</div>
+	  </div>
+	  </div>
+	  </div>
+	 
+	 
+	 
+	 
+	 
+	 
+	  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	</div>
+	
+	
+	
+	
+	
+	
+  </AppLayout>
+</template>
+
+ 

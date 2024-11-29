@@ -51,7 +51,8 @@ import { router } from '@inertiajs/vue3'
 											</template>
 											 
 											 <Link class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary" :href="'/department/edit/'+department.id" v-html="'edit'" /> 
-									</td>
+								
+								</td>
 						</tr>
 				</table>
 
