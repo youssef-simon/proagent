@@ -139,7 +139,7 @@ import { usePage } from '@inertiajs/vue3';
 					 </template>
 							 <template v-if="user" >
 								<li class="nav-item bgBtm">
-										<a class="btn btn-dark" href="/my_dashboard">my Dashboard</a>
+										<a class="btn btn-dark" href="/my_dashboard">My Dashboard</a>
 							     </li>
 							   <li class="nav-item bgBtm">
 									<a class="btn btn-dark" href="/logout_user">Log Out</a>

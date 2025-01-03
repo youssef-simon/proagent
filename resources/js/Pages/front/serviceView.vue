@@ -134,7 +134,7 @@ export default{
 							<a :href="'/user_details/'+service.user.id"><img :src="service.user.image_path_show" style="width:150px;height:150px;" /></a>
 						</div>
 						<div class="col-md-9">
-							<h6><a href="'/user_details/'+service.user.id">{{ service.user.full_name }}</a></h6>
+							<h6><a :href="'/user_details/'+service.user.id">{{ service.user.full_name }}</a></h6>
 							<p>Web Developer</p>
 							
 						<template v-if="user&&user.id!= service.user.id">	

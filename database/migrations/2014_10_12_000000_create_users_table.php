@@ -34,14 +34,7 @@ return new class extends Migration
 			
             $table->rememberToken();
             
-			
-			$table->string('front_image_path')->nullable();
-		    $table->string('back_image_path')->nullable();
-		    $table->string('selffront_image_path')->nullable();
-			$table->boolean('vertified')->nullable();  
-			$table->integer('vertify_status')->nullable(); 
-		 
-	 
+			 
 			
             $table->timestamps();
         });

@@ -24,7 +24,7 @@ export default{
 	 }, methods:{ 
 			 submit() {
 				 console.log();
-					 router.post('/update_profile', this.form)
+					 router.post('/verify_store', this.form)
 			}
 			
 			
@@ -43,7 +43,7 @@ export default{
 
 						axios.post(URL,data,config).then(function (response) { 
 										self.form.imagefrontshow =  response.data.pathshow;
-										self.form.imagefrontpath =  response.data.path; 
+										self.form.front_image_path =  response.data.path; 
 										return true; 
 							}
 						)
@@ -62,7 +62,7 @@ export default{
 
 						axios.post(URL,data,config).then(function (response) { 
 										self.form.imagebackshow =  response.data.pathshow;
-										self.form.imagebackpath =  response.data.path; 
+										self.form.back_image_path =  response.data.path; 
 										return true; 
 							}
 						)
@@ -81,7 +81,7 @@ export default{
 
 						axios.post(URL,data,config).then(function (response) { 
 										self.form.imageselfshow =  response.data.pathshow;
-										self.form.imageselfpath =  response.data.path; 
+										self.form.selffront_image_path =  response.data.path; 
 										return true; 
 							}
 						)

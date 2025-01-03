@@ -77,24 +77,20 @@ export default{
 							 
 						</div>
 						
-						<div class="col-md-4">
+						<div class="col-md-12">
 								
-						<template v-if="user&&user.id!= userproject.user.id">	
-						<a @click="showRequestModal" class="btn btn-danger" href="javascript::void(0);">Make Request</a>
-						</template>
-							<p>Rateing : 4.5/5</p>
-							<p>price Begin from : {{ userproject.price_from }} $</p>
-							<p>Deliver Date : 4 days</p>
+					  
 						
 						<div class="userProfile">
 						 
 					<div class="row">	
 						<div class="col-md-3">
-							<img :src="userproject.user.image_path_show" style="width:150px;height:150px;" />
+							<img :src="userproject.user.image_path_show" style="width:250px;height:250px;" />
 						</div>
 						<div class="col-md-9">
 							<p>{{ userproject.user.full_name }}</p>
-							<p>Web Developer</p>
+							<p>{{ userproject.user.work_title }}</p>
+							<p>{{ userproject.user.small_bio }}</p>
 							
 						<template v-if="user&&user.id!= userproject.user.id">	
 							<p>

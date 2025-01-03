@@ -40,7 +40,7 @@ export default{
 								</h6>
 								<ul style="margin-left:20px;">
 								  <li  v-for="childernItm in  serviceCatItm.chidern">
-										 <a :href="'/service_by_category/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>
+										 <a :href="'/service_all/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>
 										 
 									
 								  </li>

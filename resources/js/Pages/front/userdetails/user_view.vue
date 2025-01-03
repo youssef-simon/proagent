@@ -57,11 +57,11 @@ export default{
 							</template>
 						</div>
 						
-						<template v-if="user.vertified==1">
-							<span><i class="fa fa-check-circle"></i>Verfied</span>
+						<template v-if="user.vertified==2">
+							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
 						</template>
-						<template v-if="!user.vertified">
-							<span><i class="fa fa-flushed"></i>Not Verfied</span>
+						<template v-if="user.vertified!=2">
+							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
 							 
 						</template>
 				</div>		

@@ -20,6 +20,7 @@ export default{
 		 	 department:Object,
 		  services:Object,
 		  categories:Object,
+		  		 alldepartments:Object,
 		  errors:Object,
 	 },setup(props){
 		 const form = reactive({
@@ -44,18 +45,29 @@ export default{
 			<ul>
 				  <li class="taxItmCont"   v-for="categoryItm in categories">
 						<h6>
-							<a v-if="categoryItm.id==form.curr_id"  class="active"  :href="'/service_by_category/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
-							<a  v-if="categoryItm.id!=form.curr_id" :href="'/service_by_category/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
+							<a v-if="categoryItm.id==form.curr_id"  class="active"  :href="'/service_all/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
+							<a  v-if="categoryItm.id!=form.curr_id" :href="'/service_all/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
 						
 						</h6>
 							<ul>
 								<li v-for="categoryItmChild in categoryItm.child_categories">
-										<a v-if="categoryItmChild.id==form.curr_id" class="active" :href="'/service_by_category/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
-										<a v-if="categoryItmChild.id!=form.curr_id" :href="'/service_by_category/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
+										<a v-if="categoryItmChild.id==form.curr_id" class="active" :href="'/service_all/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
+										<a v-if="categoryItmChild.id!=form.curr_id" :href="'/service_all/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
 								 </li>
 							</ul>
 				   </li>
 				  </ul>
+				  
+				  
+				  
+				  
+				  	<h2 v-for="departItm in alldepartments">
+										<a :href="'/service_all/'+departItm.id">{{ departItm.name }}</a>
+								 </h2>
+							 
+				  
+				  
+				  
 		  </div>
 	  <div class="col-md-9">
 	  <div class="row">

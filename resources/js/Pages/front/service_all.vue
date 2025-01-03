@@ -19,6 +19,7 @@ export default{
 	 ,props:{
 		 department:Object,
 		 services:Object,
+		 alldepartments:Object,
 		  categories:Object,
 		  dep_id:String,
 		  errors:Object,
@@ -88,7 +89,7 @@ export default{
 <AppLayout title="Dashboard">
    <div class="card whContAll">
 	
-		<div class="header col-md-12">
+		<div class="header">
 			<h2> {{ department.name }}</h2>
 	</div>
       <div class="row">
@@ -96,17 +97,22 @@ export default{
 				<ul>
 				  <li class="taxItmCont"   v-for="categoryItm in categories">
 						<h6>
-							<a :href="'/service_by_category/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
+							<a :href="'/service_all/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
 						
 						</h6>
 							<ul>
 								<li v-for="categoryItmChild in categoryItm.child_categories">
-										<a :href="'/service_by_category/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
+										<a :href="'/service_all/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
 								 </li>
 							</ul>
 				   </li>
 				  </ul>
-				  
+				   
+								<h2 v-for="departItm in alldepartments">
+										<a :href="'/service_all/'+departItm.id">{{ departItm.name }}</a>
+								 </h2>
+							 
+				 
 				  
 				  
 				  

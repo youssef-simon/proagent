@@ -10,14 +10,9 @@ import { router } from '@inertiajs/vue3'
 			  <div class="container-fluid">
 				<div class="row mb-2">
 				  <div class="col-sm-6">
-					<h1>Admins</h1>
+					<h1>Verified Users</h1>
 				  </div>
-				  <div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-					  <li class="breadcrumb-item"><a href="#">Home</a></li>
-					  <li class="breadcrumb-item active">Gallery</li>
-					</ol>
-				  </div>
+				 
 				</div>
 			  </div> 
      </section>
@@ -25,43 +20,32 @@ import { router } from '@inertiajs/vue3'
     <div class="card">
 	
 	  <div class="card-header">
-                <h3 class="card-title">users</h3>
+                <h3 class="card-title">Verified users</h3>
               </div>
 			  
-			    <div>
-					<a href="/user/create">add user </a>
-			  </div>
+			
 <table class="table table-bordered table-hover dataTable dtr-inline">
 							<tr>
 								<td>ID</td>
-								<td>Full Name</td>
-								<td>Salary</td> 
-								<td>Action</td> 
+								<td> </td>
+								
 							</tr>
-<tr  v-for="user in users.data">
-	<td>{{ user.id }}</td>
-	<td>{{ user.full_name }}</td>  
-	<td>{{ user.salary }}</td>  
+<tr  v-for="verifiedRequest in verifiedRequests.data">
+	<td>{{ verifiedRequest.id }}</td>
+ 
 	<td>
-	
-	<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
-                    :href="'/user/edit/'+user.id"
-                    v-html="'edit'"
-                />
-				
-			<Link  class="btn btn-primary"
-                    :href="'/userproject/index/'+user.id"
+	<Link  class="btn btn-primary"
+                    :href="'/verify_user_view/'+verifiedRequest.id"
                     v-html="'view projects'"
                 />		 
-				 <Link  class="btn-primary btn"   @click="destroy( user.id)">Delete</Link> 
 				</td>
 </tr>
 </table>
  
 
-	  <div v-if="users.links.length > 3">
+	  <div v-if="verifiedRequests.links.length > 3">
         <div class="flex flex-wrap mt-8">
-            <template v-for="(link, key) in  users.links" :key="key">
+            <template v-for="(link, key) in  verifiedRequests.links" :key="key">
                 <div
                     v-if="link.url === null"
                     class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded"
@@ -88,7 +72,7 @@ import { router } from '@inertiajs/vue3'
 import { Link } from '@inertiajs/vue3'
 export default {
   props: {
-    users: {
+    verifiedRequests: {
       type: Object,
       required: true,
     },

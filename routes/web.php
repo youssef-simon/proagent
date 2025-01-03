@@ -29,7 +29,7 @@ use App\Http\Controllers\Front\AuthController;
 use App\Http\Controllers\Front\MyPurchasesController; 
 use App\Http\Controllers\Front\MyProjectController; 
 use App\Http\Controllers\Front\MessageController ; 
-use App\Http\Controllers\Front\VerificationController ; 
+use App\Http\Controllers\Front\VerificationController as  VerifyFrontController; 
 use App\Http\Controllers\Front\UserController as UserFrontController; 
 use App\Http\Controllers\Front\ServiceController as ServiceFrontController; 
 use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontController; 
@@ -71,7 +71,8 @@ Route::post('/register_store',[AuthController::class,'registerStore'])->name('re
 Route::get('/user_login',[AuthController::class,'login'])->name('home.login');
 Route::post('/user_login',[AuthController::class,'login_check'])->name('login_check.login');
 
-Route::get('/service_all/{id}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
+//Route::get('/service_all/{id}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
+Route::get('/service_all/{id}/{childid?}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
 Route::get('/service_by_category/{depId}/{id}',[ServiceFrontController::class,'serviceByCategory'])->name('service_by_category');
 	
 
@@ -131,6 +132,11 @@ Route::group(['middleware' => ['auth:web']], function () {
 		
 		
 		Route::get('/verify_create',[VerificationController::class,'verify_create'])->name('verify_create');
+		Route::post('/verify_store',[VerificationController::class,'verify_store'])->name('verify_store');
+		
+		
+		
+		
 		
 	
 });
@@ -205,9 +211,12 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::get('getuser/{id}', [UserController::class, 'getUserdata'])->name('get.user');
 		
 		
-		Route::get('verified_users', [VerifiedController::class, 'index'])->name('get.verified_users');
-		Route::get('user_ver/{id}', [VerifiedController::class, 'view'])->name('get.verified_view');
+
+				Route::get('verified_users', [VerifiedController::class, 'index'])->name('get.verified_users');
+		Route::get('verify_user_view/{id}', [VerifiedController::class, 'view'])->name('get.verified_view');
+		Route::post('update_status', [VerifiedController::class, 'update_status'])->name('update_status');
 			
+			 
 		 	  
 });
  

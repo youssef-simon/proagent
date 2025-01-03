@@ -190,19 +190,55 @@ class ServiceController extends Controller
 	
 	
 	
-	public function serviceAll($id){
+	public function serviceAll($id,$child=0){
 		
+		
+		
+		
+		if($child==0){
 	$department =	Department::find($id);
 		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
 		 
 		 
 		$services =  Service::where('department_id',$id)->with('category')->with('category.parentCategory')-> paginate(24);
+		
+			$alldepartments =	Department::all();
+			 
 		return Inertia::render('front/service_all',[
 					'categories'=>$categories ,
 					'services'=>$services ,
 					'dep_id'=>$id ,
 					'department'=>$department ,
+					'alldepartments'=>$alldepartments  ,
 			]);
+		}else{
+			$depId=$id;
+			$id=$child;
+			  $categories =  ServiceCategory::where('department_id',$depId)->whereNull('parent_id')->with("childCategories")->get();
+		$services =  Service:: leftJoin('service_categories', 'services.category_id', '=', 'service_categories.id')
+									  -> where('services.category_id',$id)
+									  ->with('category.parentCategory')
+									  ->orWhere('service_categories.parent_id',$id)
+									 
+									  ->select('services.*')
+									-> paginate(24);
+		 
+		 	$department =	Department::find($depId);
+		 
+		  
+		  $alldepartments =	Department::all();
+			 
+		return Inertia::render('front/service_cat',[
+				'curr_id'=>$id ,
+				'dep_id'=>$depId ,
+				'categories'=>$categories,
+				'services'=>$services,
+				'department'=>$department ,
+				'alldepartments'=>$alldepartments,
+		]);
+		}
+		
+		
 	}
 	
 	

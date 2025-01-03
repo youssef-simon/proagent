@@ -30,10 +30,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-	const VERIFIED_UNDER=1;
-	const VERIFIED_APPROVED=2;
-	const VERIFIED_REFUSED=3;
- 
+
 	 
     protected $fillable = [
         'first_name',

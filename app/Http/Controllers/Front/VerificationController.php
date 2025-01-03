@@ -10,6 +10,8 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\ServiceImage; 
 
+use App\Models\VerifyRequest; 
+
 class VerificationController extends Controller
 {
     /**
@@ -23,19 +25,21 @@ class VerificationController extends Controller
     }
 
 
-
-
-
-
+  
+ 
 
    /**
      * Display a listing of the resource.
      */
-    public function verify_store()
+    public function verify_store(Request $request)
     {
-		 $services = Service::limit(10)->get();
-		 $departments = Department::limit(10)->get();
+		 $data = $request->all();  
+		// dd( $data);
+		 $user = \Auth::guard('web')->user(); 
+		 $data['user_id']= $user->id;
 		  
+		  VerifyRequest::create( $data);
+		   
 	   return Inertia::render('front/service',[
 			"services"=>$services ,
 			"departments"=>$departments ,

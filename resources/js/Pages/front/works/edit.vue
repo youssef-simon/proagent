@@ -126,7 +126,7 @@ export default{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>تعديل المنطقة</h1>
+            <h1>EDIT WORK</h1>
           </div>
          
         </div>

@@ -564,3 +564,9 @@ div.carts {
 .whContAll ul li.taxItmCont a { padding: 5px; }
 .whContAll ul li.taxItmCont a.active{ background: black;
     color: #fff;  }
+	
+	.header h2 a{ color:#212529; } 
+	
+	
+	.unverfiedUser{  color:red;}
+	.verfiedUser{ color:green; }
