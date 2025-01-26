@@ -123,7 +123,7 @@ class ServiceController extends Controller
 		
 
 		$service = Service::where('id',$service_id) ->first();; 
-		 $service->status=2;
+		 $service->status= $status;
 		 $service->save();
 
 		return to_route('service.index');

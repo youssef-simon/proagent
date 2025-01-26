@@ -93,9 +93,9 @@ export default{
 											<div class="form-group">
 													<label for="category_id">Status</label>
 														<select class="form-control" v-model="form.status">
-															 <option >Under Investigation</option> 
-															 <option > Approved </option> 
-															 <option > declined</option> 
+															 <option value="1">Under Investigation</option> 
+															 <option value="2" > Approved </option> 
+															 <option value="3" > declined</option> 
 														</select>
 											 </div>
 											 

@@ -69,40 +69,19 @@ import { usePage } from '@inertiajs/vue3';
         </button>
 
 	  <ul class="navbar-collapse userMenu">
-					       <li class="nav-item">
-              
-                                
-                  <a style="position:relative;" class="nav-link" href="">
-                                      <i class="fa fa-envelope"></i>
-                                      
-                                  
-                                     
-                                     
-                                  <!-- <span style="padding: 5px;
-      color: #fff;
-      top: 20px;
-      background: #f23d3d;
-      border-radius: 100px; " class="couMsg">  </span>-->
-     </a>           
-     </li>
-         <li class="nav-item  ">
-     
-           <a style="position:relative;" class="nav-link" href="">
-                                      <i class="fa fa-bell"></i>
-                                      
-                      
-                                     
-                                   <!--  <span style="padding: 5px;
-      color: #fff;
-      top: 20px;
-      background: #f23d3d;
-      border-radius: 100px;" class="couMsg"> </span>-->
-     </a>
-                
-                                    
-          </li>
-					  
-				</ul>	 
+				<template v-if="user">
+						<li class="nav-item">
+									<a style="position:relative;" class="nav-link" href="/my_messages">
+											  <i class="fa fa-envelope"></i> 
+									</a>           
+						</li>
+						 <li class="nav-item">
+								<a style="position:relative;" class="nav-link" href="">
+													  <i class="fa fa-bell"></i>
+									</a>
+						  </li>
+				</template>	  
+		 </ul>	 
 
 
 

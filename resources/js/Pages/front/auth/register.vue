@@ -37,7 +37,7 @@ export default{
 	 
 	 submit() {
 		 
-			 router.post('/user/store', this.form)
+			 router.post('/register_store', this.form)
 	}
 	 
 	
@@ -50,34 +50,28 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="card-deck mb-3">
-			<h2>register</h2>
-	</div>
+<div class="registerCont">
+   
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	     <!-- Main content -->
     <section class="content">
-	
+	 
 	 <form @submit.prevent="submit">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 middleReg">
           <div class="card card-primary">
-            
+            	<h2>Register</h2>
             <div class="card-body">
               <div class="form-group">
 					  <label for="name">  first_name:</label>
 					<input id="first_name" class="form-control" v-model="form.first_name" />
+						  <div v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
 			  <div class="form-group">
 					  <label for="name">  last_name:</label>
 					<input id="last_name" class="form-control" v-model="form.last_name" />
+						  <div v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
               <div class="form-group">
 					<label for="email">email:</label>
@@ -104,11 +98,13 @@ export default{
               <div class="form-group">
              			  <label for="password">password:</label>
 						<input id="password" class="form-control" v-model="form.password" type="password" />
+						<div v-if="errors.password">{{ errors.password }}</div>
               </div>
               
               <div class="form-group">
                        <label for="password_confirmation">password_confirmation:</label>
 					<input id="password_confirmation" class="form-control" type="password" v-model="form.password_confirmation" />
+							<div v-if="errors.password_confirmation">{{ errors.password_confirmation }}</div>
               </div>
 			  
 			 
@@ -125,8 +121,8 @@ export default{
 			 
 		 <div class="row">
         <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
-      
+        
+		
 		  <button   class="btn btn-success float-right" type="submit">Submit</button>
         </div>
       </div>
@@ -141,7 +137,7 @@ export default{
     </section>
     <!-- /.content -->
 	
-	
+	</div>
 	
 	
 	

@@ -19,9 +19,9 @@ class VerificationController extends Controller
      */
     public function verify_create()
     {
+		  	 $user = \Auth::guard('web')->user(); 
 		  
-		  
-	   return Inertia::render('front/verification/create' );
+	   return Inertia::render('front/verification/create',['user'=>$user] );
     }
 
 

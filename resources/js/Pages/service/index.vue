@@ -36,8 +36,10 @@ import { router } from '@inertiajs/vue3'
 	<td>{{ service.id }}</td>
 	<td>{{ service.title }}</td> 
 	<td> 
+	
 		<span v-if="service.status==1" >Under Review</span>
 		<span v-if="service.status==2" >Approved</span>
+		<span v-if="service.status==3" >declined</span>
 
 		</td>
 	<td>

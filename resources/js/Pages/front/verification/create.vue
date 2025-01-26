@@ -118,8 +118,8 @@ export default{
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">
-          
-            <div class="card-body">
+         
+            <div class="card-body" v-if="user.vertified!=2">
              
 			  
 			  

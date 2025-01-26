@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
- 
-use App\Models\Attribute; 
+  
 use App\Models\Department; 
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -31,10 +30,7 @@ class DepartmentController extends Controller
      */
     public function index()
     { 
-		$departments = DB::table('departments')
-							->leftJoin('users', 'departments.id', '=', 'users.department_id')
-							->select(DB::raw('count(users.id) as user_count,departments.id,sum(users.salary) as salary,departments.name')) 
-							->groupBy('departments.id')->paginate(10);
+		$departments =   Department:: paginate(10);
 					
        return Inertia::render('department/index',[ 'departments'=>$departments  ]);
 	    

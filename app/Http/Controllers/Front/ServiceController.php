@@ -115,6 +115,14 @@ class ServiceController extends Controller
 		 
 		 $data = $request->all(); 
 		 
+		   $validatedData = $request->validate([
+		    'title' => 'required', 
+		    'description' => 'required', 
+		    'price_from' => 'required', 
+		    
+	 
+		]);
+		 
 		 
 		 $user = \Auth::guard('web')->user();
 		 

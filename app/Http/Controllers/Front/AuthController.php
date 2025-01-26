@@ -10,6 +10,13 @@ use App\Models\Service;
 use App\Models\User;
 use App\Models\ServiceCategory;
 
+
+ use Illuminate\Validation\Rule;   
+ use Illuminate\Validation\Rules\Password;
+ use Illuminate\Support\Facades\Auth;
+
+
+
 class AuthController extends Controller
 {
    
@@ -20,11 +27,35 @@ class AuthController extends Controller
 	   return Inertia::render('front/auth/register' );
     }
 
-	public function registerStore()
+	
+	public function registerStore(Request $request)
     {
 		 
+		  $data	= $request->all();
 		  
-	   return Inertia::render('front/auth/register' );
+		  $validatedData = $request->validate([
+		    'first_name' => 'required', 
+		    'last_name' => 'required', 
+		    'email' => 'required', 
+		    'password' => ['required', 'confirmed', Password::min(8)],
+	 
+		]);
+		
+		  $validatedData = $request->validate([
+		    
+			'email' => Rule::unique('users')  
+		]);
+		
+	 //dd($validatedData);
+	 
+	$user = 	User::create($data);
+		
+		
+		    Auth::login($user);
+
+		return to_route('my_dashboard');
+		
+	   
     }
 
 	public function login()
@@ -39,7 +70,7 @@ class AuthController extends Controller
 		
 		 $data = $request->all(); 
 		 
-		 $errors="";
+		 $errorscode="";
 		$validatedData = $request->validate([
 			 'email' => 'required', 
 			 'password' => 'required', 
@@ -50,11 +81,11 @@ class AuthController extends Controller
 		  if (\Auth::guard('web')->attempt($request->only(['email','password']), $request->get('remember'))){
 					return redirect('my_dashboard');
 			} else{
-					$errors="Wrong Username or Password";
+					$errorscode="Wrong Username or Password";
 			}
 		
 	  // return back()->withInput($request->only('errors', 'remember'));
-	   return Inertia::render('front/auth/login' ,[ 'errors'=>$errors  ]);
+	   return Inertia::render('front/auth/login' ,[ 'errorscode'=>$errorscode  ]);
     }
 
  

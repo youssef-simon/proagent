@@ -31,7 +31,7 @@ export default{
 	  destroy(id) {
 				if (confirm("Are you sure you want to Delete")) {
          
-					router.delete(route("service_front.delete", id));
+					router.delete(route("delete_work_front", id));
 				}
 	  
 	

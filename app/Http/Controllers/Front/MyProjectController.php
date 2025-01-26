@@ -35,6 +35,14 @@ class MyProjectController extends Controller
 	public function store(Request $request)
 	{
 		$data = $request->all();
+		
+		
+		
+		$validatedData = $request->validate([
+		    'title' => 'required', 
+		    'description' => 'required',  
+		 ]);
+		
 		$user = \Auth::guard('web')->user();
 
 		$data['user_id'] =   $user->id;

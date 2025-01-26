@@ -108,7 +108,7 @@ export default{
 				   </li>
 				  </ul>
 				   
-								<h2 v-for="departItm in alldepartments">
+								<h2 class="serviceDep" v-for="departItm in alldepartments">
 										<a :href="'/service_all/'+departItm.id">{{ departItm.name }}</a>
 								 </h2>
 							 

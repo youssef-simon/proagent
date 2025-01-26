@@ -176,13 +176,13 @@ export default{
               <div class="form-group">
 					  <label for="description">description</label>
 				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
-					 <div class="error_val" v-if="errors.description">description</div>
+					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
 			   </div>
 			   
 			     <div class="form-group">
 					  <label for="price_from">price_from</label>
 				 	  <input id="price_from" class="form-control" v-model="form.price_from" />
-					 <div class="error_val" v-if="errors.price_from">price_from</div>
+					<div class="error_val" v-if="errors.price_from">{{ errors.price_from }}</div>
 			   </div>
 			   
 			   

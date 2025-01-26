@@ -9,7 +9,7 @@ import { router } from '@inertiajs/vue3'
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1> المناطق</h1>
+            <h1> category</h1>
           </div>
          
         </div>
@@ -19,9 +19,8 @@ import { router } from '@inertiajs/vue3'
     <div class="card">
 	
 	  <div class="card-header">
-                <div>
-					<a  class="btn btn-primary" href="/area/create">اضف منطقة</a>
-			  </div>
+                	<a  class="btn btn-primary" href="/admin/service_category/create">create category</a>
+			   
               </div>
 			  
 			   
@@ -29,7 +28,7 @@ import { router } from '@inertiajs/vue3'
 
 <tr>
 	<td>ID</td>
-	<td>اسم المنطقة</td> 
+	<td>category</td> 
 </tr>
 <tr  v-for="servicecategory in servicecategories.data">
 	<td>{{ servicecategory.id }}</td>
@@ -38,7 +37,7 @@ import { router } from '@inertiajs/vue3'
 	
 		<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
                    
-                    :href="'/service_category/edit/'+servicecategory.id"
+                    :href="'/admin/service_category/edit/'+servicecategory.id"
                     v-html="'edit'"
                 />
 				

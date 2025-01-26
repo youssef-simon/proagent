@@ -163,11 +163,15 @@ export default{
 					
 					<div class="w-lightbox-content w-lightbox-group">
 						<div class="w-lightbox-view" tabindex="0" id="w-lightbox-view" style="opacity: 1;">
+						
+								
 							<div class="w-lightbox-frame">
 							<figure class="w-lightbox-figure">
 									<img class="w-lightbox-img w-lightbox-image" :src="current_image">
 							</figure>
 							</div> 
+							
+							<div @click="hidePopup()" class="absFullBox"></div>
 						</div>
 						
 						 

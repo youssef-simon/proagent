@@ -29,29 +29,29 @@ import { router } from '@inertiajs/vue3'
 			  
 			  
 			    <div>
-					<a href="/department/create">add department</a>
+					<a href="/admin/department/create">add department</a>
 			  </div>
 			  
 				<table class="table table-bordered table-hover dataTable dtr-inline">
 							<tr>
 								<td>ID</td>
 								<td>Departement Name</td>
-								<td>Employee Count</td>
-								<td>salary</td>
+								<td>   </td>
+							 
 							</tr>
 						<tr  v-for="department in departments.data">
 									<td>{{ department.id }}</td>
-									<td>{{ department.name  }}</td> 
-									<td>{{ department.user_count  }}</td> 
-									<td>{{ department.salary  }}</td> 
+									<td>{{ department.name  }}</td>  
 									<td> 
-									
-											<template v-if="department.user_count==0">
-											 <Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-blue focus:border-primary focus:text-primary" @click="destroy(product.id)" > Delete </Link> 
-											</template>
-											 
-											 <Link class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary" :href="'/department/edit/'+department.id" v-html="'edit'" /> 
-								
+									 <Link class="btn-primary btn" @click="destroy( department.id)" >
+                                                Delete
+                                            </Link> 
+											
+				
+										<Link class="btn-primary btn"    :href="'/admin/department/edit/'+department.id" >
+                                                View
+                                            </Link> 
+										 
 								</td>
 						</tr>
 				</table>

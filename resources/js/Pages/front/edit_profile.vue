@@ -92,19 +92,7 @@ export default{
 				<div class="col-md-9">
 					 <div class="card">
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			 
 			
 			
 			
@@ -152,11 +140,7 @@ export default{
               </div>
 			  
             
-			 
-			      <div class="form-group">
-             			  <label for="password">salary:</label>
-						<input id="password" class="form-control" v-model="form.salary" type="salary" />
-              </div>
+			  
 			  
 			  
 			  <div class="repeater col-md-12 p15">
@@ -191,9 +175,9 @@ export default{
 			  
 		 <div class="row">
         <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
+         
       
-		  <button @click="submit()"  class="btn btn-success float-right" type="submit">Submit</button>
+		  <button   class="btn btn-success float-right" type="submit">Submit</button>
         </div>
       </div>
             </div>

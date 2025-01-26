@@ -131,14 +131,9 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::delete('delete_work/{id}', [MyProjectController::class, 'destroy'])->name('delete_work_front');
 		
 		
-		Route::get('/verify_create',[VerificationController::class,'verify_create'])->name('verify_create');
-		Route::post('/verify_store',[VerificationController::class,'verify_store'])->name('verify_store');
-		
-		
-		
-		
-		
-	
+		Route::get('/verify_create',[VerifyFrontController::class,'verify_create'])->name('verify_create');
+		Route::post('/verify_store',[VerifyFrontController::class,'verify_store'])->name('verify_store');
+		 
 });
 
 
@@ -150,8 +145,13 @@ Route::get('changecategory/{id}', [UserController::class, 'changeCategory'])->na
 
 Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.show');
  
+ 
+ Route::group(['middleware' => ['auth:admin']], function () {
+	 		Route::get('/admin',[DashboardController::class,'show'])->name('admin.login-view');
+ });
+
 	    Route::group(['prefix'=>'admin','middleware' => ['auth:admin']], function () {
-		Route::get('/admin',[DashboardController::class,'show'])->name('admin.login-view');
+		//Route::get('/admin',[DashboardController::class,'show'])->name('admin.login-view');
   
 		Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
 		Route::post('admin/store', [AdminController::class, 'store'])->name('admin.store');

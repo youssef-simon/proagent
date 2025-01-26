@@ -27,6 +27,14 @@ export default{
 				
 				<h2>{{ user.full_name }} </h2>
 				<h6>{{ user.work_title }} </h6>
+				<h6>	
+						<template v-if="user.vertified==2">
+							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+						</template>
+						<template v-if="user.vertified!=2">
+							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+							 
+						</template></h6>
 			</div>
 			
 				<ul class="dashBoardList">
@@ -58,7 +66,7 @@ export default{
 					<i class="fas fa-th"></i>
 					My Works</a> </li> 
 					
-						<li> 	<a href="/verify_create">
+						<li v-if="user.vertified!=2"> 	<a href="/verify_create">
 					<i class="fas fa-th"></i>
 					verify account</a> </li> 
 				</ul>
