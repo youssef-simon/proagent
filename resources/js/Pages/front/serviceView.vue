@@ -123,9 +123,9 @@ export default{
 						<template v-if="user&&user.id!= service.user.id">	
 						<a @click="showRequestModal" class="btn btn-danger" href="javascript::void(0);">Make Request</a>
 						</template>
-							<p>Rateing : 4.5/5</p>
-							<p>price Begin from : {{ service.price_from }} $</p>
-							<p>Deliver Date : 4 days</p>
+						<!--	<p>Rateing : 4.5/5</p>-->
+							<p>Price Begin from : {{ service.price_from }} $</p>
+						<!--	<p>Deliver Date : 4 days</p>>-->
 						
 						<div class="userProfile">
 						 

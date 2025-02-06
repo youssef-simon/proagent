@@ -166,7 +166,7 @@ div.carts {
     background: #fff;
     min-width: 328px;
        margin-top: 120px;
-	max-height:350px;
+	max-height:410px;
 }
 .LoginPage{ min-height:800px; }
 
@@ -594,3 +594,68 @@ div.carts {
 .registerCont .middleReg{ margin: 0 auto; }
 
 .whContAll.LoginPage{ background:none; }
+
+
+.regisCont{
+	    text-align: center;
+	    margin: 10px;
+    border: 1px dashed #333;
+	
+    padding: 10px;
+} 
+
+
+.regisCont a { text-decoration:underline; } 
+
+.LoginPage .btmCont{
+	margin-top:10px;
+	margin-bottom:10px;
+	text-align: center;
+} 
+.btmCont .btn-primary {
+    font-size: 14px;
+    width: 200px;
+}
+
+.margZero{ margin-bottom:0px!important; }
+  a.forgetPass{ font-size:13px!important; margin-bottom:16px; display:block; }
+  
+  .intro{ background:url('/img/intro.jpg'); width:100%; height:700px; }
+  
+  .frontPage .navbar.bg-light{ margin-bottom:0px; } 
+  
+  
+  
+  
+  
+  .headerContainer{
+	  
+	  
+	      width: 70%;
+    margin: 0 auto;
+    padding-top: 150px;
+	color:#fff;
+  }
+  
+  .howto{ padding-top:50px; }
+  
+  
+  .howto .howtoList{ text-align:center; } 
+  
+ .howtoList .itmHow{ height:300px; background:#fff; margin-bottom:20px; }
+ .howtoList .itmHow  { padding:20px;   text-align:center;}
+ .howtoList .itmHow img {  width:60%; display:inline-block; }
+ 
+ .headTxtCont  {
+	background: #444;
+    padding: 10px; 
+ }
+ 
+ .howto h1{ text-transform: uppercase; text-align:center; margin-bottom:50px; }
+ .howto .itmHow h4{ text-transform: uppercase; text-align:center;   }
+ 
+ 
+ .proNav  ul li a{  }
+ 
+ .workView .imgContainer{ text-align:Center; }
+ .workView .imgContainer img{ display:inline-block; }

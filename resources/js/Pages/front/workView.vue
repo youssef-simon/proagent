@@ -47,15 +47,15 @@ export default{
 
 
 
-    <div class="card-deck whContAll">
+    <div class="card-deck whContAll workView">
 	
 		<div class="col-md-12">
-			<h2>{{ userproject.title }}</h2>
+			<h1>{{ userproject.title }}</h1>
 			 
 							
 	</div>
       <div class="row">
-			 <div class="col-md-8">
+			 <div class="col-md-12">
 								
 			 
 								 <div class="imgContainer">

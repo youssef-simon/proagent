@@ -41,28 +41,12 @@ import { usePage } from '@inertiajs/vue3';
  
 <div class="wrapper">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/"><img src="/img/logo.png" style="width:55px;" />
-		<span>Pro</span>
+		 
 		</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -91,16 +75,16 @@ import { usePage } from '@inertiajs/vue3';
 
         <div class="navbar-collapse proNav" id="navbarsExample07">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item"   :class="{ 'active': isCurrentPath('/home') }" >
               <a class="nav-link" href="/home">Home</a>
             </li>
             <!--  <li class="nav-item">
               <a class="nav-link"  href="/service">Services</a>
             </li>-->
-            <li class="nav-item">
+            <li class="nav-item" :class="{ 'active': isCurrentPath('/users') }">
               <a class="nav-link" href="/users">Users</a>
             </li>
-             <li class="nav-item">
+             <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
               <a class="nav-link" href="/taxservice">Taxanomy</a>
             </li>
 			

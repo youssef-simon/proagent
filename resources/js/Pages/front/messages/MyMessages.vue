@@ -91,19 +91,12 @@ import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 	  <div class="col-md-12">
 							<div  v-for="(item, indexe) in left_messages" class="item leftItm"  >
 							
-							
-							
-							
-							
-							
-							
-							
-							
+							 
 							
 									<div class="row">
 									
 									<div class="col-md-2">
-																			<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
+												 	<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
 											 	</div>
 											<div class="col-md-10">							
 													<p>

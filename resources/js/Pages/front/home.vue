@@ -1,5 +1,5 @@
 <script>
-import AppLayout from '@/Layouts/AppFrontLayout.vue';
+import AppLayout from '@/Layouts/AppFrontHomeLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
@@ -83,54 +83,66 @@ export default{
 </script>
 
 <template>
-<AppLayout title="Dashboard">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pro</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Enterprise</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>30 users included</li>
-              <li>15 GB of storage</li>
-              <li>Phone and email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-          </div>
-        </div>
-      </div>
+<AppLayout title="">
+ <section class="intro">
+		<div class="container">
+				<div class="headerContainer">
+						<div class="headTxtCont">
+						<h1>Start Your Freelancing</h1>
+						<h4>Build your portfolio and Sell your Services</h4>
+						<h4>Make your portfolio to show your Experince and Past Projects , your paid Services</h4>
+						</div>
+				</div>
+		</div>
+ </section>
+ 
+  <section class="howto">
+		<div class="container">
+				 <h1>How It Works</h1>
+				 
+				 <div class="row howtoList">
+					 <div class="col-md-4"> 
+						<div class="itmHow">
+							<h4>Register</h4>
+								<img src="/img/reg.png" />
+						</div>
+					 </div>
+					 <div class="col-md-4"> 
+						<div class="itmHow">
+							<h4>Validation</h4>
+								<img src="/img/val.png" />
+						</div>
+					 </div>
+					 <div class="col-md-4"> 
+							<div class="itmHow">
+							<h4>Build your cv</h4>
+							
+								<img src="/img/cv.png" />
+						</div>				
+					 </div>
+					 
+					 	 <div class="col-md-4"> 
+						<div class="itmHow">
+							<h4>Add your Past Projects</h4>
+							<img src="/img/p.png" />
+						</div>
+					 </div>
+					 <div class="col-md-4"> 
+						<div class="itmHow">
+						 <h4>Add your Past Services</h4>
+						 <img src="/img/s.png" />
+						</div>
+					 </div>
+					 <div class="col-md-4"> 
+							<div class="itmHow">
+								 <h4>Get Customer</h4>
+								  <img src="/img/m.png" />
+						</div>				
+					 </div>
+					 
+				 </div>
+		</div>
+ </section>
   </AppLayout>
 </template>
 

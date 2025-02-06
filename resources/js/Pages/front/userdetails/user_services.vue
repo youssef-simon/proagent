@@ -57,6 +57,16 @@ export default{
 							<p><a class="btn btn-danger" :href="'/message_thread/'+user.id">Send Message</a></p>  
 							</template>
 						</div>
+						
+						
+						<template v-if="user.vertified==2">
+							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+						</template>
+						<template v-if="user.vertified!=2">
+							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+							 
+						</template>
+						
 				</div>		
 						
 			</div>

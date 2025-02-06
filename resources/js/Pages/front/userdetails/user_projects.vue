@@ -57,6 +57,21 @@ export default{
 							<p><a class="btn btn-danger" :href="'/message_thread/'+user.id">Send Message</a></p>  
 							</template>
 						</div>
+						
+						<template v-if="user.vertified==2">
+							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+						</template>
+						<template v-if="user.vertified!=2">
+							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+							 
+						</template>
+						
+						
+						
+						
+						
+						
+						
 				</div>		
 						
 			</div>
@@ -75,7 +90,7 @@ export default{
 						 <ul>
 								<li> <a :href="'/user_details/'+user.id">My Details</a> 	</li>
 							<li> <a :href="'/user_services/'+user.id">My Services</a> 	</li>
-							<li> <a  class="active"  :href="'/user_works/'+user.id">My Work</a> 	</li>
+							<li> <a  class="active"  :href="'/user_works/'+user.id">My Achievement</a> 	</li>
 						
 						 </ul>
 					</div>
@@ -84,7 +99,7 @@ export default{
 	 
 		 
 	 <div class="col-md-12 bioCont">
-		<h2>My Work</h2>
+		<h2>My Achievement</h2>
 	      <div class="row">
 		  
 			<div   v-for="serviceItm in userprojects.data" class="col-md-4">

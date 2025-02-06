@@ -23,8 +23,11 @@ export default{
 							room_id:0, 
 							next_pause:true, 
 						   user: usePage().props.auth.user, 
-						 
-						 
+						   show_msg_err:false, 
+						   form:{
+								  pathshow:'',
+								  path:''
+							  }
 						 
 					}
 		  } 
@@ -81,6 +84,10 @@ export default{
 					}  ,
 				   
 				  	async postMessage() { 
+					if(this.message=="" || this.message==null){
+						this.show_msg_err=true;
+						return;
+					}
 							var id =  this.serviceRequest.id;  
 							var msgJson = { "message":this.message , "request_id" : id};
 					
@@ -147,6 +154,34 @@ export default{
 															  onError: () =>(this.submit_form=false),
 						});
 										}
+										
+												
+		, uploadFile(event, index) {
+                var self = this;
+                // this.form.refields[index].img="Ddd";
+
+                const URL = '/api/uploadfile';
+
+                let data = new FormData();
+                data.append('name', 'my-picture');
+                data.append('file', event.target.files[0]);
+
+                let config = {
+                    header: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+
+                axios.post(URL,data,config).then(function (response) { 
+								 //let result = response.data.path.replace("public", "storage");
+								self.form.file_name =  response.data.file_name;
+								self.form.pathshow =  response.data.pathshow;
+								self.form.path =  response.data.path; 
+								return true; 
+					}
+                )
+            }, 	   
+	
 	 },  mounted () {
 			 var scrollableDiv = document.getElementById("messageCont");
 			  scrollableDiv.addEventListener('scroll', this.handleScroll);
@@ -160,33 +195,47 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-    <div class="card-deck mb-3">
+    <div class="widthFull whContAll">
+    <div class="container">
 	
 		<div class="col-md-12">
 			<h2>Services Request</h2>
 	</div>
       <div class="row">
-			 <div class="serItm">
+			 <div class="serItm col-md-12">
 							 
 							 <h4>Request : {{ serviceRequest.description }}</h4>
 							 <h4>request_at : {{ serviceRequest.created_at }}</h4>
 						</div>
 						
-						<div class="col-md-12">
+						<div class="col-md-6">
+							<div class="row">
+							
+							<div class="col-md-3">
+								<img style="width:160px;height:160px;" :src="serviceRequest.user_request.image_path_show" />
+							 </div>
+							 <div class="col-md-9">
 							<h4>Service Requester</h4>
 							{{ serviceRequest.user_request.full_name }}
-						 
-							<img style="width:160px;height:160px;" :src="serviceRequest.user_request.image_path_show" />
+							
+							</div>
+							</div>
 						</div>
 						
 						
 						
-						<div class="col-md-12">
+						<div class="col-md-6">
+							<div class="row">
+							<div class="col-md-3">
+								<img style="width:160px;height:160px;" :src="serviceRequest.user_make.image_path_show" />
+							</div>
+							<div class="col-md-9">
 							<h4>Seller</h4>
-							{{ serviceRequest.user_make.full_name }}
+							<p>{{ serviceRequest.user_make.full_name }}</p>
 							 
-							<img style="width:160px;height:160px;" :src="serviceRequest.user_make.image_path_show" />
 							
+							</div>
+							</div>
 						</div>
 						
 						
@@ -262,15 +311,17 @@ export default{
 										 
 																	<div  v-for="(item, indexe) in messages.slice().reverse()" class="item" :key="indexe">
 																	<div class="row">
-																	<div class="col-md-2">
-																		<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
-																		</div>
-																		<div class="col-md-10">
-																		<p>From : {{  item.sender.full_name }}</p>
-																			<p>created at : {{  item.created_at }}</p>
-																			<div class="message">  {{ item.message }}</div>
-																			</div> 
-																			</div> 
+																			<div class="col-md-2">
+																				<img :src="item.sender.image_path_show" style="width:150px;height:200px;">
+																				</div>
+																				<div class="col-md-10">
+																				<p>From : {{  item.sender.full_name }}</p>
+																					<p>created at : {{  item.created_at }}</p>
+																					<div class="message">  {{ item.message }}</div>
+																					<div v-if="item.file_path" class="file"> <a :href="item.file_path_show">{{ item.file_name }}</a></div>
+																					
+																					</div> 
+																	</div> 
 																	 
 																 </div>
 										
@@ -296,7 +347,25 @@ export default{
 						<div class="mb-3 message-container">
 														<label for="firstName" class="form-label">Message</label>
 														<textarea v-model="message" class="form-control"></textarea>
-														<button @click="postMessage()" >send</button>
+														<p v-if="show_msg_err" class="error_val">
+														the message is required
+														</p>
+														<button class="btn btn-primary" @click="postMessage()" >send</button>
+														
+														
+															 <div class="repeater col-md-12 p15">
+																<h3>File Upload</h3> 
+																<div class="row">
+																	<div class="col-md-4" >
+																		<div class="control-group w-100">
+																			 
+																			<input type="file" accept="image/*" @change="uploadFile($event,index)" id="file-input">
+																		 
+																			<a :href="form.pathshow">{{ form.path }}</a>
+																		</div>
+																	</div>
+																</div>  
+															</div>
 						</div>
 										
  
@@ -307,6 +376,7 @@ export default{
  
  
  
+	</div>
 	</div>
  
   </AppLayout>

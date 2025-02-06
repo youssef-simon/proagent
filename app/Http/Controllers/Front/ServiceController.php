@@ -119,6 +119,8 @@ class ServiceController extends Controller
 		    'title' => 'required', 
 		    'description' => 'required', 
 		    'price_from' => 'required', 
+		    'department_id' => 'required', 
+		    'category_id' => 'required', 
 		    
 	 
 		]);

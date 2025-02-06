@@ -140,7 +140,7 @@ export default{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>add user project</h1>
+            <h1>Add Previos Project / Experince / Achievement</h1>
           </div>
           
         </div>
