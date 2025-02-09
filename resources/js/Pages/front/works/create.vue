@@ -1,14 +1,14 @@
-<script>
+  <script>
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import Multiselect from '@vueform/multiselect'
-
+import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
 export default{
 	components:{
-		AppLayout,reactive,router,Multiselect
+		AppLayout,reactive,router,Multiselect,SideMenu
 	 }
 	  ,
 	   data() {
@@ -136,24 +136,26 @@ export default{
 
 <template>
 <AppLayout title="Dashboard">
-       <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Add Previos Project / Experince / Achievement</h1>
-          </div>
-          
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-     <!-- Main content -->
-    <section class="content">
+    <div class="whContAll">
+  <div class="row">
+		<div class="col-md-3">
+			<SideMenu />
+		</div>  
+		<div class="col-md-9">
+
+    <div class="formMainCont">
 	
+     <h2>Add Previos Project / Experince / Achievement</h2>
+			  
+			   
+ 
+ 
+ 
+ 	
 	 <form @submit.prevent="submit">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary"> 
-            <div class="card-body">
+      <div class="col-md-9">
+      
+            <div class="formCont">
               <div class="form-group">
 					  <label for="title">title</label>
 				 	  <input id="title" class="form-control" v-model="form.title" />
@@ -175,16 +177,25 @@ export default{
 			   
 			   
 				
-				
-			  
-			  	 <div class="repeater col-md-12 p15">
-                        <h3>photo</h3> 
+				 
+					
+					
+					
+					
+					 <div class="repeater col-md-12 p15">
+                        <h3>Main Image</h3>
+									<p class="descPhoto">Max 2MB</p>
                         <div class="row">
-                            <div class="col-md-4" >
-                                <div class="control-group w-100">
-                                     
-                                    <input type="file" accept="image/*" @change="uploadImage($event,index)" id="file-input">
-                                    <input type="hidden"     v-model="form.img_id"  >
+                            <div class="col-md-12" >
+                                <div class="control-group w-100 imgUploadCont">
+                                     <label for="file-input">
+									 <i class="fa fa-image"></i>
+									Upload Image
+									  
+									 
+									 </label>
+                                    <input type="file" class="imgfile" accept="image/*" @change="uploadImage($event,index)" id="file-input">
+                                  
                                     <img :src="form.imagpathshow" />
                                 </div>
                             </div>
@@ -192,49 +203,81 @@ export default{
                     </div>
 
 			  
-			        
-					<div class="repeater col-md-12 p15">
-                        <h3>photos</h3>
-                        <div class="border" v-for="(field, index) in form.imgfields">
+			  
+
+				
+				
+				
+				          <div class="repeater col-md-12 p15">
+                        <h3>Other Images</h3>
+                        <div class="borders" v-for="(field, index) in form.imgfields">
                             <div class="row">
-                                <div class="col-md-4" >
-                                    <div class="control-group w-100">
-                                        
-                                        <input type="file" accept="image/*" @change="uploadMulitImage($event,index)" id="file-input">
-                                        <input type="hidden"     v-model="field.img_id"  >
+                                <div class="col-md-12" >
+                                    <div class="control-group w-100 imgUploadCont">
+                                           <label :for="'mfile-input'+index"> 
+										   <i class="fa fa-image"></i>
+													Upload Image
+											</label>
+                                        <input type="file" class="imgfile" accept="image/*" @change="uploadMulitImage($event,index)" :id="'mfile-input'+index">
+                                     
                                         <img :src="field.imagpathshow" />
                                     </div>
                                 </div>
                               
-                                <div class="col-md-1">
-                                    <a @click="removeField(index)" href="javascript:void(0)" class="removeField btn btn-danger"><span class="icon trash-icon"></span>
-                                        remove
+                                <div class="col-md-12">
+                                    <a @click="removeField(index)" href="javascript:void(0)" class="removeField btn btn-danger col-md-12"><span class="icon trash-icon"></span>
+                                        Remove
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white">Add</a>
+                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white  col-md-12 addField">ADD</a>
                     </div>
-
-
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 			   <div class="row">
 							<div class="col-12">
-								 	<button   class="btn btn-primary" v-if="submit_form==false"	type="submit">save</button>
-								<button  class="btn btn-primary" 	 v-if="submit_form==true" type="submit" disabled>save</button>
+								 	<button   class="btn btn-primary col-md-12" v-if="submit_form==false"	type="submit">save</button>
+								<button  class="btn btn-primary col-md-12" 	 v-if="submit_form==true" type="submit" disabled>save</button>
 							</div>
 				</div>
-            </div>
+            
             <!-- /.card-body -->
-          </div>
+        
           <!-- /.card -->
         </div>
        </div>
       
 	 </form> 
-    </section>
-    <!-- /.content -->
+ 
+ 
+ 
+ 
+ 
+ 
+    </div>
+	  
+	
+ 
+
+		</div>
+	</div>  
+	</div>  
   </AppLayout>
 </template>
 

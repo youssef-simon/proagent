@@ -98,8 +98,8 @@ export default{
 								 <div class="imgContainer">
 										<img :src="service.image_path_show" /> 
 								 </div>
-								<div class="txtContainer">
-								<p>{{ service.description }}</p>
+								<div class="txtContainer" v-html="service.description">
+								 
 								</div>
 								<div class="row">
 										<div class="imgHeader col-md-12">

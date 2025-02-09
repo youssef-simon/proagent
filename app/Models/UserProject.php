@@ -38,6 +38,10 @@ class UserProject extends Model
 	
 	
 	
+	const STATUS_PENDING=1;
+	const STATUS_ACCEPTED=2;
+	const STATUS_REFUSED=3;
+ 
 	
 	
 	

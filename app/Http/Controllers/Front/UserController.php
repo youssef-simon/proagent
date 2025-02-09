@@ -31,6 +31,7 @@ class UserController extends Controller
 		 $user = User::find($id); 
 		  
 		  $services = Service::where('user_id',$id)
+		    ->where('status',Service::STATUS_ACCEPTED)
 		  ->with('category')->with('category.parentCategory')
 		  ->get();
 		  
@@ -46,6 +47,7 @@ class UserController extends Controller
 		 $user = User::find($id); 
 		  
 		  $services = Service::where('user_id',$id)
+		  ->where('status',Service::STATUS_ACCEPTED)
 		  ->with('category')->with('category.parentCategory')
 		  ->paginate(24);
 		  
@@ -61,6 +63,7 @@ class UserController extends Controller
 		 $user = User::find($id); 
 		  
 		  $userprojects = UserProject::where('user_id',$id) 
+		  ->where('status',UserProject::STATUS_ACCEPTED)
 		  ->paginate(24);
 		  
 	   return Inertia::render('front/userdetails/user_projects',[

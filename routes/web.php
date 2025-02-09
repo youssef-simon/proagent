@@ -189,7 +189,11 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::delete('userproject/delete/{id}', [UserProjectController::class, 'destroy'])->name('userproject.delete');
 		Route::get('userproject/edit/{id}', [UserProjectController::class, 'edit'])->name('userproject.edit');
 		Route::post('userproject/update/{id}', [UserProjectController::class, 'update'])->name('userproject.update');
- 
+		
+			Route::get('userproject/view/{id}', [UserProjectController::class, 'view'])->name('userproject.view');
+			Route::post('userproject/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
+			
+			
 		Route::get('service/create', [ServiceController::class, 'create'])->name('service.create');
 		Route::post('service/store', [ServiceController::class, 'store'])->name('service.store');
 		Route::get('service/index', [ServiceController::class, 'index'])->name('service.index');

@@ -85,7 +85,7 @@ export default{
 						 <ul>
 								<li> <a :href="'/user_details/'+user.id">My Details</a> 	</li>
 							<li> <a class="active" :href="'/user_services/'+user.id">My Services</a> 	</li>
-							<li> <a :href="'/user_works/'+user.id">My Work</a> 	</li>
+							<li> <a :href="'/user_works/'+user.id">My Achievement</a> 	</li>
 						
 						 </ul>
 					</div>

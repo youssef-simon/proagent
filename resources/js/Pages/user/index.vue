@@ -45,12 +45,12 @@ import { router } from '@inertiajs/vue3'
 	<td>
 	
 	<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
-                    :href="'/user/edit/'+user.id"
+                    :href="'/admin/user/edit/'+user.id"
                     v-html="'edit'"
                 />
 				
 			<Link  class="btn btn-primary"
-                    :href="'/userproject/index/'+user.id"
+                    :href="'/admin/userproject/index/'+user.id"
                     v-html="'view projects'"
                 />		 
 				 <Link  class="btn-primary btn"   @click="destroy( user.id)">Delete</Link> 

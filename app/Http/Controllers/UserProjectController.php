@@ -109,12 +109,20 @@ class UserProjectController extends Controller
  
     public function destroy($id)
     {
-			$service=Service::find($id);
+			$service=UserProject::find($id);
 			$service->delete();
 			
-			return to_route('service.index');
+			return to_route('userproject.index');
     }
 	
+	 public function view($id)
+    {
+	    $userProject = UserProject::where('id',$id)->with('user')->with('projectImages')->first();
+		
+		return Inertia::render('userproject/view',[
+					'userproject'=>$userProject , 
+				]); 
+    }
 	
 	 
 	

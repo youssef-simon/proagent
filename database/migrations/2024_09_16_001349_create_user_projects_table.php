@@ -19,6 +19,7 @@ return new class extends Migration
 			  
 			  $table->string('title');
 			  $table->string('imagpath')->nullable();
+			  $table->integer('status')->nullable();
 				
 				$table->text('description');
 				

@@ -7,9 +7,13 @@ import { router } from '@inertiajs/vue3'
 import Multiselect from '@vueform/multiselect'
 import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
+
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 export default{
 	components:{
-		AppLayout,reactive,router,Multiselect,SideMenu
+		AppLayout,reactive,router,Multiselect,SideMenu,QuillEditor
 	 }
 	  ,
 	   data() {
@@ -155,16 +159,14 @@ export default{
 			<SideMenu />
 				</div>  
 				<div class="col-md-9">
-					 <div class="card">
-							
-						 
-					  
+				<div class="formMainCont">
+					 
+			
+     <h1>Add Service</h1>		  
 					   	
 	 <form @submit.prevent="submit">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary"> 
-            <div class="card-body">
+      <div class="col-md-9"> 
+    <div class="formCont">
               <div class="form-group">
 					  <label for="title">title</label>
 				 	  <input id="title" class="form-control" v-model="form.title" />
@@ -175,7 +177,9 @@ export default{
 			    
               <div class="form-group">
 					  <label for="description">description</label>
-				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
+				 	  
+					   <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
 					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
 			   </div>
 			   
@@ -211,44 +215,53 @@ export default{
 			   
 			     
 				
-			  	 <div class="repeater col-md-12 p15">
-                        <h3>photo</h3> 
+			 	 <div class="repeater col-md-12 p15">
+                        <h3>Main Image</h3>
+									<p class="descPhoto">Max 2MB</p>
                         <div class="row">
-                            <div class="col-md-4" >
-                                <div class="control-group w-100">
-                                     
-                                    <input type="file" accept="image/*" @change="uploadImage($event,index)" id="file-input">
-                                    <input type="hidden"     v-model="form.img_id"  >
+                            <div class="col-md-12" >
+                                <div class="control-group w-100 imgUploadCont">
+                                     <label for="file-input">
+									 <i class="fa fa-image"></i>
+									Upload Image
+									  
+									 
+									 </label>
+                                    <input type="file" class="imgfile" accept="image/*" @change="uploadImage($event,index)" id="file-input">
+                                  
                                     <img :src="form.imagpathshow" />
                                 </div>
                             </div>
                         </div>  
                     </div>
 
+
 			  
-			                <div class="repeater col-md-12 p15">
-                        <h3>photos</h3>
-                        <div class="border" v-for="(field, index) in form.imgfields">
+			             <div class="repeater col-md-12 p15">
+                        <h3>Other Images</h3>
+                        <div class="borders" v-for="(field, index) in form.imgfields">
                             <div class="row">
-                                <div class="col-md-4" >
-                                    <div class="control-group w-100">
-                                        
-                                        <input type="file" accept="image/*" @change="uploadMulitImage($event,index)" id="file-input">
-                                        <input type="hidden"     v-model="field.img_id"  >
+                                <div class="col-md-12" >
+                                    <div class="control-group w-100 imgUploadCont">
+                                           <label :for="'mfile-input'+index"> 
+										   <i class="fa fa-image"></i>
+													Upload Image
+											</label>
+                                        <input type="file" class="imgfile" accept="image/*" @change="uploadMulitImage($event,index)" :id="'mfile-input'+index">
+                                     
                                         <img :src="field.imagpathshow" />
                                     </div>
                                 </div>
                               
-                                <div class="col-md-1">
-                                    <a @click="removeField(index)" href="javascript:void(0)" class="removeField btn btn-danger"><span class="icon trash-icon"></span>
-                                        remove
+                                <div class="col-md-12">
+                                    <a @click="removeField(index)" href="javascript:void(0)" class="removeField btn btn-danger col-md-12"><span class="icon trash-icon"></span>
+                                        Remove
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white">Add</a>
+                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white  col-md-12 addField">ADD</a>
                     </div>
-
 				
 				
 			   <div class="row">
@@ -257,11 +270,10 @@ export default{
 								<button  class="btn btn-primary" 	 v-if="submit_form==true" type="submit" disabled>save</button>
 							</div>
 				</div>
-            </div>
-            <!-- /.card-body -->
-          </div>
+				</div>
+           
           <!-- /.card -->
-        </div>
+       
        </div>
       
 	 </form> 
@@ -269,9 +281,8 @@ export default{
  
 		 
 
-		 
-			</div>
-			  
+		  
+				</div>
 				</div>
 			</div>  
 	</div> 

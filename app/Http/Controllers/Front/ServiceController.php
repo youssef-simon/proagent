@@ -210,7 +210,10 @@ class ServiceController extends Controller
 		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
 		 
 		 
-		$services =  Service::where('department_id',$id)->with('category')->with('category.parentCategory')-> paginate(24);
+		$services =  Service::where('department_id',$id)
+					->where('status',Service::STATUS_ACCEPTED)
+					->with('category')->with('category.parentCategory')-> 
+		paginate(24);
 		
 			$alldepartments =	Department::all();
 			 

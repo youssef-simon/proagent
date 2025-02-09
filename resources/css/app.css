@@ -659,3 +659,33 @@ div.carts {
  
  .workView .imgContainer{ text-align:Center; }
  .workView .imgContainer img{ display:inline-block; }
+ 
+ .formMainCont{ padding:30px; }
+ .formMainCont .form-group label{ text-transform:capitalize; }
+ 
+ 
+ 	
+	.imgUploadCont{
+	 border: 1px dotted #444;
+    min-height: 100px;
+	text-align:center;
+	}
+	
+	.imgUploadCont label{
+	display:block;
+	font-size:24px;
+	position: absolute;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+	}
+	.imgfile{ visibility:hidden; cursor:pointer; }
+	
+	
+	
+	.error_val{ color:red; }
+	
+	.repeater { margin-bottom:20px; }
+	.repeater .removeField { margin-bottom:20px; }
+	
+	.ql-container.txtEdior{ height:150px; }
