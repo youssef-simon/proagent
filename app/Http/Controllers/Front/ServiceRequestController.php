@@ -62,12 +62,10 @@ class ServiceRequestController extends Controller
 	public function request_view($id){
 		$serviceRequest = ServiceRequest::where('id',$id)->with("userMake")->with("userRequest")->first();
 		 
-		 
-		  return Inertia::render('front/serviceRequest',[
-
-	   "serviceRequest"=>$serviceRequest , 
-	   
-	   ]);
+		return Inertia::render('front/serviceRequest',[
+				"serviceRequest"=>$serviceRequest , 
+	    ]);
+		
 	}
 	
 	 

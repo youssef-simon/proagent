@@ -89,14 +89,22 @@ export default{
 						return;
 					}
 							var id =  this.serviceRequest.id;  
-							var msgJson = { "message":this.message , "request_id" : id};
+							var msgJson = {
+								"message":this.message 
+								, "request_id" : id
+								, "file_path" : this.form.path
+								, "file_name" : this.form.file_name
+							};
 					
 					var self=this;
 					 
 					
 						 axios.post("/post_room_message",msgJson)
 								  .then( function(response) {
-														self.fetchData();									 
+														self.fetchData();
+															self.form.path="";
+															self.form.file_name="";
+															self.message="";
 											}
 										)
 								  .catch(error => {
