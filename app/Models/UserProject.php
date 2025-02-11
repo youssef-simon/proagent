@@ -19,6 +19,7 @@ class UserProject extends Model
         'description', 
         'user_id', 
         'imagpath', 
+        'status', 
     
     ];
 	

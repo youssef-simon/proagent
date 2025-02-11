@@ -46,7 +46,8 @@ class MyProjectController extends Controller
 		$user = \Auth::guard('web')->user();
 
 		$data['user_id'] =   $user->id;
-
+		 $data['status']=1;
+		 
 		$userProject  = UserProject::create($data);
 
 

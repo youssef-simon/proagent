@@ -77,6 +77,13 @@ export default{
  
  
 	<td><img :src="userProject.image_path_show" style="width:150px;height:150px;" /></td> 
+	
+	<td> 
+		<span class="badge badge-success" v-if="userProject.status==1" >Under Review</span>
+		<span  class="badge badge-success"  v-if="userProject.status==2" >Approved</span>
+		<span class="badge badge-danger"  v-if="userProject.status==3" >declined</span>
+
+				</td>
 	<td>
 	
 		<Link  class="btn-primary btn"

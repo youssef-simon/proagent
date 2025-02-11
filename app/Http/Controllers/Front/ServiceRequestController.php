@@ -23,7 +23,7 @@ class ServiceRequestController extends Controller
 	 public function index()
     {
 		$user = \Auth::guard('web')->user();
-		 $serviceRequests = ServiceRequest::where('user_make_id',$user->id)->with('service')->paginate(10); 
+		 $serviceRequests = ServiceRequest::where('user_make_id',$user->id)->orderBy('id','desc')->with('service')->paginate(10); 
 		  
 	   return Inertia::render('front/requested_service/index',[
 			"serviceRequests"=>$serviceRequests , 
@@ -51,6 +51,7 @@ class ServiceRequestController extends Controller
 		$serviceRequest->user_make_id = $getService->user_id;
 		$serviceRequest->user_req_id = $user->id;
 		$serviceRequest->description = $description;
+		$serviceRequest->status_id= 1;
 		$serviceRequest->save();
 		 
 		
@@ -114,13 +115,28 @@ class ServiceRequestController extends Controller
 	
 	
 	
-	 	 public function changeToDelivered(Request $request,$id)
+	 	 public function changeToDelivered(Request $request)
     {
 		
-			$serviceReq =	ServiceRequest::find($id);
-		 $serviceReq->status=3;
-		 $serviceReq->save();
+				$id = $request->get('service_req_id');
 		
+				$serviceReq =	ServiceRequest::find($id);
+			 $serviceReq->status_id=3;
+			 $serviceReq->save();
+			 
+		$getUserMake=	$serviceReq->userMake;
+		$getUserReq=	$serviceReq->userRequest;
+		 
+			$getUserReq->total_balance = $getUserReq->total_balance-$serviceReq->service->price_from;
+		 
+			$getUserReq->save();
+			
+			 
+			$getUserMake->total_balance = $getUserMake->total_balance+$serviceReq->service->price_from;
+			$getUserMake->pending_balance = $getUserMake->pending_balance+$serviceReq->service->price_from;
+			$getUserMake->save();
+			
+			
 		  return response()->json([
 		     'data' =>"done",   
 		  ]); 

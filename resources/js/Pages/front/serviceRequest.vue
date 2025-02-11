@@ -157,7 +157,7 @@ export default{
 															  onError: () =>(this.submit_form=false),
 												});
 										},deliverProj(){
-											  router.post('/add_service', this.form, {
+											  router.post('/changetodelivered', this.formaccept, {
 															onProgress: () => (this.submit_form=true),
 															  onError: () =>(this.submit_form=false),
 						});

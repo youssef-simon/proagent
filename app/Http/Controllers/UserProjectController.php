@@ -124,6 +124,22 @@ class UserProjectController extends Controller
 				]); 
     }
 	
+	
+		 public function change_status(Request $request)
+    {
+		  
+		  $userproject_id=$request->get('userproject_id');
+		  $status=$request->get('status');
+		
+
+		$userProject = UserProject::where('id',$userproject_id) ->first();; 
+		 $userProject->status= $status;
+		 $userProject->save();
+
+		return to_route('service.index');
+		
+		
+    }
 	 
 	
 	

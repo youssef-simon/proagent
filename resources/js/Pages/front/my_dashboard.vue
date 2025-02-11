@@ -43,6 +43,32 @@ export default{
 		</div>  
 		<div class="col-md-9">
 				<div class="row">
+				<div class="col-md-4">
+						<div class="cardCont">
+						
+						<h3>Total Balance</h3>
+						<h4>{{ user.total_balance }} $</h4>
+						</div>
+					</div>
+					
+					
+					<div class="col-md-4">
+						<div class="cardCont">
+						
+						<h3>Pending Balance</h3>
+						<h4>{{ user.pending_balance }} $</h4>
+						</div>
+					</div>
+					
+					
+					<div class="col-md-4">
+						<div class="cardCont">
+						
+						<h3>Avaible Balance</h3>
+						<h4>{{ user.ava_balance }} $</h4>
+						</div>
+					</div>
+					
 					<div class="col-md-4">
 						<div class="cardCont">
 						

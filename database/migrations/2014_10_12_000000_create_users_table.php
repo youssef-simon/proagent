@@ -30,6 +30,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 			
+			     
+					 		
+			$table->decimal('total_balance', 10, 2)->nullable();  
+			$table->decimal('pending_balance', 10, 2)->nullable(); 
+			$table->decimal('ava_balance', 10, 2)->nullable(); 
 			
 			
             $table->rememberToken();
