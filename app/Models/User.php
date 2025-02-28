@@ -15,6 +15,9 @@ use App\Models\MediaImage;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Subscription;
+use App\Models\SubscriptionProduct;
+
 
 class User extends Authenticatable
 {
@@ -127,9 +130,26 @@ class User extends Authenticatable
 	public function mainImage(){
 		 return $this->belongsTo(MediaImage::class, 'main_image_id');
 	}
-     
-	
-	
-	
-	
+      
+	public function subscriptions()
+	{
+		return $this->hasMany(Subscription::class);
+	}
+		
+		
+	public function currentSubscription()
+		{
+			
+			$subscriptionProduct =  SubscriptionProduct::where('is_free',1)->first();
+			$getSubscr = $this->subscriptions()
+				->where('cur_subscr', 1) // Adjust condition based on your schema
+				->orderBy('created_at', 'desc') // In case of multiple active ones, get the latest
+				->first();
+				
+				if($getSubscr==null){
+					return $subscriptionProduct;
+				 }else{
+					 return $getSubscr;
+				 }
+		}
 }

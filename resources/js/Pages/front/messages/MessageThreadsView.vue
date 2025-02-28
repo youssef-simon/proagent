@@ -215,6 +215,7 @@ import axios from 'axios';
 <template>
 
 <AppLayout title="Dashboard">
+   <div class="whContAll">
    <div class="container">
 			 
 				  <div class="containerx">
@@ -285,6 +286,7 @@ import axios from 'axios';
 										
 								  </div>
 								 
+				  </div>
 				  </div>
 				  </div>
 				  </div>

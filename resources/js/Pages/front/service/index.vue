@@ -73,7 +73,7 @@ export default{
 					<td>{{ service.price_from }}</td> 
 					<td><img :src="service.image_path_show" style="width:150px;height:150px;" /></td> 
 				<td> 
-		<span class="badge badge-success" v-if="service.status==1" >Under Review</span>
+		<span class="badge badge-warning" v-if="service.status==1" >Under Review</span>
 		<span  class="badge badge-success"  v-if="service.status==2" >Approved</span>
 		<span class="badge badge-danger"  v-if="service.status==3" >declined</span>
 

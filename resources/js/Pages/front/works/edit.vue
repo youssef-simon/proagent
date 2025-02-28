@@ -4,10 +4,12 @@ import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default{
 	components:{
-		AppLayout,reactive,router,SideMenu
+		AppLayout,reactive,router,SideMenu,QuillEditor
 	 }  ,
 	   data() {
 					return {
@@ -151,12 +153,13 @@ export default{
 			   
 			   
 			    
+                
               <div class="form-group">
 					  <label for="description">description</label>
-				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
-					 <div class="error_val" v-if="errors.description">description</div>
+				 	  <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
+					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
 			   </div>
-			   
 			    
 			   
 			   

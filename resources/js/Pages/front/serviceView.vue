@@ -17,9 +17,9 @@ export default{
 						showReq:false,   
 						reqdesc:false,   
 						user: usePage().props.auth.user, 
-							 showSlider:false, 
-							  current_image:'',
-								current_image_index:0,
+						showSlider:false, 
+					    current_image:'',
+					    current_image_index:0,
 					}
 		  } 
 	  
@@ -98,7 +98,7 @@ export default{
 								 <div class="imgContainer">
 										<img :src="service.image_path_show" /> 
 								 </div>
-								<div class="txtContainer" v-html="service.description">
+								<div class="txtContainer txtContainerEditor" v-html="service.description">
 								 
 								</div>
 								<div class="row">

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,13 +37,23 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+		
+		if (Auth::guard('web')->check()){
         return array_merge(parent::share($request), [
            
 		   
-		    'auth.user' => fn () => $request->user()
-                ? $request->user()
-                : null,
+		    'auth.user' => fn () => $request->user()   ? $request->user()  : null,
+		    'subscription' => fn () => $request->user()   ? $request->user()->currentSubscription()  : null,
 		   
         ]);
+		}else{
+			 return array_merge(parent::share($request), [
+           
+		   
+		    'auth.user' => fn () => $request->user()   ? $request->user()  : null,
+		  //  'subscription' => fn () => $request->user()   ? $request->user()->currentSubscription()  : null,
+		   
+        ]);
+		}
     }
 }

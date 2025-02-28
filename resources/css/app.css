@@ -689,3 +689,5 @@ div.carts {
 	.repeater .removeField { margin-bottom:20px; }
 	
 	.ql-container.txtEdior{ height:150px; }
+	
+	.txtContainerEditor p{ margin:0px; }

@@ -5,6 +5,7 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 
 import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
+import { usePage } from '@inertiajs/vue3'
 
 export default{
 	components:{
@@ -13,8 +14,8 @@ export default{
 	   ,
 	   data() {
 					return {
-						submit_form:false   
-				   
+						submit_form:false   ,
+						subscription: usePage().props.subscription
 					}
 		  } 
 	  
@@ -24,6 +25,7 @@ export default{
 		  worksCount:String,  
 		  myPurchases:String,  
 		  myRequested:String,  
+		  subscription:Object,  
 	 },setup(){
 		 
 	 }, methods:{
@@ -43,6 +45,54 @@ export default{
 		</div>  
 		<div class="col-md-9">
 				<div class="row">
+				
+				
+					 <div class="col-md-12 cardUserData">
+						 <div class="row">
+						
+								<div class="col-md-3">
+									<img :src="user.image_path_show" style="width:300px;" /> 
+								</div>
+								<div class="col-md-9">
+								 
+											<h2>{{ user.full_name	 }}</h2>  
+											<h5>{{ user.work_title	 }}</h5>  
+											<h5>Your Page : <a :href="'/user_details/'+user.id">https://www.procvlnk.com/user_details/{{ user.id }}</a></h5>  
+											<div class="col-md-12">
+									 
+							 
+											</div>
+											
+											<template v-if="user.vertified==2">
+												<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+											</template>
+											<template v-if="user.vertified!=2">
+												<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+												 
+											</template>
+									</div>		
+											
+								</div>
+					</div>
+			 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+					<div class="col-md-12">
+						<div class="cardCont">
+						
+						<h3>Current Subsciption : {{ subscription.title }}</h3>
+						<h4> Max Achivement : {{ subscription.work_limit }}</h4>
+						<h4> Max Servcies : {{ subscription.service_limit }}</h4>
+						</div>
+					</div>
 				<div class="col-md-4">
 						<div class="cardCont">
 						

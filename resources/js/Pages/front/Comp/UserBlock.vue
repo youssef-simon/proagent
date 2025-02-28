@@ -21,7 +21,20 @@ export default{
 		<div class="sideMenu">
 			 
 		 <div class="userDetailCont">
-			 
+				<div class="userImg">
+				<img class="userImgCont" :src="user.image_path_show" />
+				</div>
+				
+				<h2>{{ user.full_name }} </h2>
+				<h6>{{ user.work_title }} </h6>
+				<h6>	
+						<template v-if="user.vertified==2">
+							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+						</template>
+						<template v-if="user.vertified!=2">
+							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+							 
+						</template></h6>
 			</div>
 			
 				<ul class="dashBoardList">

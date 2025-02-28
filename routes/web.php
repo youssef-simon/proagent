@@ -32,6 +32,7 @@ use App\Http\Controllers\Front\MessageController ;
 use App\Http\Controllers\Front\VerificationController as  VerifyFrontController; 
 use App\Http\Controllers\Front\UserController as UserFrontController; 
 use App\Http\Controllers\Front\ServiceController as ServiceFrontController; 
+use App\Http\Controllers\Front\SubscriptionController as SubscriptionFrontController; 
 use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontController; 
  
 
@@ -140,7 +141,10 @@ Route::group(['middleware' => ['auth:web']], function () {
 Route::get('changedepart/{id}', [UserController::class, 'changeDepart'])->name('get.changeDepart');
 Route::get('changecategory/{id}', [UserController::class, 'changeCategory'])->name('get.changeCategory');
 
+Route::get('changecategory/{id}', [UserController::class, 'changeCategory'])->name('get.changeCategory');
 
+Route::get('subscriptions', [SubscriptionFrontController::class, 'index'])->name('subscriptions.index');
+Route::post('make_subscr', [SubscriptionFrontController::class, 'make_subscr'])->name('subscriptions.make_subscr');
 
 
 Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.show');
