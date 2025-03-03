@@ -20,7 +20,7 @@ import { router } from '@inertiajs/vue3'
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" :href="'/userproject/create/'+user.id">add user project</a>
+					<a  class="btn btn-primary" :href="'/admin/userproject/create/'+user.id">add user project</a>
 			  </div>
               </div>
 			  
@@ -38,7 +38,7 @@ import { router } from '@inertiajs/vue3'
 	
 		<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
                    
-                    :href="'/userproject/edit/'+userProject.id"
+                    :href="'/admin/userproject/edit/'+userProject.id"
                     v-html="'edit'"
                 />
 				<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"

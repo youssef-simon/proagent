@@ -20,7 +20,7 @@ import { router } from '@inertiajs/vue3'
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" href="/admin/service/create">add service</a>
+					<a  class="btn btn-primary" :href="'/admin/service/create/'+this.id">add service</a>
 			  </div>
               </div>
 			  
@@ -89,12 +89,15 @@ import { router } from '@inertiajs/vue3'
 
  <script>
 import { Link } from '@inertiajs/vue3'
+
+import { usePage } from '@inertiajs/vue3'
 export default {
   props: {
     services: {
       type: Object,
       required: true,
     },
+	id:String
   },  components: {
         Link,
     },methods:{
@@ -109,6 +112,10 @@ export default {
 			 router.get('/availableslots/index',this.form);
 	 } */
 			
+	},created(){
+		//const page = usePage();
+		//console.log(page.props.id);
+		
 	}
   
 };

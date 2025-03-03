@@ -198,9 +198,12 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 			Route::post('userproject/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
 			
 			
-		Route::get('service/create', [ServiceController::class, 'create'])->name('service.create');
-		Route::post('service/store', [ServiceController::class, 'store'])->name('service.store');
+		Route::get('service/create/{id}', [ServiceController::class, 'create'])->name('service.create');
+		Route::post('service/store/{id}', [ServiceController::class, 'store'])->name('service.store');
 		Route::get('service/index', [ServiceController::class, 'index'])->name('service.index');
+		
+		Route::get('service/user/{id}', [ServiceController::class, 'index_user'])->name('service.indexbyid');
+		
 		Route::delete('service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
 		Route::get('service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
 		Route::get('service/view/{id}', [ServiceController::class, 'view'])->name('service.view');
@@ -220,7 +223,7 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		
 		
 
-				Route::get('verified_users', [VerifiedController::class, 'index'])->name('get.verified_users');
+				Route::get('verified_users/{id}', [VerifiedController::class, 'index'])->name('get.verified_users');
 		Route::get('verify_user_view/{id}', [VerifiedController::class, 'view'])->name('get.verified_view');
 		Route::post('update_status', [VerifiedController::class, 'update_status'])->name('update_status');
 			

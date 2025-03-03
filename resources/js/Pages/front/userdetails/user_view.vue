@@ -89,8 +89,8 @@ export default{
 	  <div class="tabBigCont">
 	 <div class="col-md-12 bioCont">
 		<h2>My Bio</h2>
-		<div class="bioContTxt">
-		{{ user.biograph }}
+		<div class="bioContTxt" v-html="user.biograph">
+		 
 		</div>
 	 
 	 </div>

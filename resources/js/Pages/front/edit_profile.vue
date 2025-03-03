@@ -5,9 +5,15 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
+
+
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
+
 export default{
 	components:{
-		AppLayout,reactive,router,SideMenu
+		AppLayout,reactive,router,SideMenu,QuillEditor
 	 }
 	 ,props:{
 		  	  serviceCats:Object,
@@ -127,7 +133,9 @@ export default{
 			  
 			    <div class="form-group">
 					  <label for="name">biograph:</label>
-					<textarea id="biograph" class="form-control" v-model="form.biograph"  ></textarea>
+				 
+						  <QuillEditor v-model:content="form.biograph"  id="biograph" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
               </div>
               <div class="form-group">
 					<p>{{ user.email }}</p>

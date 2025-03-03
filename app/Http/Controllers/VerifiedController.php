@@ -50,9 +50,9 @@ class VerifiedController extends Controller
 	     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
-		  $verifiedRequests = VerifyRequest:: where('id','!=',0);
+		  $verifiedRequests = VerifyRequest:: where('user_id','=',$id);
 		 
 	   $vertify_status = $request->get('vertify_status');
 	  if(isset($vertify_status)){

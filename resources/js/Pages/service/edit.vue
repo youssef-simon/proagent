@@ -4,9 +4,12 @@ import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 export default{
 	components:{
-		AppLayout,reactive,router
+		AppLayout,reactive,router,QuillEditor
 	 }  ,
 	   data() {
 					return {
@@ -36,7 +39,7 @@ export default{
 			return { form ,service }
 	 }, methods:{
 			  submit() {
-				     router.post('/service/update/'+this.service.id, this.form)
+				     router.post('/admin/service/update/'+this.service.id, this.form)
 			  }
 			  
 			  
@@ -172,8 +175,11 @@ export default{
 			   
 			    
               <div class="form-group">
-					  <label for="description">description</label>
-				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
+					  <label for="description">description</label> 
+					  
+					  
+					     <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
 					 <div class="error_val" v-if="errors.description">description</div>
 			   </div>
 			   

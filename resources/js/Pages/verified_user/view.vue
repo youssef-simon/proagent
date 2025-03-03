@@ -11,7 +11,7 @@ export default {
       required: true,
     },
   },  components: {
-        Link,reactive
+        Link,reactive,AppLayout
 		
     },setup(){
 						const form = reactive({

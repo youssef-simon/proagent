@@ -6,6 +6,9 @@ import { router } from '@inertiajs/vue3'
 import Multiselect from '@vueform/multiselect'
 
 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 export default{
 	components:{
 		AppLayout,reactive,router,Multiselect
@@ -20,7 +23,8 @@ export default{
 	 
 	 ,props:{ 
 			departments:Object,
-			errors:Object
+			errors:Object,
+			id:String
 	 },setup(){
 		 const form = reactive({
 		 
@@ -35,7 +39,7 @@ export default{
 	 }, methods:{
 	 
 	 submit() {
-		   router.post('/service/store', this.form, {
+		   router.post('/admin/service/store/'+this.id, this.form, {
 															onProgress: () => (this.submit_form=true),
 															  onError: () =>(this.submit_form=false),
 						});
@@ -194,7 +198,8 @@ export default{
 			    
               <div class="form-group">
 					  <label for="description">description</label>
-				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
+				 	   <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
 					 <div class="error_val" v-if="errors.description">description</div>
 			   </div>
 			   
@@ -228,33 +233,7 @@ export default{
 										<div class="error_val" v-if="errors.category_id">هذا الحقل مطلوب</div>
 				</div>
 			   
-			   
-			    <div class="form-group">
-						<label for="bus">user</label>
-								<Multiselect
-						 
-						  placeholder="choose"
-						  :filter-results="false"
-						  :min-chars="1"
-						  :resolve-on-load="false"
-						  :delay="0"
-						  v-model="form.company_id"
-						   max="1" 
-						    rtl="true"
-						  :searchable="true"
-						  :options="async function(query) {
-							return await searhCompanies(query)  
-						  }"
-						/>	 
-							 <div class="error_val" v-if="errors.company_id"> هذا الحقل مطلوب </div>
-				</div>
-				
-				
-				
-				
-				
-				
-				
+			     
 				
 				
 			  	 <div class="repeater col-md-12 p15">

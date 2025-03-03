@@ -26,18 +26,35 @@ class ServiceController extends Controller
 	 
 	    return Inertia::render('service/index',[ 'services'=>$services  ]);
     }
+	
+	
+	
+	
+	
+	
+	    /**
+     * Display a listing of the resource.
+     */
+    public function index_user($id)
+    {
+        $services = Service::where('user_id',$id)-> paginate(10);
+	 
+	    return Inertia::render('service/index',[ 'services'=>$services,'id'=>$id  ]);
+    }
+	
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
 		$departments = Department::all(); 
 		$serviceCategories = ServiceCategory::all(); 
 		
         return Inertia::render('service/create',[
 				'departments'=>$departments ,  
-				'serviceCategories'=>$serviceCategories   
+				'serviceCategories'=>$serviceCategories   ,
+				'id'=>$id   
 	   
 	   ]  );
     }
@@ -45,12 +62,11 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         $data = $request->all(); 
-		 
-		 
-	 
+        $data['user_id']=$id; 
+		  
 		$service  = Service::create($data);
 	 
 	 
@@ -60,7 +76,7 @@ class ServiceController extends Controller
 		$serviceImage = ServiceImage::create( $subData);
 	 }
 	 
-		return to_route('service.index');
+		return to_route('service.indexbyid',['id'=>$id]);
     }
  
  
@@ -158,9 +174,8 @@ class ServiceController extends Controller
 		$serviceImage = ServiceImage::create( $subData);
 	 }
 		
-		
-		
-		return to_route('service.index');
+		return to_route('service.indexbyid',['id'=>$service->user_id]);
+		 
     }
  
     public function destroy($id)

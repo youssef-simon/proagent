@@ -5,10 +5,12 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import Multiselect from '@vueform/multiselect'
 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default{
 	components:{
-		AppLayout,reactive,router,Multiselect
+		AppLayout,reactive,router,Multiselect,QuillEditor
 	 }
 	  ,
 	   data() {
@@ -36,7 +38,7 @@ export default{
 	 }, methods:{
 	 
 	 submit() {
-		   router.post('/userproject/store/'+this.user.id, this.form, {
+		   router.post('/admin/userproject/store/'+this.user.id, this.form, {
 															onProgress: () => (this.submit_form=true),
 															  onError: () =>(this.submit_form=false),
 						});
@@ -164,7 +166,9 @@ export default{
 			    
               <div class="form-group">
 					  <label for="description">description</label>
-				 	  <textarea id="description" class="form-control" v-model="form.description"></textarea>
+				 
+					     <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
+					   
 					 <div class="error_val" v-if="errors.description">description</div>
 			   </div>
 			   

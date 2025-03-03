@@ -10,14 +10,9 @@ import { router } from '@inertiajs/vue3'
 			  <div class="container-fluid">
 				<div class="row mb-2">
 				  <div class="col-sm-6">
-					<h1>Admins</h1>
+					<h1>Users</h1>
 				  </div>
-				  <div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-					  <li class="breadcrumb-item"><a href="#">Home</a></li>
-					  <li class="breadcrumb-item active">Gallery</li>
-					</ol>
-				  </div>
+				   
 				</div>
 			  </div> 
      </section>
@@ -29,32 +24,43 @@ import { router } from '@inertiajs/vue3'
               </div>
 			  
 			    <div>
-					<a href="/user/create">add user </a>
+					<a href="'/admin/user/create/'+user.id">add user  </a>
 			  </div>
 <table class="table table-bordered table-hover dataTable dtr-inline">
 							<tr>
 								<td>ID</td>
 								<td>Full Name</td>
-								<td>Salary</td> 
+								<td>vertified</td>
+								 
 								<td>Action</td> 
 							</tr>
 <tr  v-for="user in users.data">
 	<td>{{ user.id }}</td>
 	<td>{{ user.full_name }}</td>  
-	<td>{{ user.salary }}</td>  
-	<td>
-	
-	<Link  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary"
+	<td>{{ user.vertified }}</td>  
+ 
+	<td> 
+				<Link  class="btn btn-primary"
                     :href="'/admin/user/edit/'+user.id"
                     v-html="'edit'"
                 />
 				
-			<Link  class="btn btn-primary"
+				<Link  class="btn btn-primary"
                     :href="'/admin/userproject/index/'+user.id"
                     v-html="'view projects'"
                 />		 
+				
+					<Link  class="btn btn-primary"
+                    :href="'/admin/service/user/'+user.id"
+                    v-html="'view services'"
+                />		
+					<Link  class="btn btn-primary"
+                    :href="'/admin/verified_users/'+user.id"
+                    v-html="'verfication'"
+                />		
+				
 				 <Link  class="btn-primary btn"   @click="destroy( user.id)">Delete</Link> 
-				</td>
+		</td>
 </tr>
 </table>
  

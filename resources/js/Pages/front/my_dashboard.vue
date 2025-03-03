@@ -15,7 +15,9 @@ export default{
 	   data() {
 					return {
 						submit_form:false   ,
-						subscription: usePage().props.subscription
+						subscription: usePage().props.subscription,
+						protocol: window.location.protocol ,
+						curr_domain: window.location.hostname,
 					}
 		  } 
 	  
@@ -32,6 +34,9 @@ export default{
 	 
 	  
 	
+	 },created(){
+		 
+		
 	 }
 }
 </script>
@@ -57,7 +62,7 @@ export default{
 								 
 											<h2>{{ user.full_name	 }}</h2>  
 											<h5>{{ user.work_title	 }}</h5>  
-											<h5>Your Page : <a :href="'/user_details/'+user.id">https://www.procvlnk.com/user_details/{{ user.id }}</a></h5>  
+											<h5>Your Page : <a target="_blank" :href="'/user_details/'+user.id">{{ protocol }}//{{ curr_domain }}/user_details/{{ user.id }}</a></h5>  
 											<div class="col-md-12">
 									 
 							 

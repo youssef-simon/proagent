@@ -66,25 +66,20 @@ export default{
               <div class="form-group">
 					  <label for="name">  first_name:</label>
 					<input id="first_name" class="form-control" v-model="form.first_name" />
-						  <div v-if="errors.first_name">{{ errors.first_name }}</div>
+						  <div class="error_val" v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
 			  <div class="form-group">
 					  <label for="name">  last_name:</label>
 					<input id="last_name" class="form-control" v-model="form.last_name" />
-						  <div v-if="errors.first_name">{{ errors.first_name }}</div>
+						  <div class="error_val" v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
               <div class="form-group">
 					<label for="email">email:</label>
 					<input id="email" class="form-control" v-model="form.email" />
-				  <div v-if="errors.email">{{ errors.email }}</div>
+				  <div class="error_val" v-if="errors.email">{{ errors.email }}</div>
               </div>
 			  
-			  
-			     <div class="form-group">
-					<label for="email">biograph:</label>
-					<textarea id="biograph" class="form-control" v-model="form.biograph" ></textarea>
-				  <div v-if="errors.biograph">{{ errors.biograph }}</div>
-              </div>
+			   
 			  
 			  
 			  
@@ -92,19 +87,19 @@ export default{
 			    <div class="form-group">
 					<label for="phone">phone:</label>
 					<input id="phone" class="form-control" v-model="form.phone" />
-				  <div v-if="errors.phone">{{ errors.phone }}</div>
+				  <div class="error_val" v-if="errors.phone">{{ errors.phone }}</div>
               </div>
 			  
               <div class="form-group">
              			  <label for="password">password:</label>
 						<input id="password" class="form-control" v-model="form.password" type="password" />
-						<div v-if="errors.password">{{ errors.password }}</div>
+						<div  class="error_val" v-if="errors.password">{{ errors.password }}</div>
               </div>
               
               <div class="form-group">
                        <label for="password_confirmation">password_confirmation:</label>
 					<input id="password_confirmation" class="form-control" type="password" v-model="form.password_confirmation" />
-							<div v-if="errors.password_confirmation">{{ errors.password_confirmation }}</div>
+							<div class="error_val" v-if="errors.password_confirmation">{{ errors.password_confirmation }}</div>
               </div>
 			  
 			 
