@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\ServiceImage; 
+use App\Models\Notification; 
 
 class ServiceController extends Controller
 {
@@ -139,6 +140,16 @@ class ServiceController extends Controller
 		 $subData['service_id']=	$service->id;
 		$serviceImage = ServiceImage::create( $subData);
 	 }
+	 
+	 
+		  $ndata['description']= "your service you put doesnt accepted check your service page"."<a href='/service_list'>services page</a>";
+		  $ndata['user_id']= 	$service->user_id;
+	 
+	 		Notification::create($ndata);
+	 
+	 
+	 
+	 
 	 
 	return to_route('service_list');
 	  // return Inertia::render('front/service/add' );

@@ -13,6 +13,7 @@ import { usePage } from '@inertiajs/vue3';
   data() {
     return {
       user: usePage().props.auth.user, 
+      notifications: usePage().props.notifications, 
       
     }
   },
@@ -33,6 +34,11 @@ import { usePage } from '@inertiajs/vue3';
     }
   },created(){
 	  //const page = usePage();
+	  console.log("this.notifications");
+	  console.log(this.notifications);
+	  console.log(this.notifications.length);
+	  console.log("this.notifications");
+	  
   }
 }
 </script>

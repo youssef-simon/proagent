@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceImage; 
 use App\Models\Department;
 use App\Models\ServiceCategory;
+use App\Models\Notification;
 
 
 class ServiceController extends Controller
@@ -20,11 +21,21 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service:: paginate(10);
-	 
-	    return Inertia::render('service/index',[ 'services'=>$services  ]);
+        $services = Service:: with('user') ;
+		
+		$status = $request->get('status');
+		
+		if(isset($status ) || $status !=0){
+			   $services =  $services->where('status',$status );
+		}
+		
+        $services =  $services->paginate(10);
+		
+		
+		
+	    return Inertia::render('service/index_all',[ 'services'=>$services  ]);
     }
 	
 	
@@ -75,6 +86,8 @@ class ServiceController extends Controller
 		 $subData['service_id']=	$service->id;
 		$serviceImage = ServiceImage::create( $subData);
 	 }
+	 
+	   
 	 
 		return to_route('service.indexbyid',['id'=>$id]);
     }
@@ -141,6 +154,20 @@ class ServiceController extends Controller
 		$service = Service::where('id',$service_id) ->first();; 
 		 $service->status= $status;
 		 $service->save();
+		 
+		 if($status==Service::STATUS_ACCEPTED){
+		 $data['description']= "your service has been accepted check your service page"."<a href='/service_list'>services page</a>";
+		 }
+		 
+		 
+		if($status==Service::STATUS_REFUSED){
+		 $data['description']= "your service you put doesnt accepted check your service page"."<a href='/service_list'>services page</a>";
+		 }
+		 
+		 
+		
+		
+		Notification::create($data);
 
 		return to_route('service.index');
 		
