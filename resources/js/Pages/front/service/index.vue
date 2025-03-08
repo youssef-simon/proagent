@@ -65,6 +65,7 @@ export default{
 			<td>Price</td> 
 			<td>Image</td> 
 			<td>Status</td> 
+			<td>Reason</td> 
 			<td>Acion</td> 
 		</tr>
 		<tr  v-for="service in services.data">
@@ -77,6 +78,9 @@ export default{
 		<span  class="badge badge-success"  v-if="service.status==2" >Approved</span>
 		<span class="badge badge-danger"  v-if="service.status==3" >declined</span>
 
+				</td>
+				<td>
+				{{ service.reason }}
 				</td>
 			<td>
 			

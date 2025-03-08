@@ -149,10 +149,12 @@ class ServiceController extends Controller
 		  
 		  $service_id=$request->get('service_id');
 		  $status=$request->get('status');
+		  $reason=$request->get('reason');
 		
 
 		$service = Service::where('id',$service_id) ->first();; 
 		 $service->status= $status;
+		 $service->reason= $reason;
 		 $service->save();
 		 
 		 if($status==Service::STATUS_ACCEPTED){
@@ -164,7 +166,9 @@ class ServiceController extends Controller
 		 $data['description']= "your service you put doesnt accepted check your service page"."<a href='/service_list'>services page</a>";
 		 }
 		 
-		 
+		 if($status==Service::STATUS_PENDING){
+		 $data['description']= "your service is under Invertigating"."<a href='/service_list'>services page</a>";
+		 }
 		
 		
 		Notification::create($data);

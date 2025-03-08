@@ -13,6 +13,8 @@ import { usePage } from '@inertiajs/vue3';
   data() {
     return {
       user: usePage().props.auth.user, 
+	      notifications_count: usePage().props.notifications, 
+      msg_count: usePage().props.msg, 
       
     }
   },
@@ -55,11 +57,18 @@ import { usePage } from '@inertiajs/vue3';
 						<li class="nav-item">
 									<a style="position:relative;" class="nav-link" href="/my_messages">
 											  <i class="fa fa-envelope"></i> 
+											  <template v-if="msg_count">
+													  <span class="notCount">{{ msg_count }}</span>
+													  </template>
 									</a>           
 						</li>
 						 <li class="nav-item">
 								<a style="position:relative;" class="nav-link" href="">
 													  <i class="fa fa-bell"></i>
+													  
+													    <template v-if="notifications_count">
+													  <span class="notCount">{{ notifications_count }}</span>
+													  </template>
 									</a>
 						  </li>
 				</template>	  

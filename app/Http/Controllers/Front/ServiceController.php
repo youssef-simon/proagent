@@ -160,7 +160,7 @@ class ServiceController extends Controller
     {
 		
 		   $user = \Auth::guard('web')->user();
-		   $services = Service::where('user_id',$user ->id)-> paginate(40);
+		   $services = Service::where('user_id',$user ->id)->orderBy('id','desc')-> paginate(40);
 	 
 	    return Inertia::render('front/service/index',[ 'services'=>$services  ]);
     }

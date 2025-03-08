@@ -20,7 +20,8 @@ export default{
 		  errors:Object
 	 },setup(props){ 
 		     const form = reactive({ 
-			    status:  props.service.title , 
+			    status:  props.service.status , 
+			    reason:  props.service.reason , 
 				service_id:  props.service.id ,
 			
 			 })
@@ -90,6 +91,16 @@ export default{
 							  <div>
 							  	 <form @submit.prevent="submit">
 							  
+							  
+							  
+							  
+							  
+							  
+							  
+										<div class="form-group">
+													<label for="reason">reason</label>
+														 <textarea class="form-control"  v-model="form.reason"></textarea>
+											 </div>
 											<div class="form-group">
 													<label for="category_id">Status</label>
 														<select class="form-control" v-model="form.status">

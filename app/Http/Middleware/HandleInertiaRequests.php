@@ -7,6 +7,7 @@ use Inertia\Middleware;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Notification; 
+use App\Models\Message; 
 
 
 class HandleInertiaRequests extends Middleware
@@ -48,6 +49,7 @@ class HandleInertiaRequests extends Middleware
 		    'auth.user' => fn () => $request->user()   ? $request->user()  : null,
 		    'subscription' => fn () => $request->user()   ? $request->user()->currentSubscription()  : null,
 		    'notifications' => fn () => $this->getNotify($request),
+		    'msg' => fn () => $this->getMsg($request),
 		   
         ]);
 		}else{
@@ -66,15 +68,28 @@ class HandleInertiaRequests extends Middleware
 		{
 			$user = $request->user() ? $request->user() : null;
 			
-			$notification=[];
+			$notification=0;
 			
 			if($user!=null){
 						$user->id;
-						$notification = Notification::where('user_id',$user ->id)->where("is_readed",0)->get()->toArray();
+						$notification = Notification::where('user_id',$user ->id)->where("is_readed",0)->count();
 			}
 			
 			return $notification;
 		}
 		
+			private function getMsg($request)
+		{
+			$user = $request->user() ? $request->user() : null;
+			
+			$messages=0;
+			
+			if($user!=null){
+						$user->id;
+						$messages = Message::where('receiver_id',$user ->id)->where("is_readed",0)->count();
+			}
+			
+			return $messages;
+		}
 		
 }

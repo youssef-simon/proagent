@@ -22,7 +22,10 @@ return new class extends Migration
 					$table->string('sender_type');
 					
 					$table->string('file_name')->nullable();
-					$table->string('file_path')->nullable();
+					
+					
+					
+					$table->boolean('is_readed')->default(0)->nullable();
 					 
 					
 					

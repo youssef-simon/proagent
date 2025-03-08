@@ -33,6 +33,7 @@ class Service extends Model
         'category_id',
         'department_id',
         'status',
+        'reason',
     
     ];
     

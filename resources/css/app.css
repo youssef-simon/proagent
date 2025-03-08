@@ -691,3 +691,5 @@ div.carts {
 	.ql-container.txtEdior{ height:150px; }
 	
 	.txtContainerEditor p{ margin:0px; }
+	
+	.notCount{ background:red; color:#fff; padding:5px; border-radius:10px; }

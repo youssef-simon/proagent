@@ -28,6 +28,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AuthController; 
 use App\Http\Controllers\Front\MyPurchasesController; 
 use App\Http\Controllers\Front\MyProjectController; 
+use App\Http\Controllers\Front\NotificationController; 
 use App\Http\Controllers\Front\MessageController ; 
 use App\Http\Controllers\Front\VerificationController as  VerifyFrontController; 
 use App\Http\Controllers\Front\UserController as UserFrontController; 
@@ -134,6 +135,9 @@ Route::group(['middleware' => ['auth:web']], function () {
 		
 		Route::get('/verify_create',[VerifyFrontController::class,'verify_create'])->name('verify_create');
 		Route::post('/verify_store',[VerifyFrontController::class,'verify_store'])->name('verify_store');
+		
+		Route::get('/my_notifications',[NotificationController::class,'index'])->name('notify_index');
+		 
 		 
 });
 

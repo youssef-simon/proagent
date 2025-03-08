@@ -26,11 +26,17 @@ export default{
 			
 				<ul class="dashBoardList">
 				
-							<li> <a href="/my_dashboard">
+					<li> <a href="/my_dashboard">
 					
 					<i class="fas fa-th"></i>
 					My Dashboard</a> </li>
 				
+				
+					<li> <a href="/my_notifications">
+					
+					<i class="fas fa-th"></i>
+					My Notifications</a> </li>
+					
 					<li> <a href="/service_list">
 					
 					<i class="fas fa-th"></i>

@@ -29,6 +29,8 @@ class MessageController extends Controller {
 			$customer =     \Auth::guard('web')->user();
 			$customer_id = $customer->id;
 			$threads = ThreadMessage::with('sender')-> where('user_id', $customer_id)->orWhere('sec_user_id',$customer_id)->orderBy('last_updated','desc')->get();
+					//	 dd($customer_id );
+			Message::where('receiver_id',$customer->id)->update(['is_readed'=>1]);			
 						
         return Inertia::render('front/messages/MyMessages' ); 
     }

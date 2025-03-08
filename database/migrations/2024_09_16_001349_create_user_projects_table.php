@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('user_projects', function (Blueprint $table) {
 			 $table->increments('id');
-		  
-		   	 $table->integer('user_id')->unsigned()->nullable();
+		     $table->integer('user_id')->unsigned()->nullable();
 		     $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 			  
 			  $table->string('title');
 			  $table->string('imagpath')->nullable();
 			  $table->integer('status')->nullable();
-				
-				$table->text('description');
+			  $table->text('description');
+			  $table->text('reason')->nullable();
 				
 				  $table->timestamps();
 			 
