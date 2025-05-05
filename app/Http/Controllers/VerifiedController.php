@@ -58,7 +58,7 @@ class VerifiedController extends Controller
 	  if(isset($vertify_status)){
 		     $verifiedRequests =    $verifiedRequests->where('vertify_status', $vertify_status);
 	  }else{
-		      $verifiedRequests =    $verifiedRequests->where('vertify_status', VerifyRequest::VERIFIED_UNDER);
+		    //  $verifiedRequests =    $verifiedRequests->where('vertify_status', VerifyRequest::VERIFIED_UNDER);
 	  }
 	  $verifiedRequests=  $verifiedRequests ->paginate(20);
        return Inertia::render('verified_user/index',[ 'verifiedRequests'=>$verifiedRequests  ]);

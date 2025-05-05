@@ -63,7 +63,11 @@ export default{
 					
 				<li> 	<a href="/my_works">
 					<i class="fas fa-th"></i>
-					My Works</a> </li> 
+					  My Previous Projects / Experinces / Achievements</a> </li> 
+					  
+									<li> 	<a href="/my_links">
+					<i class="fas fa-th"></i>
+					  My Links</a> </li>   
 					
 						<li v-if="user.vertified!=2"> 	<a href="/verify_create">
 					<i class="fas fa-th"></i>

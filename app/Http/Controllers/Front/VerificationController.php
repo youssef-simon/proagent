@@ -40,6 +40,10 @@ class VerificationController extends Controller
 		  
 		  VerifyRequest::create( $data);
 		   
+		   
+		   	return to_route('my_dashboard');
+		   
+		   
 	   return Inertia::render('front/service',[
 			"services"=>$services ,
 			"departments"=>$departments ,

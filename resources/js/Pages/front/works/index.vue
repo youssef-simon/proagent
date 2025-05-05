@@ -54,11 +54,11 @@ export default{
 
 
 
-    <div class="card">
+    <div class="card myListMenu">
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" href="/create_work">add works</a>
+					<a  class="btn btn-primary" href="/create_work">Add Works</a>
 			  </div>
               </div>
 			  
@@ -66,8 +66,11 @@ export default{
 <table class="table table-bordered table-hover dataTable dtr-inline">
 
 <tr>
-	<td>ID</td>
-	<td>Title</td> 
+	<th>ID</th>
+	<th>Title</th> 
+	<th>Image</th> 
+	<th>Status</th> 
+	<th> </th>  
 	 
 	 
 </tr>
@@ -83,8 +86,15 @@ export default{
 		<span  class="badge badge-success"  v-if="userProject.status==2" >Approved</span>
 		<span class="badge badge-danger"  v-if="userProject.status==3" >declined</span>
 
+				<template v-if="userProject.status==3">
+					<Link  class="btn-primary btn"
+									 :href="'/edit_work/'+userProject.id"
+									v-html="'view reason'"
+								/> 
+				</template>
+				
 				</td>
-	<td>
+	<td class="actionBtn">
 	
 		<Link  class="btn-primary btn"
                      :href="'/edit_work/'+userProject.id"
@@ -104,6 +114,7 @@ export default{
 											
 											
 				</td>
+			 
 </tr>
 </table>
  

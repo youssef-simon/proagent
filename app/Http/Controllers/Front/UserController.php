@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Models\ServiceCategory;
 use App\Models\UserProject;
+use App\Models\UserLink;
 use App\Models\ServiceRequest;
 
 class UserController extends Controller
@@ -29,7 +30,8 @@ class UserController extends Controller
      public function details($id)
     {
 		 $user = User::find($id); 
-		  
+		 $user->tags =  $user->tags ; 
+	 
 		  $services = Service::where('user_id',$id)
 		    ->where('status',Service::STATUS_ACCEPTED)
 		  ->with('category')->with('category.parentCategory')
@@ -45,6 +47,7 @@ class UserController extends Controller
 	 public function user_services($id)
     {
 		 $user = User::find($id); 
+		  	 $user->tags =  $user->tags ; 
 		  
 		  $services = Service::where('user_id',$id)
 		  ->where('status',Service::STATUS_ACCEPTED)
@@ -61,7 +64,7 @@ class UserController extends Controller
 	 public function user_works($id)
     {
 		 $user = User::find($id); 
-		  
+		  	 $user->tags =  $user->tags ; 
 		  $userprojects = UserProject::where('user_id',$id) 
 		  ->where('status',UserProject::STATUS_ACCEPTED)
 		  ->paginate(24);
@@ -84,6 +87,18 @@ class UserController extends Controller
 			]);
     }
 	
+	 public function user_links($id)
+    {
+		   $userLinks = UserLink::where('user_id',$id) 
+		//  ->where('status',UserLink::STATUS_ACCEPTED)
+		  ->paginate(24);
+		 $user = User::find($id); 
+			return Inertia::render('front/userdetails/user_links',[
+				"user"=>$user ,  
+				"userLinks"=>$userLinks ,  
+			]);
+    }
+	
 	
 	
 	public function my_profile(Request $request)
@@ -101,10 +116,15 @@ class UserController extends Controller
  	public function edit_profile(Request $request)
     {
 		  $user = \Auth::guard('web')->user();
-		  
-		  
+		  $user ->tags= $user->tags;
+	   
+	   foreach($user ->tags as $tagItm){
+		$tagsInput []=['value'=> $tagItm->name,'label'=>  $tagItm->name];
+	   }
+	   
 		   return Inertia::render('front/edit_profile',[
 			"user"=>$user ,    
+			"tagsInput"=>$tagsInput ,    
 			]);
 			 
     }
@@ -112,14 +132,18 @@ class UserController extends Controller
 		public function update_profile (Request $request)
     {
 		  $data	= $request->all();
-		  /* $validatedData = $request->validate([
-			'email' => 'required|email', // Example validation rules
-		]); */
-		
+		 
+		// dd( $data);
 	  
 	   $user = \Auth::guard('web')->user();
  
 		$user->update($data);
+		
+		
+		// Sync tags from request
+        if ($request->has('tags')) {
+            $user->syncTags($request->tags);
+        }
 		return to_route('home.user_details',['id'=>$user->id]);
     }
 	

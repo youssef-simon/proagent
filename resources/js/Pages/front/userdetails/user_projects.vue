@@ -6,10 +6,12 @@ import { router } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 
 import UserData from '@/Pages/front/Comp/userdata.vue';
+import UserTab from '@/Pages/front/Comp/userTab.vue';
+
 
 export default{
 	components:{
-		AppLayout,reactive,router,UserData
+		AppLayout,reactive,router,UserData,UserTab
 	 }
 	   ,
 	   data() {
@@ -68,32 +70,33 @@ export default{
 						
 						
 						
-						
+						<div class="colsss">  
+							<div class="tagsCont">
+								<ul>
+									<template v-for="tagItm in user.tags">
+										<li>
+											<a href="#">
+													{{ tagItm.name }}
+											</a>
+										</li>
+									</template>
+								</ul>
+							</div>
+						</div>
 						
 						
 						
 				</div>		
 						
 			</div>
-			<div class="colddd">
-					
-			</div>
+			 
+	  
+	  
 			</div>
 	 </div>
 	 
 	 
-	 
-	  
-
-	
-	 <div class="menuTab">
-						 <ul>
-								<li> <a :href="'/user_details/'+user.id">My Details</a> 	</li>
-							<li> <a :href="'/user_services/'+user.id">My Services</a> 	</li>
-							<li> <a  class="active"  :href="'/user_works/'+user.id">My Achievement</a> 	</li>
-						
-						 </ul>
-					</div>
+	   <UserTab :user="user" />
 	  <div class="tabBigCont">
  
 	 

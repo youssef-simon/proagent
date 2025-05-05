@@ -35,7 +35,7 @@ import { router } from '@inertiajs/vue3'
  
 	<td>
 	<Link  class="btn btn-primary"
-                    :href="'/verify_user_view/'+verifiedRequest.id"
+                    :href="'/admin/verify_user_view/'+verifiedRequest.id"
                     v-html="'view projects'"
                 />		 
 				</td>

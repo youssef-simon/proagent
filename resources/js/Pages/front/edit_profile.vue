@@ -5,22 +5,23 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 
-
-
+import Multiselect from '@vueform/multiselect'
+ 
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 
 export default{
 	components:{
-		AppLayout,reactive,router,SideMenu,QuillEditor
+		AppLayout,reactive,router,SideMenu,QuillEditor,Multiselect
 	 }
 	 ,props:{
 		  	  serviceCats:Object,
-		  userCategories:Object,
-		  departments:Object,
-		  user:Object,
-		  errors:Object,
+			  userCategories:Object,
+			  departments:Object,
+			  tagsInput:Object,
+			  user:Object,
+			  errors:Object,
 	 },setup(props){
 		 const form = reactive({
 						first_name: props.user.first_name,
@@ -36,10 +37,35 @@ export default{
 						imagpathshow:  props.user.image_path_show ,
 						main_image_id: props.user.main_image_id,
 						 user_categories: props.userCategories,
+						 tags:props.tagsInput,
 			}) 
 			const user = props.user ;
-			return { form,user }
-	 }, methods:{ 
+			
+			
+			
+			
+			
+	 
+			const options=[
+					{"name":"d","code":1}
+			,	{"name":"ddd","code":2}
+			,	{"name":"dww","code":3}
+			];
+			
+			const value=[];
+			return { form,user,options,value }
+	 }, 
+    
+  methods:{
+ 
+			addTag (newTag) { 
+			  const tag = {
+				name: newTag,
+				code: Math.floor((Math.random() * 10000000))
+			  }
+			  this.options.push(tag)
+			  this.form.tags.push(tag)
+			},
 			 submit() {
 				 console.log();
 					 router.post('/update_profile', this.form)
@@ -181,6 +207,53 @@ export default{
 						  </div>
 			  </div>
 			  
+			  
+			  
+			  
+			  
+	<div><Multiselect
+  v-model="form.tags"
+   mode="tags"
+  :searchable="true"
+      :object="true"
+
+  :create-option="true"
+  :close-on-select="false"
+  :options="[
+    { value: 'batman', label: 'Batman' },
+    { value: 'robin', label: 'Robin', disabled: true },
+    { value: 'joker', label: 'Joker' },
+  ]"
+/>
+  </div>
+  
+  
+  
+  
+  <div class="row">
+        <div class="col-md-12">  
+	 
+		<div class="tagsCont">
+			<ul>
+				<template v-for="tagItm in user.tags">
+					<li>
+					<a href="">
+							{{ tagItm.name }}
+					</a>
+					</li>
+				</template>
+			</ul>
+		</div>
+        </div>
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
 		 <div class="row">
         <div class="col-12">
          

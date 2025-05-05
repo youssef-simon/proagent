@@ -12,6 +12,7 @@ use Illuminate\Validation\Rules\Password;
 use App\Models\UserProject; 
 use App\Models\UserProjectImage; 
 use App\Models\User; 
+use App\Models\Notification; 
 
 class UserProjectController extends Controller
 {
@@ -129,14 +130,40 @@ class UserProjectController extends Controller
     {
 		  
 		  $userproject_id=$request->get('userproject_id');
-		  $status=$request->get('status');
-		
+	 
+			$status=$request->get('status');
+		   $reason=$request->get('reason');
 
-		$userProject = UserProject::where('id',$userproject_id) ->first();; 
+		 $userProject = UserProject::where('id',$userproject_id) ->first();; 
 		 $userProject->status= $status;
+		 $userProject->reason= $reason;
 		 $userProject->save();
 
-		return to_route('service.index');
+
+
+		 $userProjectLnkHref ="/work_view/".$userProject->id;
+		 $userProjectLnk='<a href="'. $userProjectLnkHref.'">'.$userProject ->title.'</a>';
+
+
+		if($status==UserProject::STATUS_ACCEPTED){
+		 $data['description']= "your Experience  $userProjectLnk has been accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		 }
+		 
+		 
+		if($status==UserProject::STATUS_REFUSED){
+		 $data['description']= "your Experience  $userProjectLnk you put doesnt accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		 }
+		 
+		 if($status==UserProject::STATUS_PENDING){
+		 $data['description']= "your Experience  $userProjectLnk is under Invertigating"." <a href='/my_works'>Experiences page</a>";
+		 }
+		
+		 $data['user_id'] = $userProject->user_id;
+		
+		Notification::create($data);  
+		
+		
+		return to_route('userproject.index');
 		
 		
     }

@@ -136,7 +136,12 @@ export default{
 	
      <h2>Add Previos Project / Experince / Achievement</h2>
 			  
-			   
+			   					
+<div class="refusedReasonCont col-md-6">
+	<p>
+	{{ userproject.reason }}
+	</p>
+</div>	
  
  
  

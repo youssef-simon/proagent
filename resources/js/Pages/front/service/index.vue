@@ -48,25 +48,24 @@ export default{
 			<SideMenu />
 				</div>  
 				<div class="col-md-9">
-					 <div class="card">
+					 <div class="card myListMenu">
 			
 			  <div class="card-header">
 						<div>
-							<a  class="btn btn-primary" href="/create_service">add service</a>
+							<a  class="btn btn-primary" href="/create_service">Add Service</a>
 					  </div>
 					  </div>
 					  
 					   
-		<table class="table table-bordered table-hover dataTable dtr-inline">
+		<table class="table table-bordered table-hover dataTable ">
 
 		<tr>
-			<td>ID</td>
-			<td>Services</td>  
-			<td>Price</td> 
-			<td>Image</td> 
-			<td>Status</td> 
-			<td>Reason</td> 
-			<td>Acion</td> 
+			<th>ID</th>
+			<th>Title</th>  
+			<th>Price</th> 
+			<th>Image</th> 
+			<th>Status</th>  
+			<th>Acion</th> 
 		</tr>
 		<tr  v-for="service in services.data">
 					<td>{{ service.id }}</td>
@@ -78,13 +77,17 @@ export default{
 		<span  class="badge badge-success"  v-if="service.status==2" >Approved</span>
 		<span class="badge badge-danger"  v-if="service.status==3" >declined</span>
 
+
+<template v-if="service.status==3">
+					<Link  class="btn-primary btn"
+									 :href="'/service/'+service.id"
+									v-html="'view reason'"
+								/> 
+				</template>
 				</td>
-				<td>
-				{{ service.reason }}
-				</td>
-			<td>
-			
-				<Link  class="btn-primary btn"
+				 
+			<td class="actionBtn"> 
+			<Link  class="btn-primary btn"
 							  :href="'/service_edit/'+service.id"
 							v-html="'edit'"
 						/>

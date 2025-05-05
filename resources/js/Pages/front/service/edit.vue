@@ -157,7 +157,12 @@ export default{
 					 
 			
      <h1>Edit Service</h1>		  
-					   	
+					
+<div class="refusedReasonCont col-md-6">
+	<p>
+	{{ service.reason }}
+	</p>
+</div>					
 	 <form @submit.prevent="submit">
       <div class="col-md-9"> 
     <div class="formCont">

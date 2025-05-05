@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller; 
 use App\Models\UserProject;
+use App\Models\Notification;
 
 use App\Models\UserProjectImage; 
 
@@ -21,7 +22,9 @@ class MyProjectController extends Controller
 	public function index()
 	{
 		$user = \Auth::guard('web')->user();
-		$userProjects = UserProject::where('user_id', $user->id)->paginate(10);
+		$userProjects = UserProject::where('user_id', $user->id)
+		->orderBy('id','desc')
+		->paginate(12);
 
 		return Inertia::render('front/works/index', [
 			"userProjects" => $userProjects,
@@ -56,6 +59,12 @@ class MyProjectController extends Controller
 			$subData['project_id'] =	$userProject->id;
 			$serviceImage = UserProjectImage::create($subData);
 		}
+
+		  $ndata['description']= "your Experience you put is under Review"." <a href='/my_works'>Experience page</a>";
+		  $ndata['user_id']= 	$userProject->user_id;
+	 
+	 		Notification::create($ndata);
+
 
 		return to_route('my_works');
 	}

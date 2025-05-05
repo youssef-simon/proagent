@@ -692,4 +692,59 @@ div.carts {
 	
 	.txtContainerEditor p{ margin:0px; }
 	
-	.notCount{ background:red; color:#fff; padding:5px; border-radius:10px; }
+	.notCount{ background:red; color:#fff; padding:5px; border-radius:10px; 
+    font-size: 12px;}
+	
+	.notifyContList li   {  
+			padding: 10px;
+			margin-bottom: 10px;
+			background: #cdedd9;
+	}
+	.cardUserData{ padding:10px; background: #dfdfdf; margin-bottom:15px; }
+	
+	.btn-primary {
+    color: #fff;
+    background-color: #42678f!important;
+    border-color: #42678f!important;
+    box-shadow: none;
+}
+.dashBoardList
+a{
+	 color: #42678f;
+}
+
+.refusedReasonCont{
+	background:#fb7676;
+	color:#fff;
+	margin:20px 0;
+	padding:20px;
+	border-radius:20px;
+}
+
+.card.myListMenu{ padding: 15px;  }
+.card.myListMenu td a{ font-size:13px; margin-left:5px; text-transform:capitalize;  }
+
+.myListMenu .btn-primary{  float:right; }
+.myListMenu .table th{ font-weight:bold; background:#eee; }
+
+td.actionBtn { width:220px; }
+
+.tagsCont     {
+	margin-top:20px;
+}
+
+.tagsCont li   {
+	
+	    display: inline-block;
+    background: #564f4f;
+    margin-left: 5px;
+    padding: 5px;
+	text-transform:uppercase;
+}  
+
+.tagsCont li a  {
+	 color:#fff;
+}  
+
+
+.myLinks .serItm{ border:none; }	 	

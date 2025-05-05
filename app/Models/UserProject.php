@@ -20,13 +20,19 @@ class UserProject extends Model
         'user_id', 
         'imagpath', 
         'status', 
+        'reason', 
     
     ];
 	
 	 
     protected function getImagePathShowAttribute() 
-    {						
-		 return Storage::url( $this->imagpath);
+    {					
+		if(!$this->imagpath){
+		 return Storage::url("placeholder.png");
+		}else{
+			return Storage::url( $this->imagpath);
+		}
+	   
 	}
 	
 	 

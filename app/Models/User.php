@@ -54,6 +54,7 @@ class User extends Authenticatable
         'selffront_image_path',  	 
         'vertified',  	 
         'vertify_status',  	 
+    //    'tags',  	 
 		
 		
     ];
@@ -121,7 +122,11 @@ class User extends Authenticatable
 	 
 	  protected function getImagePathShowAttribute() 
     {						
-		 return Storage::url( $this->imagpath);
+		if(!$this->imagpath){
+		 return Storage::url("maleholder.png");
+		}else{
+			return Storage::url( $this->imagpath);
+		}
      }
 	
 	 
@@ -152,4 +157,46 @@ class User extends Authenticatable
 					 return $getSubscr;
 				 }
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		  // Relationship to tags
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+    
+    // Helper method to sync tags
+    public function syncTags(array $tags)
+    {
+        $tagIds = collect($tags)->map(function ($tag) {
+		 
+            return Tag::firstOrCreate(['name' => strtolower(trim($tag['value']))])->id;
+        });
+        
+        $this->tags()->sync($tagIds);
+        
+        return $this;
+    }
+    
+    // Helper method to add a single tag
+    public function addTag(string $tag)
+    {
+        $tagModel = Tag::firstOrCreate(['name' => strtolower(trim($tag))]);
+        $this->tags()->attach($tagModel);
+        
+        return $this;
+    }
 }

@@ -52,7 +52,7 @@ import { usePage } from '@inertiajs/vue3';
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/"><img src="/img/logo.png" style="width:55px;" />
+        <a class="navbar-brand" href="/"><img src="/img/logo.jpg" style="height:70px;" />
 		 
 		</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">

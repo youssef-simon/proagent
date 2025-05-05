@@ -23,11 +23,17 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmpDashboardController; 
 use App\Http\Controllers\ServiceController; 
 use App\Http\Controllers\ServiceCategoryController; 
+
 use App\Http\Controllers\UserProjectController; 
+use App\Http\Controllers\UserLinkController as UserLinkAdminController; 
+
 use App\Http\Controllers\Front\HomeController; 
 use App\Http\Controllers\Front\AuthController; 
 use App\Http\Controllers\Front\MyPurchasesController; 
+
 use App\Http\Controllers\Front\MyProjectController; 
+use App\Http\Controllers\Front\UserLinkController; 
+
 use App\Http\Controllers\Front\NotificationController; 
 use App\Http\Controllers\Front\MessageController ; 
 use App\Http\Controllers\Front\VerificationController as  VerifyFrontController; 
@@ -65,6 +71,7 @@ Route::get('/users',[UserFrontController::class,'index'])->name('home.users');
 Route::get('/user_details/{id}',[UserFrontController::class,'details'])->name('home.user_details');
 Route::get('/user_services/{id}',[UserFrontController::class,'user_services'])->name('home.user_services');
 Route::get('/user_works/{id}',[UserFrontController::class,'user_works'])->name('home.user_works');
+Route::get('/user_links/{id}',[UserFrontController::class,'user_links'])->name('user_links');
 Route::get('/work_view/{id}',[UserFrontController::class,'work_view'])->name('home.work_view');
 
 Route::get('/register',[AuthController::class,'register'])->name('register.create');
@@ -129,6 +136,15 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::post('/store_work',[MyProjectController::class,'store'])->name('store_work');
 		Route::get('/edit_work/{id}',[MyProjectController::class,'edit'])->name('edit_work');
 		Route::post('/update_work/{id}',[MyProjectController::class,'update'])->name('update_work');
+		
+		
+		Route::get('/my_links',[UserLinkController::class,'index'])->name('my_links');
+		Route::get('/link/create',[UserLinkController::class,'create'])->name('create_link');
+		Route::post('/link/store',[UserLinkController::class,'store'])->name('store_link');
+		Route::get('/link/edit/{id}',[UserLinkController::class,'edit'])->name('edit_link');
+		Route::post('/link/update/{id}',[UserLinkController::class,'update'])->name('update_link');
+		
+		
 		 
 		Route::delete('delete_work/{id}', [MyProjectController::class, 'destroy'])->name('delete_work_front');
 		
@@ -191,16 +207,29 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::get('task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
 		Route::post('task/update/{id}', [TaskController::class, 'update'])->name('task.update');
 		  
+		  
+		  /*****************/
+		Route::get('userlink/create/{id}', [UserLinkAdminController::class, 'create'])->name('userlink.create');
+		Route::post('userlink/store/{id}', [UserLinkAdminController::class, 'store'])->name('userlink.store');
+		Route::get('userlink/index/{id}', [UserLinkAdminController::class, 'index'])->name('userlink.index');
+		Route::delete('userlink/delete/{id}', [UserLinkAdminController::class, 'destroy'])->name('userlink.delete');
+		Route::get('userlink/edit/{id}', [UserLinkAdminController::class, 'edit'])->name('userlink.edit');
+		Route::post('userlink/update/{id}', [UserLinkAdminController::class, 'update'])->name('userlink.update');
+		
+	// 	Route::get('userlink/view/{id}', [UserProjectController::class, 'view'])->name('userproject.view');
+	//	Route::post('userlink/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
+		/****************/
+	  
 		Route::get('userproject/create/{id}', [UserProjectController::class, 'create'])->name('userproject.create');
-		Route::post('userproject/store/{id}', [UserProjectController::class, 'store'])->name('userproject.store');
+		Route::post('userproject/store/{id}', [ UserProjectController::class, 'store'])->name('userproject.store');
 		Route::get('userproject/index/{id}', [UserProjectController::class, 'index'])->name('userproject.index');
 		Route::delete('userproject/delete/{id}', [UserProjectController::class, 'destroy'])->name('userproject.delete');
 		Route::get('userproject/edit/{id}', [UserProjectController::class, 'edit'])->name('userproject.edit');
 		Route::post('userproject/update/{id}', [UserProjectController::class, 'update'])->name('userproject.update');
 		
-			Route::get('userproject/view/{id}', [UserProjectController::class, 'view'])->name('userproject.view');
-			Route::post('userproject/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
-			
+	 	Route::get('userproject/view/{id}', [UserProjectController::class, 'view'])->name('userproject.view');
+		Route::post('userproject/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
+				
 			
 		Route::get('service/create/{id}', [ServiceController::class, 'create'])->name('service.create');
 		Route::post('service/store/{id}', [ServiceController::class, 'store'])->name('service.store');

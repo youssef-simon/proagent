@@ -49,7 +49,14 @@ class Service extends Model
 	 
     protected function getImagePathShowAttribute() 
     {						
-		 return Storage::url( $this->imagpath);
+		 //return Storage::url( $this->imagpath);
+		 
+		 	if(!$this->imagpath){
+		 return Storage::url("placeholder.png");
+		}else{
+			return Storage::url( $this->imagpath);
+		}
+	   
      }
 	
 	 
