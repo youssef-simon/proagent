@@ -62,7 +62,7 @@ export default{
 								 
 											<h2>{{ user.full_name	 }}</h2>  
 											<h5>{{ user.work_title	 }}</h5>  
-											<h5>Your Page : <a target="_blank" :href="'/user_details/'+user.id">{{ protocol }}//{{ curr_domain }}/user_details/{{ user.id }}</a></h5>  
+											<h5>Your Page : <a target="_blank" :href="'/user_details/'+user.slug">{{ protocol }}//{{ curr_domain }}/user_details/{{ user.slug }}</a></h5>  
 											<div class="col-md-12">
 									 
 							 
@@ -90,15 +90,15 @@ export default{
 				
 				
 
-					<div class="col-md-12">
+					<!--<div class="col-md-12">
 						<div class="cardCont">
 						
 						<h3>Current Subsciption : {{ subscription.title }}</h3>
 						<h4> Max Achivement : {{ subscription.work_limit }}</h4>
 						<h4> Max Servcies : {{ subscription.service_limit }}</h4>
 						</div>
-					</div>
-				<div class="col-md-4">
+					</div>-->
+			<!--	<div class="col-md-4">
 						<div class="cardCont">
 						
 						<h3>Total Balance</h3>
@@ -122,9 +122,9 @@ export default{
 						<h3>Avaible Balance</h3>
 						<h4>{{ user.ava_balance }} $</h4>
 						</div>
-					</div>
+					</div>-->
 					
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="cardCont">
 						
 						<h3>Servcies Count</h3>
@@ -132,14 +132,14 @@ export default{
 						</div>
 					</div>
 					
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="cardCont">
 							<h3>Works/Achievement</h3>
 						<h4>{{ worksCount }}</h4	>
 						
 						</div>
 					</div>
-					<div class="col-md-4">
+					<!--	<div class="col-md-4">
 						<div class="cardCont">
 						
 							<h3>my Purchases</h3>
@@ -155,7 +155,7 @@ export default{
 						<h3>My Requested service</h3>
 						<h4>{{ myRequested }}</h4	>
 						</div>
-					</div>
+					</div>-->
 					<!--
 					<div class="col-md-4">
 						<div class="cardCont">

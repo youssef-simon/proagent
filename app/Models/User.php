@@ -183,7 +183,7 @@ class User extends Authenticatable
     {
         $tagIds = collect($tags)->map(function ($tag) {
 		 
-            return Tag::firstOrCreate(['name' => strtolower(trim($tag['value']))])->id;
+            return Tag::firstOrCreate(['name' => strtolower(trim($tag['label']))])->id;
         });
         
         $this->tags()->sync($tagIds);

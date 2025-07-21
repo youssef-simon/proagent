@@ -14,6 +14,7 @@ class ServiceCategory extends Model
         'description',
         'parent_id',
         'department_id',
+        'slug',
     
     ];
     

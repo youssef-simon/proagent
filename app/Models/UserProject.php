@@ -12,7 +12,7 @@ class UserProject extends Model
 {
     use HasFactory;
 	
-	  protected $appends = ['image_path_show'];
+	  protected $appends = ['image_path_show','resize_image_path_show'];
 	
 	 protected $fillable = [
         'title',
@@ -35,7 +35,28 @@ class UserProject extends Model
 	   
 	}
 	
-	 
+	 	  /**
+     * Interact with the user's first name.
+     */
+    protected function getResizeImagePathShowAttribute() 
+    {
+							
+		if(!$this->imagpath){
+		 return Storage::url("placeholder.png");
+		}else{
+			$originalPath =  Storage::url($this->imagpath);
+					 
+			$directory = dirname($originalPath); // 'public/media'
+			$filename = basename($originalPath); // 'example.jpg' 
+			$newFilename = 'resized_' . $filename; // 'resize_example.jpg'
+			 
+			$newPath = $directory . '/' . $newFilename; 
+
+
+			return  $newPath;
+		}
+        
+    }
 	   
 	public function user(){
 		 return $this->belongsTo(User::class, 'user_id');

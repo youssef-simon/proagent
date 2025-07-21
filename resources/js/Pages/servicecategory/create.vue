@@ -100,7 +100,7 @@ export default{
 			    <div class="form-group">
 										<label for="parent_id">parent category</label>
 											<select   class="form-control" v-model="form.parent_id">
-											     <option>No Parent</option>
+											     <option value="">No Parent</option>
 												 <option v-for="serviceCategory in serviceCategories"  
 														 :value="serviceCategory.id">
 														 {{ serviceCategory.title }}

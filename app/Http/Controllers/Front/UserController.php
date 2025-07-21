@@ -12,6 +12,10 @@ use App\Models\ServiceCategory;
 use App\Models\UserProject;
 use App\Models\UserLink;
 use App\Models\ServiceRequest;
+use Illuminate\Support\Str;
+
+
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -27,29 +31,42 @@ class UserController extends Controller
 
  
 
-     public function details($id)
+     public function details($slug)
     {
-		 $user = User::find($id); 
+		
+		$user =	User::where('slug', $slug)->first();
+		
+		
+		 
 		 $user->tags =  $user->tags ; 
 	 
-		  $services = Service::where('user_id',$id)
+		  $services = Service::where('user_id',$user->id)
 		    ->where('status',Service::STATUS_ACCEPTED)
 		  ->with('category')->with('category.parentCategory')
-		  ->get();
+		 ->limit(24)
+		 ->get();
+		  
+		  
+		  $userprojects = UserProject::where('user_id',$user->id) 
+		  ->where('status',UserProject::STATUS_ACCEPTED)
+		->limit(24)		
+		 ->get();
+		  
 		  
 	   return Inertia::render('front/userdetails/user_view',[
-			"user"=>$user ,  
-			"services"=>$services ,  
+				"user"=>$user ,  
+				"services"=>$services ,  
+				"userprojects"=>$userprojects ,  
 			]);
     }
 	
 	
-	 public function user_services($id)
+	 public function user_services($slug)
     {
-		 $user = User::find($id); 
+			$user =	User::where('slug', $slug)->first();
 		  	 $user->tags =  $user->tags ; 
 		  
-		  $services = Service::where('user_id',$id)
+		  $services = Service::where('user_id',$user->id)
 		  ->where('status',Service::STATUS_ACCEPTED)
 		  ->with('category')->with('category.parentCategory')
 		  ->paginate(24);
@@ -61,11 +78,11 @@ class UserController extends Controller
     }
 	
 	
-	 public function user_works($id)
+	 public function user_works($slug)
     {
-		 $user = User::find($id); 
+		$user =	User::where('slug', $slug)->first();
 		  	 $user->tags =  $user->tags ; 
-		  $userprojects = UserProject::where('user_id',$id) 
+		  $userprojects = UserProject::where('user_id',$user->id) 
 		  ->where('status',UserProject::STATUS_ACCEPTED)
 		  ->paginate(24);
 		  
@@ -78,6 +95,7 @@ class UserController extends Controller
 	
 	 public function work_view($id)
     {
+		 
 		 $userproject = UserProject::where('id',$id)->with('user')->with('projectImages')->first(); 
 		  
 		 
@@ -87,12 +105,15 @@ class UserController extends Controller
 			]);
     }
 	
-	 public function user_links($id)
+	 public function user_links($slug)
     {
-		   $userLinks = UserLink::where('user_id',$id) 
+		
+			 $user =	User::where('slug', $slug)->first();
+			 
+		   $userLinks = UserLink::where('user_id', $user->id) 
 		//  ->where('status',UserLink::STATUS_ACCEPTED)
 		  ->paginate(24);
-		 $user = User::find($id); 
+		 
 			return Inertia::render('front/userdetails/user_links',[
 				"user"=>$user ,  
 				"userLinks"=>$userLinks ,  
@@ -118,6 +139,7 @@ class UserController extends Controller
 		  $user = \Auth::guard('web')->user();
 		  $user ->tags= $user->tags;
 	   
+	   $tagsInput =[];
 	   foreach($user ->tags as $tagItm){
 		$tagsInput []=['value'=> $tagItm->name,'label'=>  $tagItm->name];
 	   }
@@ -132,19 +154,67 @@ class UserController extends Controller
 		public function update_profile (Request $request)
     {
 		  $data	= $request->all();
-		 
-		// dd( $data);
-	  
+		  
 	   $user = \Auth::guard('web')->user();
  
+ 
+ 
+ 
+ 
+ 					
+				 if(isset( $data['image_blob'])){
+		/**************************************************/
+			// Assuming $imageBlob contains your binary image data
+			$imageBlob = $data['image_blob']; // Your BLOB data from database or request
+
+			// Generate a unique filename
+			$filename = 'public/media/' . uniqid() . '.jpeg'; // Adjust extension as needed
+				$imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageBlob));
+			// Save to disk (using default filesystem from config/filesystems.php)
+			Storage::put($filename, $imageData);
+
+			// If you need the full public URL (if using public disk)
+			$url = Storage::url($filename);
+ 
+			$data['imagpath']=	$filename;
+ 
+		/**************************************************/ 
+				 }
+ 
+ 
 		$user->update($data);
+		
+		$slug = $data['first_name'].'_'.$data['last_name'].$user->id;
+		 
+		$user->slug= Str::slug($slug);
+		$user->save();
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		// Sync tags from request
         if ($request->has('tags')) {
             $user->syncTags($request->tags);
         }
-		return to_route('home.user_details',['id'=>$user->id]);
+		return to_route('home.user_details',['id'=>$user->slug]);
     }
 	
 	

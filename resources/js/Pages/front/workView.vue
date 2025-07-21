@@ -101,36 +101,34 @@ export default{
 						
 						<div class="col-md-12">
 								
-					  
-						
-						<div class="userProfile">
-						 
-					<div class="row">	
-						<div class="col-md-3">
-							<a :href="'/user_details/'+userproject.user.id">
-							<img :src="userproject.user.image_path_show" style="width:250px;height:250px;" />
-							</a>
-						</div>
-						<div class="col-md-9">
-							<h3>
-								<a :href="'/user_details/'+userproject.user.id">
-							{{ userproject.user.full_name }}
-							
-								</a>
-							</h3>
-							<p>{{ userproject.user.work_title }}</p>
-							<p>{{ userproject.user.small_bio }}</p>
-							
-						<template v-if="user&&user.id!= userproject.user.id">	
-							<p>
-								<a class="btn btn-danger" :href="'/message_thread/'+service.user.id">
-										<i class="fa fa-message"></i>Send Message
-								</a>
-							</p>
-						</template>
-						</div>
-					</div>
-						</div>
+								 <div class="userProfile">
+										 
+									<div class="row">	
+										<div class="col-md-3">
+											<a :href="'/user_details/'+userproject.user.id">
+											<img :src="userproject.user.image_path_show" style="width:250px;height:250px;" />
+											</a>
+										</div>
+										<div class="col-md-9">
+											<h3>
+												<a :href="'/user_details/'+userproject.user.id">
+											{{ userproject.user.full_name }}
+											
+												</a>
+											</h3>
+											<p>{{ userproject.user.work_title }}</p>
+											<p>{{ userproject.user.small_bio }}</p>
+											
+										<template v-if="user&&user.id!= userproject.user.id">	
+											<p>
+												<a class="btn btn-danger" :href="'/message_thread/'+service.user.id">
+														<i class="fa fa-message"></i>Send Message
+												</a>
+											</p>
+										</template>
+										</div>
+									</div>
+										</div>
 						
 						</div>
 						

@@ -17,7 +17,7 @@ export default{
 		 <div class="row">
 	
 			<div class="col-md-3">
-				<img :src="user.image_path_show" style="width:300px;height:350px;" /> 
+				<img :src="user.image_path_show" style="width:250px;height:250px;" /> 
 			</div>
 			<div class="col-md-9">
 			 

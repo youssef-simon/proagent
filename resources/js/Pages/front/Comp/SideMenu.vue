@@ -43,27 +43,29 @@ export default{
 					My Servcies</a> </li>
 					
 					
-					<li> <a href="/my_requested_service">
-					<i class="fas fa-th"></i> My sales</a> </li>
+				<!--	<li> <a href="/my_requested_service">
+					<i class="fas fa-th"></i> My sales</a> </li> 
 					
 					 
 					<li> 	<a href="/my_purchases">
 					<i class="fas fa-th"></i>
-					My Purchases</a> </li> 
+					My Purchases</a> </li>
+					
+						<li> 	<a :href="'/user_details/'+user.id">
+					<i class="fas fa-th"></i>
+					My Page</a> </li>  -->
 					
 					<li> 	<a href="/my_messages">
 					<i class="fas fa-th"></i>
 					My Messages</a> </li> 
-					<li> 	<a :href="'/user_details/'+user.id">
-					<i class="fas fa-th"></i>
-					My Page</a> </li> 
+				
 					<li><a href="/edit_profile">
 					<i class="fas fa-th"></i>
 					Edit Profile</a> </li> 
 					
 				<li> 	<a href="/my_works">
 					<i class="fas fa-th"></i>
-					  My Previous Projects / Experinces / Achievements</a> </li> 
+					  My Previous Projects / Experinces</a> </li> 
 					  
 									<li> 	<a href="/my_links">
 					<i class="fas fa-th"></i>

@@ -14,6 +14,7 @@ use App\Models\ServiceCategory;
  use Illuminate\Validation\Rule;   
  use Illuminate\Validation\Rules\Password;
  use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 
@@ -45,11 +46,15 @@ class AuthController extends Controller
 		    
 			'email' => Rule::unique('users')  
 		]);
+		 
+		 	$user = User::create($data);
+	
+		 
+		$slug = $data['first_name'].'_'.$data['last_name'].	$user->id;
 		
-	 //dd($validatedData);
-	 
-	$user = 	User::create($data);
-		
+	
+		$user->slug= Str::slug($slug);
+		$user->save();
 		
 		    Auth::login($user);
 

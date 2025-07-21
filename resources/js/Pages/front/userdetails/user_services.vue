@@ -40,54 +40,16 @@ export default{
 
     <div class="card-deck">
 	<div class="container">
-	 	  <div class="userContIntro col-md-12">
+	 		 	  <div class="userContIntro col-md-12">
 	 <div class="container">
-		 <div class="row">
 	
-			<div class="col-md-3">
-				<img :src="user.image_path_show" style="width:300px;height:350px;" /> 
-			</div>
-			<div class="col-md-9">
-			 
-						<h2>{{ user.full_name	 }}</h2>  
-						<h5>{{ user.work_title	 }}</h5>  
-						<div class="col-md-12">
-							<p>{{ user.small_bio }}</p> 
-		
-						<template v-if="cur_user&&user.id!= cur_user.id">								
-							<p><a class="btn btn-danger" :href="'/message_thread/'+user.id">Send Message</a></p>  
-							</template>
-						</div>
-						
-						
-						<template v-if="user.vertified==2">
-							<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
-						</template>
-						<template v-if="user.vertified!=2">
-							<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
-							 
-						</template>
-						
-						<div class="colsss">   
-							<div class="tagsCont">
-								<ul>
-									<template v-for="tagItm in user.tags">
-										<li>
-											<a href="#">
-													{{ tagItm.name }}
-											</a>
-										</li>
-									</template>
-								</ul>
-							</div>
-						</div>
-				</div>		
-						
-			</div>
-		 
+	 <UserData :user="user" />
+	
+	 
+					
+				 
 			</div>
 	 </div>
-	 
 	 
 	 
 	  
@@ -108,11 +70,11 @@ export default{
 								 <div class="imgContainer">
 								 
 									<a :href="'/service_view/'+serviceItm.id">
-											<img  style="width:100%;height:185px;" :src="serviceItm.image_path_show" /> 
+											<img  style="width:100%;height:185px;" :src="serviceItm.resize_image_path_show" /> 
 									 </a>
 								 </div>
 								<h5>{{ serviceItm.title }}</h5> 
-								<h5>{{ serviceItm.price_from }} $</h5>
+								<h5><span>Begin from </span>: {{ serviceItm.price_from }} $</h5>
 								
 								<p><template v-if="serviceItm.category.parent_category">{{ serviceItm.category.parent_category.title }} /</template> {{ serviceItm.category.title }}  </p>
 							

@@ -166,7 +166,7 @@ class UserController extends Controller
 	  
     public function changeDepart($id)
     { 
- 		     $serviceCategories = ServiceCategory::where('department_id',$id)->whereNull('parent_id')->get();
+ 		     $serviceCategories = ServiceCategory::where('department_id',$id) ->get();
 			 return response()->json([
 							'data' =>$serviceCategories ,   
 				]);	

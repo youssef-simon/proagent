@@ -123,6 +123,25 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 					</a>
 			</li> 
 			
+			
+			
+			
+			
+			
+			
+			 <li class="nav-item">
+					<a href="/admin/userlink/all"  :class="{ 'active': isCurrentPath('/admin/userlink/all') }"  class="nav-link">
+					  <i class="nav-icon fas fa-th"></i>
+					  <p>
+						user links  
+					  </p>
+					</a>
+			</li> 
+			
+			
+			
+			
+			
 		 </ul>
 		  
 		  

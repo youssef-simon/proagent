@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\ServiceImage; 
 use App\Models\Notification; 
+use App\Events\CreateService; 
 
 class ServiceController extends Controller
 {
@@ -48,9 +49,15 @@ class ServiceController extends Controller
 		$serviceCats=[]; 
 		foreach($serviceCategories as $depItm){
 			
-			$serviceCats[$depItm->department->id]['name'] = $depItm->department->name;
-			$serviceCats[$depItm->department->id]['id'] = $depItm->department->id;
-			$serviceCats[$depItm->department->id]['chidern'][] =[ 'title'=>$depItm->title , 'id'=>$depItm->id];
+			$serviceCats[$depItm->department->slug]['name'] = $depItm->department->name;
+			$serviceCats[$depItm->department->slug]['id'] = $depItm->department->id;
+			$serviceCats[$depItm->department->slug]['slug'] = $depItm->department->slug;
+			$serviceCats[$depItm->department->slug]['chidern'][] =[
+			'title'=>$depItm->title
+			, 'id'=>$depItm->id
+			, 'slug'=>$depItm->slug
+			
+			];
 			
 		} 
 		   
@@ -141,11 +148,10 @@ class ServiceController extends Controller
 		$serviceImage = ServiceImage::create( $subData);
 	 }
 	 
+	 event(new CreateService($service));
+
 	 
-		  $ndata['description']= "your service you put doesnt accepted check your service page"."<a href='/service_list'>services page</a>";
-		  $ndata['user_id']= 	$service->user_id;
-	 
-	 		Notification::create($ndata);
+		 
 	 
 	 
 	 
@@ -217,11 +223,12 @@ class ServiceController extends Controller
 		
 		
 		if($child==0){
-	$department =	Department::find($id);
-		$categories =  ServiceCategory::where('department_id',$id)->whereNull('parent_id')->with("childCategories")->get();
+		 
+	$department =	Department::where('slug',$id)->first();
+		$categories =  ServiceCategory::where('department_id',$department->id)->whereNull('parent_id')->with("childCategories")->get();
 		 
 		 
-		$services =  Service::where('department_id',$id)
+		$services =  Service::where('department_id',$department->id)
 					->where('status',Service::STATUS_ACCEPTED)
 					->with('category')->with('category.parentCategory')-> 
 		paginate(24);
@@ -231,13 +238,16 @@ class ServiceController extends Controller
 		return Inertia::render('front/service_all',[
 					'categories'=>$categories ,
 					'services'=>$services ,
-					'dep_id'=>$id ,
+					'dep_id'=>$department->slug ,
 					'department'=>$department ,
 					'alldepartments'=>$alldepartments  ,
 			]);
 		}else{
-			$depId=$id;
-			$id=$child;
+			$depObj=Department::where('slug',$id)->first();;
+			$depId=$depObj->id;
+			$id=ServiceCategory::where('slug',$child)->first();
+			$id=$id->id;
+		 
 			  $categories =  ServiceCategory::where('department_id',$depId)->whereNull('parent_id')->with("childCategories")->get();
 		$services =  Service:: leftJoin('service_categories', 'services.category_id', '=', 'service_categories.id')
 									  -> where('services.category_id',$id)
@@ -254,7 +264,7 @@ class ServiceController extends Controller
 			 
 		return Inertia::render('front/service_cat',[
 				'curr_id'=>$id ,
-				'dep_id'=>$depId ,
+				'dep_id'=>$depObj->slug ,
 				'categories'=>$categories,
 				'services'=>$services,
 				'department'=>$department ,

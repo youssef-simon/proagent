@@ -88,8 +88,8 @@ export default{
 		<div class="container">
 				<div class="headerContainer">
 						<div class="headTxtCont">
-						<h1>Start Your Freelancing</h1>
-						<h4>Build your portfolio and Sell your Services</h4>
+						<h1>Professional Online Profile Builder</h1>
+						<h4>You Can Now Build your Profile Online For Free For limited time</h4>
 						<h4>Make your portfolio to show your Experince and Past Projects , your paid Services</h4>
 						</div>
 				</div>

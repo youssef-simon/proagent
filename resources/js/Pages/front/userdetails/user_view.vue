@@ -23,6 +23,7 @@ export default{
 	 ,props:{ 
 		  user:Object, 
 		  services:Object, 
+		  userprojects:Object,  
 	 },setup(){
 		 
 	 }, methods:{
@@ -70,11 +71,11 @@ export default{
 								 <div class="imgContainer">
 								 
 									<a :href="'/service_view/'+serviceItm.id">
-											<img  style="width:100%;height:185px;" :src="serviceItm.image_path_show" /> 
+											<img  style="width:100%;height:185px;" :src="serviceItm.resize_image_path_show" /> 
 									 </a>
 								 </div>
 								<h5>{{ serviceItm.title }}</h5> 
-								<h5>{{ serviceItm.price_from }} $</h5>
+								<h5><span>Begin from </span>: {{ serviceItm.price_from }} $</h5>
 								
 								<p><template v-if="serviceItm.category.parent_category">{{ serviceItm.category.parent_category.title }} /</template> {{ serviceItm.category.title }}  </p>
 							
@@ -83,6 +84,36 @@ export default{
 			</div>
 	  </div>
 	  </div>
+	  
+		 <div class="col-md-12 bioCont">
+				<h2> My Previous Projects / Experiences </h2>
+	      <div class="row">
+		  
+			<div   v-for="serviceItm in userprojects" class="col-md-4">
+			
+						 <div class="serItm">
+								 <div class="imgContainer">
+								 
+									<a :href="'/work_view/'+serviceItm.id">
+											<img  style="width:100%;height:185px;" :src="serviceItm.resize_image_path_show" /> 
+									 </a>
+								 </div>
+								<h5>{{ serviceItm.title }}</h5> 
+							 
+							
+						</div>
+			</div>
+	  </div>
+	  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  </div>
 	 
 	 

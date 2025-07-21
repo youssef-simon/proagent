@@ -97,21 +97,26 @@ export default{
 				<ul>
 				  <li class="taxItmCont"   v-for="categoryItm in categories">
 						<h6>
-							<a :href="'/service_all/'+dep_id+'/'+categoryItm.id">{{ categoryItm.title }}</a>
+							<a :href="route('category_all', { id:dep_id, childid:categoryItm.slug})">{{ categoryItm.title }}</a>
 						
 						</h6>
 							<ul>
 								<li v-for="categoryItmChild in categoryItm.child_categories">
-										<a :href="'/service_all/'+dep_id+'/'+categoryItmChild.id">{{ categoryItmChild.title }}</a>
+										<a :href="route('category_all', { id:dep_id, childid:categoryItmChild.slug})">{{ categoryItmChild.title }}</a>
 								 </li>
 							</ul>
 				   </li>
 				  </ul>
-				   
-								<h2 class="serviceDep" v-for="departItm in alldepartments">
-										<a :href="'/service_all/'+departItm.id">{{ departItm.name }}</a>
-								 </h2>
-							 
+				  
+				  
+				  
+							<template  v-for="departItm in alldepartments">
+							<template v-if="dep_id!=departItm.slug">
+								<h6 class="serviceDep">
+										<a :href="route('category_all', { id:departItm.slug})">{{ departItm.name }}</a>
+								 </h6>
+							 </template>
+							 </template>
 				 
 				  
 				  

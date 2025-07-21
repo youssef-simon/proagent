@@ -7,6 +7,12 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Events\CreateService; 
+use App\Events\ServiceStatusUpdate; 
+use App\Listeners\NotifyCreateService;  
+use App\Listeners\NotifyServiceStatusUpdate; 
+
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +24,13 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+		CreateService::class => [
+			NotifyCreateService::class,
+		],
+		
+		ServiceStatusUpdate::class => [
+			NotifyServiceStatusUpdate::class,
+		],
     ];
 
     /**

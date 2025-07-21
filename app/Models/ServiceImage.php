@@ -12,7 +12,8 @@ class ServiceImage extends Model
 {
     use HasFactory;
 	
-	    protected $appends = ['image_path'];
+	    protected $appends = ['image_path','resize_image_path'];
+ 
 
 	
 	protected $fillable = [
@@ -29,6 +30,25 @@ class ServiceImage extends Model
     {
 		
 		return  Storage::url( $this->path);
+        
+    }
+	
+	  /**
+     * Interact with the user's first name.
+     */
+    protected function getResizeImagePathAttribute() 
+    {
+		
+			$originalPath =  Storage::url($this->path);
+					 
+			$directory = dirname($originalPath); // 'public/media'
+			$filename = basename($originalPath); // 'example.jpg' 
+			$newFilename = 'resized_' . $filename; // 'resize_example.jpg'
+			 
+			$newPath = $directory . '/' . $newFilename; 
+
+
+			return  $newPath;
         
     }
 }

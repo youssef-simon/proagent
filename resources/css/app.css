@@ -76,8 +76,9 @@ div.carts {
 .cardCont{ padding:20px; height: 200px; margin-bottom:20px; }
 
 .userProfile{
-    padding: 5px;
-    border: 1px solid #000;  
+    padding: 15px;
+    margin-top:30px;
+	background:#eee;
 }
 
 .txtContainer{
@@ -190,7 +191,7 @@ div.carts {
 .userPage .proItem h6 i{ margin-right:5px; }
 
 .imgCont{ text-align:center; border:1px solid #444; }
-.imgCont img{ width:250px; height:250px; }
+.servicePage .imgCont img{ width:100%; }
 .imgHeader{margin-bottom:25px; }
 
 
@@ -537,7 +538,8 @@ div.carts {
 
     .w-lightbox-left,.w-lightbox-right {
         display: block;
-        opacity: .5
+        opacity: .5;
+		z-index:222;
     }
 
     .w-lightbox-close {
@@ -620,7 +622,8 @@ div.carts {
 .margZero{ margin-bottom:0px!important; }
   a.forgetPass{ font-size:13px!important; margin-bottom:16px; display:block; }
   
-  .intro{ background:url('/img/intro.jpg'); width:100%; height:700px; }
+ /* .intro{ background:url('/img/intro.jpg'); width:100%; height:700px; }*/
+  .intro{ background:#444; width:100%; height:600px; }
   
   .frontPage .navbar.bg-light{ margin-bottom:0px; } 
   
@@ -649,7 +652,18 @@ div.carts {
  .headTxtCont  {
 	background: #444;
     padding: 10px; 
+	text-align:Center;
  }
+ 
+  .headTxtCont h1{
+ 
+        margin: 20px 0;
+    text-transform: uppercase;
+    padding: 20px 0;
+    font-size: 35px;
+    border-bottom: 2px solid #eee;
+  }
+ 
  
  .howto h1{ text-transform: uppercase; text-align:center; margin-bottom:50px; }
  .howto .itmHow h4{ text-transform: uppercase; text-align:center;   }
@@ -748,3 +762,47 @@ td.actionBtn { width:220px; }
 
 
 .myLinks .serItm{ border:none; }	 	
+
+.userProfile{  }
+
+.serviceDep  {  margin-bottom:20px; }
+.serviceDep a{
+	
+	background: gray;
+    color: #e3e2e2;
+    padding: 5px;
+}
+
+.navbar.mobileTopNav {  display:none; }
+
+.mobileTopNav .mobileMenu{ width:100%; }
+
+
+.mobileTopNav .navbar-collapse{ padding:10px; }
+.mobileTopNav .proNav ul li  a{ margin:0px; }
+.mobileTopNav .proNav ul li  .btn{ margin-bottom:10px; }
+
+
+
+
+/* For devices with screens up to 768px wide (typical mobile devices) */
+@media only screen and (max-width: 768px) {
+		
+	.deskTopNav{ display:none!Important; }
+	.deskTopNav  { display:none!Important; }
+
+	.navbar.mobileTopNav {  display:block; }
+
+	.mobileTopNav .proNav ul li .btn {
+		margin-bottom: 10px;
+		width: 100%;
+	}
+	.containerBig{  width:100%!Important;}
+	.menuTab ul li{ display:block; margin-bottom:10px; }
+	.menuTab ul li a{ display:block;   }
+}
+
+.cardUserData .col-md-9 h2{ text-transform:capitalize; }
+
+.serItm h5 span{ font-size:16px; }
+.serItm h5  { font-size:16px; }

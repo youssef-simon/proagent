@@ -17,6 +17,7 @@ use App\Models\MediaImage;
 use App\Models\FileUpload; 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ImageUploadController extends Controller
 {
@@ -35,7 +36,19 @@ class ImageUploadController extends Controller
 		
 		      if($path!=''){
 
-                 $image = $path->store('public/media');
+                 $image = $path->store('public/media'); 
+				$filename = basename($image);
+				 
+				$resizedFilename = 'resized_' . $filename;
+			  
+				$resizedImage = Image::make($path->getRealPath())
+        ->fit(250, 250 )
+ ->save(storage_path('app/public/media/' . $resizedFilename));
+										 
+				 
+				 
+				 
+				 
 				 
 				return response()->json([
 					'path' =>   $image , 

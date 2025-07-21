@@ -45,7 +45,7 @@ class ServiceCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all(); 
-		 
+		// dd( $data);
 	 
 		$services  = ServiceCategory::create($data);
 	 

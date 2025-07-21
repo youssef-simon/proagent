@@ -20,6 +20,8 @@ export default{
 						showSlider:false, 
 					    current_image:'',
 					    current_image_index:0,
+						
+							  total_images:0,
 					}
 		  } 
 	  
@@ -51,6 +53,24 @@ export default{
 				 hidePopup(){
 					 	 this.showSlider=false;
 				 },
+				 
+				 
+				 
+				 prevImg(){
+					this.current_image_index=this.current_image_index-1;
+					this.current_image=  this.service.service_images[this.current_image_index].image_path;
+				},
+				nextImg(){
+					this.current_image_index=this.current_image_index+1;
+						this.current_image=  this.service.service_images[this.current_image_index].image_path
+				},
+				 
+				 
+				 
+				 
+				 
+	 },created(){
+		  this.total_images=this.service.service_images.length-1;
 	 }
 }
 </script>
@@ -92,7 +112,7 @@ export default{
 							
 	</div>
       <div class="row">
-			 <div class="col-md-8">
+			 <div class="col-md-12">
 								
 			 
 								 <div class="imgContainer">
@@ -109,7 +129,7 @@ export default{
 										</div>
 									<div v-for="(serImg, indexImg) in service.service_images" class="col-md-4">
 										<div class="imgCont" 	@click="showPopup(indexImg)">
-											<img   :src="serImg.image_path" />
+											<img   :src="serImg.resize_image_path" />
 										</div>
 									</div>
 								</div>
@@ -118,35 +138,36 @@ export default{
 							 
 						</div>
 						
-						<div class="col-md-4">
+					<div class="col-md-12">
 								
-						<template v-if="user&&user.id!= service.user.id">	
-						<a @click="showRequestModal" class="btn btn-danger" href="javascript::void(0);">Make Request</a>
-						</template>
-						<!--	<p>Rateing : 4.5/5</p>-->
-							<p>Price Begin from : {{ service.price_from }} $</p>
-						<!--	<p>Deliver Date : 4 days</p>>-->
-						
-						<div class="userProfile">
-						 
-					<div class="row">	
-						<div class="col-md-3">
-							<a :href="'/user_details/'+service.user.id"><img :src="service.user.image_path_show" style="width:150px;height:150px;" /></a>
-						</div>
-						<div class="col-md-9">
-							<h6><a :href="'/user_details/'+service.user.id">{{ service.user.full_name }}</a></h6>
-							<p>Web Developer</p>
-							
-						<template v-if="user&&user.id!= service.user.id">	
-							<p>
-								<a class="btn btn-danger" :href="'/message_thread/'+service.user.id">
-										<i class="fa fa-message"></i>Send Message
-								</a>
-							</p>
-						</template>
-						</div>
-					</div>
-						</div>
+								 <div class="userProfile">
+										 
+									<div class="row">	
+										<div class="col-md-3">
+											<a :href="'/user_details/'+service.user.id">
+											<img :src="service.user.image_path_show" style="width:250px;height:250px;" />
+											</a>
+										</div>
+										<div class="col-md-9">
+											<h3>
+												<a :href="'/user_details/'+service.user.id">
+											{{ service.user.full_name }}
+											
+												</a>
+											</h3>
+											<p>{{ service.user.work_title }}</p>
+											<p>{{ service.user.small_bio }}</p>
+											
+										<template v-if="user&&user.id!= service.user.id">	
+											<p>
+												<a class="btn btn-danger" :href="'/message_thread/'+service.user.id">
+														<i class="fa fa-message"></i>Send Message
+												</a>
+											</p>
+										</template>
+										</div>
+									</div>
+										</div>
 						
 						</div>
 						
@@ -182,6 +203,51 @@ export default{
 		 
 		 
 </div>
+	  
+	  
+	  <div v-show="showSlider" class="fixedContainer">
+
+			<!--<div class="fixedLayer"></div>-->
+			<div class="w-lightbox-control w-lightbox-close" @click="hidePopup()" role="button" aria-label="close lightbox" tabindex="0"></div>
+			<div class="w-lightbox-backdrop">
+					
+					<div class="w-lightbox-content w-lightbox-group">
+						<div class="w-lightbox-view" tabindex="0" id="w-lightbox-view" style="opacity: 1;">
+							<div class="w-lightbox-frame">
+							<figure class="w-lightbox-figure">
+									<img class="w-lightbox-img w-lightbox-image" :src="current_image">
+							</figure>
+							</div> 
+						</div>
+						
+						<div class="w-lightbox-control w-lightbox-left"  @click="prevImg()" role="button" v-show="current_image_index!=0" aria-hidden="true" aria-controls="w-lightbox-view" aria-label="previous image" tabindex="-1"></div>
+						<div class="w-lightbox-control w-lightbox-right" @click="nextImg()" role="button" v-show="current_image_index!=total_images" aria-hidden="false" aria-controls="w-lightbox-view" aria-label="next image" tabindex="0"></div>
+						
+				 </div>
+				 <div @click="hidePopup()" class="absFullBox"></div>
+					<div class="w-lightbox-strip" role="tablist"> 
+						<div class="w-lightbox-item"  v-for="(imgItm, indexImg)  in service.service_images" tabindex="0" aria-controls="w-lightbox-view" role="tab"   aria-selected="true">
+									<div class="w-lightbox-thumbnail" @click="showPopup(indexImg)">
+										<img class="w-lightbox-img w-lightbox-wide w-lightbox-thumbnail-image" :src="imgItm.image_path">
+									</div>
+						</div> 
+					</div>
+	  	 </div>
+		 
+		 
+</div>
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 

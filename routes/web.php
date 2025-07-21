@@ -60,6 +60,8 @@ use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontCo
  */
 Route::get('/', [HomeController::class, 'index'])->name('page');
 
+Route::get('/search_tags', [HomeController::class, 'searchTags'])->name('search_tags');
+
  
  
 Route::post('/admin',[LoginController::class,'adminLogin'])->name('admin.login');
@@ -81,7 +83,7 @@ Route::get('/user_login',[AuthController::class,'login'])->name('home.login');
 Route::post('/user_login',[AuthController::class,'login_check'])->name('login_check.login');
 
 //Route::get('/service_all/{id}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
-Route::get('/service_all/{id}/{childid?}',[ServiceFrontController::class,'serviceAll'])->name('service_all');
+Route::get('/category/{id}/{childid?}',[ServiceFrontController::class,'serviceAll'])->name('category_all');
 Route::get('/service_by_category/{depId}/{id}',[ServiceFrontController::class,'serviceByCategory'])->name('service_by_category');
 	
 
@@ -92,7 +94,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 		
     	Route::get('/my_profile',[UserFrontController::class,'my_profile'])->name('my_profile');
     	Route::get('/my_dashboard',[UserFrontController::class,'my_dashboard'])->name('my_dashboard');
-    	Route::get('/my_messages',[MessageController::class,'my_messages'])->name('my_messages');
+    
 		
 		
 		Route::post('/makerequest',[ServiceRequestFrontController::class,'makeRequest'])->name('makerequest');
@@ -116,15 +118,17 @@ Route::group(['middleware' => ['auth:web']], function () {
 		Route::get('/my_purchases',[MyPurchasesController::class,'index'])->name('my_purchases');
 		Route::get('/my_requested_service',[ServiceRequestFrontController::class,'index'])->name('my_requested_service');
 		
+		
+		Route::get('/my_messages',[MessageController::class,'my_messages'])->name('my_messages');
+			
 	 	Route::get('/message_thread/{id}', [\App\Http\Controllers\Front\MessageController::class, 'message_thread']);
 		
 		Route::get('/message_thread_view/{id}', [\App\Http\Controllers\Front\MessageController::class, 'message_thread_view']);
 		
 		Route::get('/message_threads_list', [\App\Http\Controllers\Front\MessageController::class, 'message_threads_list']);
-		
-		
-			
+		 
 		Route::post('/post_message', [\App\Http\Controllers\Front\MessageController::class, 'post_message']);
+		
 		Route::post('/remove_message', [\App\Http\Controllers\Front\MessageController::class, 'remove_message']);
 		
 		Route::post('changetoinprogress', [ServiceRequestFrontController::class, 'changeToInProgress'])->name('changetoinprogress');
@@ -216,8 +220,10 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 		Route::get('userlink/edit/{id}', [UserLinkAdminController::class, 'edit'])->name('userlink.edit');
 		Route::post('userlink/update/{id}', [UserLinkAdminController::class, 'update'])->name('userlink.update');
 		
-	// 	Route::get('userlink/view/{id}', [UserProjectController::class, 'view'])->name('userproject.view');
-	//	Route::post('userlink/change_status',[UserProjectController::class,'change_status'])->name('userproject_change_status');
+	 	Route::get('userlink/view/{id}', [UserProjectController::class, 'view'])->name('userlink.view');
+	 	Route::post('userlink/change_status',[UserProjectController::class,'change_status'])->name('userlink_change_status');
+		
+		Route::get('userlink/all', [UserLinkAdminController::class, 'indexall'])->name('userlink.indexall');
 		/****************/
 	  
 		Route::get('userproject/create/{id}', [UserProjectController::class, 'create'])->name('userproject.create');

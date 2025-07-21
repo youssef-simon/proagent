@@ -9,12 +9,29 @@ import Multiselect from '@vueform/multiselect'
  
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import { Modal } from 'usemodal-vue3'; 
 
 export default{
 	components:{
-		AppLayout,reactive,router,SideMenu,QuillEditor,Multiselect
-	 }
+		AppLayout
+		,reactive
+		,router
+		,SideMenu
+		,QuillEditor
+		,Multiselect
+		,VuePictureCropper
+		,Modal
+	 },
+	 
+	 
+	   data() {
+		return {
+			 editPic: false,
+		 
+			 
+     }
+  } 
 	 ,props:{
 		  	  serviceCats:Object,
 			  userCategories:Object,
@@ -31,6 +48,7 @@ export default{
 						email: props.user.email, 
 						phone: props.user.phone,  
 						biograph: props.user.biograph,  
+						image_blob: '',  
 						  
 						
 						imagpath:  props.user.imagpath ,
@@ -38,14 +56,15 @@ export default{
 						main_image_id: props.user.main_image_id,
 						 user_categories: props.userCategories,
 						 tags:props.tagsInput,
-			}) 
+			}) ;
+			
+		const	result = reactive({
+      dataURL: '',
+      blobURL: '',
+    })
 			const user = props.user ;
 			
-			
-			
-			
-			
-	 
+			 
 			const options=[
 					{"name":"d","code":1}
 			,	{"name":"ddd","code":2}
@@ -53,7 +72,7 @@ export default{
 			];
 			
 			const value=[];
-			return { form,user,options,value }
+			return { form,user,options,value,result }
 	 }, 
     
   methods:{
@@ -89,14 +108,42 @@ export default{
                 };
 
                 axios.post(URL,data,config).then(function (response) { 
-								self.form.imagpathshow =  response.data.pathshow;
+							 	self.form.imagpathshow =  response.data.pathshow;
 								self.form.imagpath =  response.data.path;
-								self.form.main_image_id = response.data.img_id;
+							//	self.form.main_image_id = response.data.img_id;
 								return true; 
 					}
                 )
             }
-			
+			  ,async fetchTags(query){
+					  const response = await fetch('/search_tags?term=' + query);
+					  const dataa = await response.json();; // Here you have the data that you need
+	 
+					  return dataa.data.map((item) => {
+						return { value: item.id, label: item.name }
+					  });
+					},	 		
+				async  getResult() {
+				  if (!cropper) return
+				  const base64 = cropper.getDataURL()
+				  const blob = await cropper.getBlob();
+				  if (!blob) return;
+
+				  const file = await cropper.getFile({
+					fileName:"F",
+				  });
+
+				  console.log({ base64, blob, file });
+				  this.result.dataURL = base64;
+				  this.form.image_blob = base64;
+				  this.form.imagpathshow = base64;
+				   this.result.blobURL = URL.createObjectURL(blob);
+				//  isShowModal.value = false
+					this.editPic=false;
+				},showEditPic(){
+					this.editPic=true;
+				}
+
 			
 			
 	 }
@@ -106,14 +153,7 @@ export default{
 <template>
 <AppLayout title="Dashboard">
   
-  
-  
-  
-  
-  
-  
-  
-  
+   
   
   
       <div class="whContAll">
@@ -123,14 +163,7 @@ export default{
 				</div>  
 				<div class="col-md-9">
 					 <div class="card">
-			
 			 
-			
-			
-			
-			
-			
-     <!-- Main content -->
     <div class="content">
 	
 	 <form @submit.prevent="submit">
@@ -176,76 +209,101 @@ export default{
             
 			  
 			  
+ 
+					 <div class="form-group">
+								  <label for="name">  Tags:</label>
+								<Multiselect
+						 
+						  placeholder="Choose or Write Tags"
+						    mode="tags"
+						  :filter-results="false"
+						  :min-chars="1"
+						    :object="true" 
+						  :delay="0"
+						 v-model="form.tags" 
+						 
+						   :create-option="true"
+							:close-on-select="false"
+  
+						  :searchable="true"
+						  :options="async function(query) {
+							return await fetchTags(query)  
+						  }"
+						/>	
+					</div>
+			  
 			  
 			  <div class="repeater col-md-12 p15">
                         <h3>photo</h3> 
                         <div class="row">
-                            <div class="col-md-4" >
+                            <div class="col-md-12" >
                                 <div class="control-group w-100">
                                      
-                                    <input type="file" accept="image/*" @change="uploadImage($event,index)" id="file-input">
-                                    <input type="hidden"     v-model="form.img_id"  >
-                                    <img :src="form.imagpathshow" />
+                                   
+                                   
+											<div class="row">
+													<div class="col-md-12">
+														    <img :src="form.imagpathshow" />
+												</div>
+									  
+											<a class="btn btn-primary" @click="showEditPic" href="javascript::void(0)">change image</a>
+											<section class="section" v-if="result.dataURL && result.blobURL">
+														   <div class="preview">
+																<img :src="result.dataURL" />
+															  </div>
+															   
+											</section>
+  		
                                 </div>
                             </div>
                         </div>  
                     </div>
 			 
 			 
-			 <div class="form-group">
-			   
-						  <div  v-for="serviceCatItm in  serviceCats ">
-						  
-								<h2>{{ serviceCatItm.name }}</h2>
-								<ul style="margin-left:20px;">
-								  <li  v-for="childernItm in  serviceCatItm.chidern">
-										<input type="checkbox" :value="childernItm.id" v-model="form.user_categories" />
-										<label>{{ childernItm.title }}</label>
-									
-								  </li>
-								</ul>
-						  </div>
+			    <button   class="btn btn-success float-right col-md-12" type="submit">Save</button>
+  
+  
+  
+   	<Modal v-model:visible="editPic"
+	v-bind:okButton="{ 
+	onclick: getResult
+	,text :'Crop'
+	
+	}"  >
+								<div class="row">
+									 <div class="col-md-12">
+									 		<VuePictureCropper
+																			 
+																			:img="form.imagpathshow"
+																		   
+																			
+																			:options="{
+																			  viewMode: 1,
+																			  dragMode: 'move',
+																			  aspectRatio: 1,
+																			  cropBoxResizable: false,
+																			}"
+																			:presetMode="{
+																			  mode: 'fixedSize',
+																			  width: 250,
+																			  height: 250,
+																			}"
+																			@ready="ready"
+																		  />
+																		   
+													</div>
+									</div>
+									<label>Upload Image</label>
+									<br>
+								   <input type="file" accept="image/*" @change="uploadImage($event,index)" id="file-input" />
+								 
+								 	 <div class="form-group">
+		 	<a  @click="getResult"  class="btn btn-primary" href="javascript::void(0)">Crop</a>
 			  </div>
+							</Modal>	
 			  
 			  
-			  
-			  
-			  
-	<div><Multiselect
-  v-model="form.tags"
-   mode="tags"
-  :searchable="true"
-      :object="true"
-
-  :create-option="true"
-  :close-on-select="false"
-  :options="[
-    { value: 'batman', label: 'Batman' },
-    { value: 'robin', label: 'Robin', disabled: true },
-    { value: 'joker', label: 'Joker' },
-  ]"
-/>
-  </div>
-  
-  
-  
-  
-  <div class="row">
-        <div class="col-md-12">  
 	 
-		<div class="tagsCont">
-			<ul>
-				<template v-for="tagItm in user.tags">
-					<li>
-					<a href="">
-							{{ tagItm.name }}
-					</a>
-					</li>
-				</template>
-			</ul>
-		</div>
-        </div>
-      </div>
   
   
   
@@ -254,13 +312,8 @@ export default{
   
   
   
-		 <div class="row">
-        <div class="col-12">
-         
-      
-		  <button   class="btn btn-success float-right" type="submit">Submit</button>
-        </div>
-      </div>
+  
+		
             </div>
             <!-- /.card-body -->
           </div>
@@ -268,19 +321,11 @@ export default{
         </div>
        </div>
       
-	 </form> 
+	
     </div>
+		 </form> 	
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			 
 			
 			
 			
@@ -290,25 +335,9 @@ export default{
 			   </div>
 			</div>  
 	</div> 
+	</div> 
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+   
   
   
   

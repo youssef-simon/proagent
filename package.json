@@ -32,6 +32,7 @@
         "vee-validate": "^4.11.8",
         "videojs-record": "^4.6.0",
         "vue-ckeditor2": "^2.1.5",
-        "vue-final-modal": "^4.5.5"
+        "vue-final-modal": "^4.5.5",
+        "vue-picture-cropper": "^0.7.0"
     }
 }

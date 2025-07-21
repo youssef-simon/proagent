@@ -44,8 +44,27 @@ class Service extends Model
     
     ];
 	
-	  protected $appends = ['image_path_show'];
+	  protected $appends = ['image_path_show','resize_image_path_show'];
 	
+	 
+	  /**
+     * Interact with the user's first name.
+     */
+    protected function getResizeImagePathShowAttribute() 
+    {
+		
+			$originalPath =  Storage::url($this->imagpath);
+					 
+			$directory = dirname($originalPath); // 'public/media'
+			$filename = basename($originalPath); // 'example.jpg' 
+			$newFilename = 'resized_' . $filename; // 'resize_example.jpg'
+			 
+			$newPath = $directory . '/' . $newFilename; 
+
+
+			return  $newPath;
+        
+    }
 	 
     protected function getImagePathShowAttribute() 
     {						

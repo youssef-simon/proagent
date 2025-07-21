@@ -33,14 +33,14 @@ export default{
 			  <div class="col-md-4 taxItmCont"  v-for="(serviceCatItm, index) in  serviceCats ">
 						  
 								<h6>
-								<a :href="'/service_all/'+serviceCatItm.id">
+								<a :href="route('category_all', serviceCatItm.slug)">
 										{{ serviceCatItm.name }}
 									 
 								</a>
 								</h6>
 								<ul style="margin-left:20px;">
 								  <li  v-for="childernItm in  serviceCatItm.chidern">
-										 <a :href="'/service_all/'+index+'/'+childernItm.id">{{ childernItm.title }}</a>
+										 <a :href="route('category_all', { id:index, childid:childernItm.slug})">{{ childernItm.title }}</a>
 										 
 									
 								  </li>
