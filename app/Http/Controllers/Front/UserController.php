@@ -42,7 +42,8 @@ class UserController extends Controller
 	 
 		  $services = Service::where('user_id',$user->id)
 		    ->where('status',Service::STATUS_ACCEPTED)
-		  ->with('category')->with('category.parentCategory')
+		  ->with('category')->with('category.department')
+		  ->with('department') 
 		 ->limit(24)
 		 ->get();
 		  
@@ -68,7 +69,8 @@ class UserController extends Controller
 		  
 		  $services = Service::where('user_id',$user->id)
 		  ->where('status',Service::STATUS_ACCEPTED)
-		  ->with('category')->with('category.parentCategory')
+		  ->with('category')->with('category.department')
+		 
 		  ->paginate(24);
 		  
 	   return Inertia::render('front/userdetails/user_services',[
@@ -188,29 +190,7 @@ class UserController extends Controller
 		 
 		$user->slug= Str::slug($slug);
 		$user->save();
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// Sync tags from request
+		 
         if ($request->has('tags')) {
             $user->syncTags($request->tags);
         }

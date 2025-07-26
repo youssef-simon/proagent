@@ -42,7 +42,7 @@ class ImageUploadController extends Controller
 				$resizedFilename = 'resized_' . $filename;
 			  
 				$resizedImage = Image::make($path->getRealPath())
-        ->fit(250, 250 )
+        ->fit(338, 185 )
  ->save(storage_path('app/public/media/' . $resizedFilename));
 										 
 				 

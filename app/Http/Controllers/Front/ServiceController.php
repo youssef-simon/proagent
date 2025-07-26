@@ -230,7 +230,7 @@ class ServiceController extends Controller
 		 
 		$services =  Service::where('department_id',$department->id)
 					->where('status',Service::STATUS_ACCEPTED)
-					->with('category')->with('category.parentCategory')-> 
+					->with('category')->with('category.department')-> 
 		paginate(24);
 		
 			$alldepartments =	Department::all();
@@ -251,7 +251,7 @@ class ServiceController extends Controller
 			  $categories =  ServiceCategory::where('department_id',$depId)->whereNull('parent_id')->with("childCategories")->get();
 		$services =  Service:: leftJoin('service_categories', 'services.category_id', '=', 'service_categories.id')
 									  -> where('services.category_id',$id)
-									  ->with('category.parentCategory')
+									  ->with('category.department')
 									  ->orWhere('service_categories.parent_id',$id)
 									 
 									  ->select('services.*')

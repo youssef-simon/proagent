@@ -16,10 +16,9 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Subscription;
-use App\Models\SubscriptionProduct;
+use App\Models\SubscriptionProduct; 
 
-
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -88,11 +87,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
 		'full_name',
-		'image_path_show'
+		'image_path_show',
+		'is_subscribed'
     ];
 	
 	
-	
+			
+	public function getIsSubscribedAttribute()
+		{
+			if ($this->start_date && $this->end_date) {
+				return now()->between($this->start_date, $this->end_date);
+			}
+			
+			return false;
+		}
+		
+		
 	 /**
      * Get the post's image.
      */
@@ -161,11 +171,27 @@ class User extends Authenticatable
 		
 		
 		
+
 		
+			 
+	  /**
+     * Interact with the user's first name.
+     */
+ /*    protected function getIsSubscribedAttribute() 
+    {
 		
-		
-		
-		
+			$originalPath =  Storage::url($this->imagpath);
+					 
+			$directory = dirname($originalPath); // 'public/media'
+			$filename = basename($originalPath); // 'example.jpg' 
+			$newFilename = 'resized_' . $filename; // 'resize_example.jpg'
+			 
+			$newPath = $directory . '/' . $newFilename; 
+
+
+			return  $newPath;
+        
+    } */
 		
 		
 		

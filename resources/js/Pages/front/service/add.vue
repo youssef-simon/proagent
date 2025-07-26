@@ -1,4 +1,3 @@
-   
 <script>
 import AppLayout from '@/Layouts/AppFrontLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
@@ -72,6 +71,13 @@ export default{
 					}  
 		/***************************/ 
 		, uploadImage(event, index) {
+			
+			
+				 if(event.target.files[0].size > 3297152) {
+				   alert("file should not be bigger then 3MB");
+				   return false;
+				 }
+
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
@@ -99,6 +105,18 @@ export default{
             uploadMulitImage(event, index) {
                 var self = this;
                 // this.form.refields[index].img="Ddd";
+
+
+				if(event.target.files[0].size > 3297152) {
+						   alert("file should not be bigger then 3MB");
+						   return false;
+				 }
+
+
+
+
+
+
 
                 const URL = '/api/uploadimg';
 
@@ -217,7 +235,7 @@ export default{
 				
 			 	 <div class="repeater col-md-12 p15">
                         <h3>Main Image</h3>
-									<p class="descPhoto">Max 2MB</p>
+									<p class="descPhoto">Max 3MB / preferable aspcec ratio 1352*740</p>
                         <div class="row">
                             <div class="col-md-12" >
                                 <div class="control-group w-100 imgUploadCont">

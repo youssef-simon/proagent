@@ -11,6 +11,7 @@ use App\Models\ServiceCategory;
 use App\Models\ServiceImage; 
 
 use App\Models\VerifyRequest; 
+ 
 
 class VerificationController extends Controller
 {
@@ -50,5 +51,10 @@ class VerificationController extends Controller
 	    ]);
     }
    
-	
+   
+   
+   
+   
+   
+    
 }

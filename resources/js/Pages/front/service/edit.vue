@@ -48,6 +48,14 @@ export default{
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
+
+				if(event.target.files[0].size > 3297152) {
+						   alert("file should not be bigger then 3MB");
+						   return false;
+				 }
+
+
+
                 const URL = '/api/uploadimg';
 
                 let data = new FormData();
@@ -72,6 +80,15 @@ export default{
             uploadMulitImage(event, index) {
                 var self = this;
                 // this.form.refields[index].img="Ddd";
+
+
+					if(event.target.files[0].size > 3297152) {
+						   alert("file should not be bigger then 3MB");
+						   return false;
+				 }
+
+
+
 
                 const URL = '/api/uploadimg';
 
@@ -106,9 +123,9 @@ export default{
 				   axios.get("/changedepart/"+ this.form.department_id)
 					  .then( function(response) {
 											const getData =response.data.data;
-											 
+							
 											self.form.serviceCategories = getData;
-											 
+											 					console.log(self.form.serviceCategories);
 									}
 							)
 					  .catch(error => {
@@ -203,7 +220,7 @@ export default{
 			    <div class="form-group">
 										<label for="category_id">category</label>
 											<select   class="form-control" v-model="form.category_id">
-												 <option v-for="serviceCategory in serviceCategories"  
+												 <option v-for="serviceCategory in form.serviceCategories"  
 														 :value="serviceCategory.id">
 														 {{ serviceCategory.title }}
 												 </option> 
@@ -215,7 +232,7 @@ export default{
 				
 			 	 <div class="repeater col-md-12 p15">
                         <h3>Main Image</h3>
-									<p class="descPhoto">Max 2MB</p>
+					<p class="descPhoto">Max 3MB / preferable aspcec ratio 1352*740</p>
                         <div class="row">
                             <div class="col-md-12" >
                                 <div class="control-group w-100 imgUploadCont">

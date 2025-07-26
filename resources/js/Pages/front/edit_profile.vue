@@ -53,6 +53,7 @@ export default{
 						
 						imagpath:  props.user.imagpath ,
 						imagpathshow:  props.user.image_path_show ,
+						//upload_imagpathshow:  props.user.image_path_show ,
 						main_image_id: props.user.main_image_id,
 						 user_categories: props.userCategories,
 						 tags:props.tagsInput,
@@ -95,6 +96,15 @@ export default{
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
+			 if(event.target.files[0].size > 3297152) {
+				   alert("file should not be bigger then 3MB");
+				   return false;
+				 }
+
+
+
+
+
                 const URL = '/api/uploadimg';
 
                 let data = new FormData();
@@ -108,8 +118,8 @@ export default{
                 };
 
                 axios.post(URL,data,config).then(function (response) { 
-							 	self.form.imagpathshow =  response.data.pathshow;
-								self.form.imagpath =  response.data.path;
+							 	self.form.upload_imagpathshow =  response.data.pathshow;
+							//	self.form.imagpath =  response.data.path;
 							//	self.form.main_image_id = response.data.img_id;
 								return true; 
 					}
@@ -233,10 +243,11 @@ export default{
 					</div>
 			  
 			  
-			  <div class="repeater col-md-12 p15">
+			  <div class="form-group">
+			  <div class="repeater col-md-12 p15 editImgProfile">
                         <h3>photo</h3> 
                         <div class="row">
-                            <div class="col-md-12" >
+                            <div class="col-md-6" >
                                 <div class="control-group w-100">
                                      
                                    
@@ -246,21 +257,20 @@ export default{
 														    <img :src="form.imagpathshow" />
 												</div>
 									  
-											<a class="btn btn-primary" @click="showEditPic" href="javascript::void(0)">change image</a>
-											<section class="section" v-if="result.dataURL && result.blobURL">
-														   <div class="preview">
-																<img :src="result.dataURL" />
-															  </div>
-															   
-											</section>
+											
+										 
   		
                                 </div>
                             </div>
                         </div>  
+						
+						<div class="col-md-6" >
+						<a class="btn btn-primary" @click="showEditPic" href="javascript::void(0)">Change Image</a>
+						</div>
                     </div>
 			 
 			 
-			    <button   class="btn btn-success float-right col-md-12" type="submit">Save</button>
+			  
   
   
   
@@ -274,7 +284,7 @@ export default{
 									 <div class="col-md-12">
 									 		<VuePictureCropper
 																			 
-																			:img="form.imagpathshow"
+																			:img="form.upload_imagpathshow"
 																		   
 																			
 																			:options="{
@@ -316,6 +326,13 @@ export default{
 		
             </div>
             <!-- /.card-body -->
+          </div>
+		  
+		  
+		  
+		  
+		  
+		    <button   class="btn btn-success float-right col-md-12" type="submit">Save</button>
           </div>
           <!-- /.card -->
         </div>

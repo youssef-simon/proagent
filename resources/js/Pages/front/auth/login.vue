@@ -19,6 +19,7 @@ export default{
 	  
 	 ,props:{
 		 
+		  verf:String,
 		  errorscode:String,
 		  errors:Object,
 	 },setup(){
@@ -55,6 +56,7 @@ export default{
 			
 			<div class="loginCont">
 						<h6 class="error_val" v-if="errorscode">{{ errorscode }}</h6>
+						<h6 class="error_val green" v-if="verf==1">You will get Vertification mail verify it before login</h6>
 						<h2>Login</h2>
 					   <form @submit.prevent="submit">
 										<div class="form-group">

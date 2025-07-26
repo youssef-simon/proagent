@@ -172,7 +172,7 @@ div.carts {
 .LoginPage{ min-height:800px; }
 
 .taxaPage{  padding:25px!important; min-height:700px; }
- .taxItmCont h6  a{ text-transform:capitalize; color:#444;     font-size: 18px; }
+ .taxItmCont h6  a{ text-transform:capitalize; color:#444;     font-size: 13px; }
 .taxItmCont h6  a:hover{ text-decoration:underline;  }
 .taxItmCont ul li a{ text-transform:capitalize; color:#444; }
 .taxItmCont ul li a:hover{ text-decoration:underline;  }
@@ -180,7 +180,7 @@ div.carts {
 .colHeader{ margin-bottom:25px; }
 
 .taxItmCont ul { margin-left:20px; }
-.taxItmCont{ margin-bottom:25px; }
+.taxItmCont{ margin-bottom:6px; }
 
 .header h2{ text-transform:capitalize; margin-bottom:20px; }
 
@@ -632,11 +632,9 @@ div.carts {
   
   
   .headerContainer{
-	  
-	  
-	      width: 70%;
+	   width: 70%;
     margin: 0 auto;
-    padding-top: 150px;
+    padding-top:90px;
 	color:#fff;
   }
   
@@ -784,6 +782,54 @@ td.actionBtn { width:220px; }
 
 
 
+.cardUserData .col-md-9 h2{ text-transform:capitalize; }
+
+.serItm h5 span{ font-size:16px; }
+.serItm h5  { font-size:16px; }
+
+.editImgProfile{ margin-bottom:20px; }
+
+
+.error_val.green{
+	
+	background : green;
+    font-size: 18px;
+    padding: 20px;
+    color: #fff !important;
+}
+
+
+.footer{
+/*position: fixed;*/
+    bottom: 0px;
+    text-align : center;
+    width: 100%;
+    background: #000;
+	padding:10px; 
+	    
+}
+
+.footer span{ display:inline-block; color:#fff; }
+.footer ul {  display:inline-block; margin:0px; }
+.footer ul li a img{ width:30px; display: inline-block; margin:0px; }
+.footerFake{ height:50px; }
+
+
+.taxaPage .taxItmCont h6 a {
+    text-transform: capitalize;
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+
+
+.userContIntro { text-transform:capitalize;	 }
+
+.serItm .title{ font-weight:bold; }
+.serItm .imgContainer{ margin-bottom:5px; }
 
 /* For devices with screens up to 768px wide (typical mobile devices) */
 @media only screen and (max-width: 768px) {
@@ -800,9 +846,12 @@ td.actionBtn { width:220px; }
 	.containerBig{  width:100%!Important;}
 	.menuTab ul li{ display:block; margin-bottom:10px; }
 	.menuTab ul li a{ display:block;   }
+	
+	
+	.headerContainer{ width:100%; }
+	
+	.headTxtCont h1{      font-size: 26px;}
+	.headTxtCont h4{      font-size: 20px;}
+	.userContIntro { text-align:center;	 }
+	.userContIntro .col-md-3 img{  display:inline-block; }
 }
-
-.cardUserData .col-md-9 h2{ text-transform:capitalize; }
-
-.serItm h5 span{ font-size:16px; }
-.serItm h5  { font-size:16px; }

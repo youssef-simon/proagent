@@ -107,7 +107,7 @@ import { usePage } from '@inertiajs/vue3';
               <a class="nav-link"  href="/service">Services</a>
             </li>-->
             <li class="nav-item" :class="{ 'active': isCurrentPath('/users') }">
-              <a class="nav-link" href="/users">Users</a>
+              <a class="nav-link" href="/users">Freelancers</a>
             </li>
              <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
               <a class="nav-link" href="/taxservice">Taxanomy</a>
@@ -195,7 +195,7 @@ import { usePage } from '@inertiajs/vue3';
               <a class="nav-link"  href="/service">Services</a>
             </li>-->
             <li class="nav-item" :class="{ 'active': isCurrentPath('/users') }">
-              <a class="nav-link" href="/users">Users</a>
+              <a class="nav-link" href="/users">Freelancers</a>
             </li>
              <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
               <a class="nav-link" href="/taxservice">Taxanomy</a>
@@ -254,5 +254,37 @@ import { usePage } from '@inertiajs/vue3';
 		<slot />
    
    </div>
+   
+   
+   
+   
+      <div class="footerFake">
+   
+   </div>
+   
+   
+   <div class="footer">
+   <div class="footerCont">
+   
+   <span>Follow Us: </span>
+   
+   <ul class="social">
+		<li>
+		<a href="https://www.facebook.com/profile.php?id=100067640081473">
+		<img src="/img/f.png" />
+		</a>
+		</li>
+   </ul>
+   </div>
+   </div>
+   
+   
+   
+   
+   
+   
+   
+   
+   
    </div>
 </template>

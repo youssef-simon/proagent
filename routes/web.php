@@ -42,6 +42,11 @@ use App\Http\Controllers\Front\ServiceController as ServiceFrontController;
 use App\Http\Controllers\Front\SubscriptionController as SubscriptionFrontController; 
 use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontController; 
  
+use Illuminate\Foundation\Auth\EmailVerificationRequest; 
+
+use Laravel\Fortify\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\Auth\EmailVerificationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +58,7 @@ use App\Http\Controllers\Front\ServiceRequestController as ServiceRequestFrontCo
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes(['verify' => true]);
 
 /* Route::get('/', function () {
  return redirect('/admin');
@@ -275,14 +281,27 @@ Route::get('/admin/dashboard',[DashboardController::class,'show'])->name('admin.
 
 	Route::get('/logout_user',[LoginController::class,'logout'])->name('userlogout.logout');
 	 
-	
-	
-	
-	
-	
-	
-	
+	 /* 
+	 
+	 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+	  */
+	 
+ 
+ Route::get('/email/verify/{id}/{hash}', EmailVerificationController::class)
+    ->middleware(['signed']) // Only verify signature, not auth
+    ->name('verification.verify');
+	 
+	 
+	 
+require __DIR__.'/forum.php';	 
+	  
+	
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -62,6 +62,17 @@ export default{
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
+
+
+						if(event.target.files[0].size > 3297152) {
+						   alert("file should not be bigger then 3MB");
+						   return false;
+				 }
+
+
+
+
+
                 const URL = '/api/uploadimg';
 
                 let data = new FormData();
@@ -87,6 +98,14 @@ export default{
                 var self = this;
                 // this.form.refields[index].img="Ddd";
 
+
+				if(event.target.files[0].size > 3297152) {
+						   alert("file should not be bigger then 3MB");
+						   return false;
+				 }
+
+	
+	
                 const URL = '/api/uploadimg';
 
 

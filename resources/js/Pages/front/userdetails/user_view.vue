@@ -74,11 +74,12 @@ export default{
 											<img  style="width:100%;height:185px;" :src="serviceItm.resize_image_path_show" /> 
 									 </a>
 								 </div>
-								<h5>{{ serviceItm.title }}</h5> 
+								<h5 class="title">{{ serviceItm.title }}</h5> 
 								<h5><span>Begin from </span>: {{ serviceItm.price_from }} $</h5>
-								
-								<p><template v-if="serviceItm.category.parent_category">{{ serviceItm.category.parent_category.title }} /</template> {{ serviceItm.category.title }}  </p>
-							
+								  
+										<template v-if="serviceItm.category">
+												<p><template v-if="serviceItm.category.department">{{ serviceItm.category.department.name }} /</template> {{ serviceItm.category.title }}  </p>
+										</template>
 							
 						</div>
 			</div>

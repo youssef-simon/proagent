@@ -81,14 +81,15 @@ export default{
 								 <div class="imgContainer">
 								 
 									<a :href="'/service_view/'+serviceItm.id">
-											<img :src="serviceItm.image_path_show" style="width:100%;height:185px;" /> 
+											<img :src="serviceItm.resize_image_path_show" style="width:100%;height:185px;" /> 
 									 </a>
 								 </div>
-								<h6>{{ serviceItm.title }}</h6> 
-								<h6>{{ serviceItm.price_from }} $</h6>
+								<h6 class="title">{{ serviceItm.title }}</h6> 
+								<h6><span>Begin from </span>: {{ serviceItm.price_from }} $</h6>
 								
-								<h6 class="catItm"><template v-if="serviceItm.category.parent_category">{{ serviceItm.category.parent_category.title }} /</template> {{ serviceItm.category.title }}  </h6>
-							
+						 	<template v-if="serviceItm.category">
+													<h6 class="catItm"><template v-if="serviceItm.category.department">{{ serviceItm.category.department.name }} /</template> {{ serviceItm.category.title }}  </h6>
+										</template>
 						</div>
 			</div>
 			</div>

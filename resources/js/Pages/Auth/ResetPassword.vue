@@ -31,7 +31,7 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+			<img src="/img/logo.jpg"   />
         </template>
 
         <form @submit.prevent="submit">

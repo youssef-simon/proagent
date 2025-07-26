@@ -3,10 +3,11 @@ import AppLayout from '@/Layouts/AppFrontHomeLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
+import { Head } from '@inertiajs/vue3'
 
 export default{
 	components:{
-		AppLayout,reactive,router
+		AppLayout,reactive,router,Head
 	 }
 	   ,
 	   data() {
@@ -83,7 +84,22 @@ export default{
 </script>
 
 <template>
+
+
+
+
+
+
 <AppLayout title="">
+
+<Head>
+  <title>FREELANCER CODE240</title>
+  <meta name="description" content="Professional Online Profile Builder - 
+   Build your Profile Online For Free 
+  Make your portfolio to show your Experince and Past Projects , your paid Services">
+</Head>
+
+
  <section class="intro">
 		<div class="container">
 				<div class="headerContainer">
