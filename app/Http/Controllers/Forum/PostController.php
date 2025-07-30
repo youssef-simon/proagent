@@ -62,14 +62,14 @@ class PostController extends Controller
 		
 		$subject = Subject::find($id); 
 			 
-			if ($request->user()->cannot('create', $subject)) {
+		/* 	if ($request->user()->cannot('create', $subject)) {
 				dd("not allowed");
 			}
-		
+		 */
 			
 		$postFormFields =	 PostForm::where("subject_id", $id)->get();	 
-		 
-         return Inertia::render('post/create_inside',[ 
+	 
+         return Inertia::render('front/sub_forum/post/create_inside',[ 
 		 'id'=>$id
 		 ,'postFormFields'=>$postFormFields
 		 ]);
@@ -121,7 +121,7 @@ class PostController extends Controller
 		}
 	
 		
-        return to_route('post.indexu');
+        return to_route('post.index',['id'=>$post->subject_id]);
     }
 	
 	 
@@ -172,7 +172,7 @@ class PostController extends Controller
 		  $post = Post::where('id',$id)->with('images')->with('files')->first(); 
 		  $categories = Category::all();
 		  
-		  return Inertia::render('post/edit',[ 'post'=>$post,'categories'=>$categories  ]);
+		  return Inertia::render('front/sub_forum/post/edit',[ 'post'=>$post,'categories'=>$categories  ]);
     }
 
   
@@ -211,10 +211,11 @@ class PostController extends Controller
     public function destroy($id)
     {
 		 $post=Post::find($id);
+		 $subject_id = $post->subject_id;
 		
 		  $post->delete();
 			
-		return to_route('post.indexu');
+		return to_route('post.index',['id'=> $subject_id]);
     }
 
    

@@ -76,7 +76,7 @@ Route::get('/service',[ServiceFrontController::class,'index'])->name('home.servi
 Route::get('/service_view/{id}',[ServiceFrontController::class,'serviceView'])->name('home.service_view');
 Route::get('/taxservice',[ServiceFrontController::class,'taxservice'])->name('home.taxservice');
 Route::get('/users',[UserFrontController::class,'index'])->name('home.users');
-Route::get('/user_details/{id}',[UserFrontController::class,'details'])->name('home.user_details');
+Route::get('/user_details/{id}',[UserFrontController::class,'details'])->name('user.user_details');
 Route::get('/user_services/{id}',[UserFrontController::class,'user_services'])->name('home.user_services');
 Route::get('/user_works/{id}',[UserFrontController::class,'user_works'])->name('home.user_works');
 Route::get('/user_links/{id}',[UserFrontController::class,'user_links'])->name('user_links');

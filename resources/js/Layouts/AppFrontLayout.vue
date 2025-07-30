@@ -113,6 +113,9 @@ import { usePage } from '@inertiajs/vue3';
               <a class="nav-link" href="/taxservice">Taxanomy</a>
             </li>
 			
+			   <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
+              <a class="nav-link" href="/forums">Forums</a>
+            </li>
 			
 			
 			

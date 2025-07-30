@@ -109,7 +109,7 @@ class ForumController extends Controller
 	public function view($id)
     { 
 		$post = Post::where('id',$id)->with('images')->with('files')->with('author')->with('subject')->first(); 
-		$comments = Comment::where('post_id',$id)->with("user")->with("replies.user")->where('status','accepted')->paginate(60);  
+		$comments = Comment::where('post_id',$id)->with("user")->with("replies.user")/* ->where('status','accepted') */->paginate(60);  
 	 		 
 			 	$postFormFields =	 PostForm::where("subject_id", $post->subject_id)->get();
 			 

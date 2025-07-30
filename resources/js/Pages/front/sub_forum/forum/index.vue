@@ -55,57 +55,56 @@ export default{
 
 
 
-    <AppLayout>
-    <div class="w-full mx-auto">
-     
-		
-		
-		
-		
-		
-			<template  v-for="catItm in categories.data">
-	
-	
-	<div class="  p-4 mb-1">
-					<h2 class="p-2 text-2xl">{{ catItm.title }}</h2>
-					 
-						
-									<table class="min-w-full divide-y divide-gray-200">
-									  <thead class="bg-gray-50">
-											<tr>
-											<th scope="col" style="width:80%"  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Forum</th>
-											<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Posts</th>
-											<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-														latest post
-											</th>
-											</tr>
-										   </thead>
-										<tr v-for="subject in catItm.subjects">
-											<td style="width:80%"  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-											<a  class="text-blue-600   hover:text-blue-800 hover:underline text-xl font-bold"  :href="route('post.index',subject.id)">
-													{{ subject.title  }}
-												
-													 
-											</a>
-											<p>	{{ subject.description  }}</p>
-											
-											</td>
-											<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ subject.posts_count  }}</td> 
-											<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-											 
-											<template v-if="subject.latest_approved_post">
-											{{ subject.latest_approved_post.title  }}
-											<br>
-												بواسطة	:	{{ subject.latest_approved_post.author.name  }} 
-											</template>
-											</td> 
-										</tr>
-									</table>
-
- 
-			</div>
-</template>
-		
+  <AppLayout>
+    <div class="container-fluid p-0">
+        <template v-for="catItm in categories.data">
+            <div class="card mb-3">
+                <div class="card-header bg-primaryD forumTitle text-white">
+                    <h2 class="h4 mb-0 p-2">{{ catItm.title }}</h2>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width:60%" class="align-middle">Forum</th>
+                                    <th scope="col" class="text-center align-middle">Posts</th>
+                                    <th scope="col" class="align-middle">Latest Post</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="subject in catItm.subjects">
+                                    <td class="align-middle">
+                                        <a :href="route('post.index',subject.id)" 
+                                           class="text-primary font-weight-bold d-block mb-1">
+                                            {{ subject.title }}
+                                        </a>
+                                        <p class="text-muted small mb-0">{{ subject.description }}</p>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <span class="badge badge-pill badge-info">
+                                            {{ subject.posts_count }}
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <template v-if="subject.latest_approved_post">
+                                            <div class="d-flex flex-column">
+                                                <span class="font-weight-bold text-truncate">
+                                                    {{ subject.latest_approved_post.title }}
+                                                </span>
+                                                <small class="text-muted">
+                                                    By: {{ subject.latest_approved_post.author.full_name }}
+                                                </small>
+                                            </div>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
-    </AppLayout>
+</AppLayout>
 </template>

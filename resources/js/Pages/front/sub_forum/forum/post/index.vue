@@ -63,11 +63,10 @@ export default{
 		    router.get(route('post.index',this.id ), this.form.form_data);  
 		} 
 		,
-		 destroy(id) {
+		  destroy(id) {
 				if (confirm("Are you sure you want to Delete")) {
          
-					router.delete(route("admin.delete", id));
-					
+					router.delete(route("post.delete", id));
 				}
 			},
 		
@@ -90,223 +89,242 @@ export default{
 
 <template>
     <Head title="Dashboard" />
+<AppLayout>
+  <!-- Breadcrumb Navigation -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <template v-for="breadcrumb in breadcrumbs">
+        <li class="breadcrumb-item">
+          <a :href="breadcrumb.href">{{ breadcrumb.title }}</a>
+        </li>
+      </template>
+    </ol>
+  </nav>
 
-    <AppLayout  >
-	
-		<div class="p-4 mb-6">
-			<div class="w-full mx-auto"> 
-				
-		 <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">{{ subject.title }}</h1>
-            <a :href="route('post_inside.create',subject.id)" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                	create_post
-            </a>
-        </div>
-				
-				 
-				
-			 
-			 <template v-if="postFormFields.length">
-		<form class="w-full p-6 bg-white rounded-lg shadow-md">
-  <div class="flex flex-wrap -mx-2">
-    <div 
-      v-for="(field, index) in postFormFields" 
-      :key="index" 
-      class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
-    >
-      <!-- Label -->
-      <label 
-        :for="field.field_key" 
-        class="block text-sm font-medium text-gray-700 mb-1"
-      >
-        {{ field.field_label }}
-        <span v-if="field.required" class="text-red-500">*</span>
-      </label>
-      
-      <!-- Text Input -->
-      <input 
-        v-if="field.field_type === 'text' || field.field_type === 'email' || field.field_type === 'password'"
-        :type="field.field_type"
-        :id="field.field_key"
-        v-model="form.form_data[field.field_key]"
-        :placeholder="field.placeholder || ''"
-        :required="field.required || false"
-        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-      >
-      
-      <!-- Textarea -->
-      <textarea 
-        v-else-if="field.field_type === 'textarea'"
-        :id="field.field_key"
-        v-model="form.form_data[field.field_key]"
-        :placeholder="field.placeholder || ''"
-        :required="field.required || false"
-        :rows="field.rows || 3"
-        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-      ></textarea>
-      
-      <!-- Select Dropdown -->
-      <select 
-        v-else-if="field.field_type === 'select'"
-        :id="field.field_key"
-        v-model="form.form_data[field.field_key]"
-        :required="field.required || false"
-        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZXZyb24tZG93biI+PHBhdGggZD0ibTYgOSA2IDYgNi02Ii8+PC9zdmc+')] bg-no-repeat bg-[center_right_0.5rem] bg-[length:1.5em] transition duration-150"
-      >
-        <option value=""  selected>All</option>
-        <option 
-          v-for="option in field.field_options" 
-          :value="option.option_text"
-        >
-          {{ option.option_text }}
-        </option>
-      </select>
-      
-      <!-- Checkbox -->
-      <div 
-        v-else-if="field.field_type === 'checkbox'"
-        class="flex items-center"
-      >
-        <input 
-          type="checkbox"
-          :id="field.field_key"
-          v-model="form.form_data[field.field_key]"
-          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-        >
-        <label :for="field.field_key" class="ml-2 block text-sm text-gray-700">
-          {{ field.field_label }}
-        </label>
+  <div class="containerss mt-4">
+    <div class="card shadow-sm mb-4">
+      <div class="card-headerspec bg-white d-flex justify-between  align-items-center">
+        <h2 class="h4 mb-0 text-primary">{{ subject.title }}</h2>
+        <a :href="route('post_inside.create',subject.id)" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Create Post
+        </a>
       </div>
       
-      <!-- Radio Buttons -->
-      <div 
-        v-else-if="field.field_type === 'radio'"
-        class="space-y-2"
-      >
-        <div 
-          v-for="option in field.field_options" 
-          :key="option.value"
-          class="flex items-center"
-        >
-          <input 
-            type="radio"
-            :id="`${field.field_key}-${option.value}`"
-            :value="option.value"
-            v-model="form.form_data[field.field_key]"
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-          >
-          <label 
-            :for="`${field.field_key}-${option.value}`" 
-            class="ml-2 block text-sm text-gray-700"
-          >
-            {{ option.option_text }}
-          </label>
+      <!-- Dynamic Form Fields -->
+      <template v-if="postFormFields.length">
+        <div class="card-body">
+          <form class="w-full p-4 bg-white rounded-lg">
+            <div class="row g-3">
+              <div 
+                v-for="(field, index) in postFormFields" 
+                :key="index" 
+                class="col-md-6 col-lg-4"
+              >
+                <!-- Label -->
+                <label 
+                  :for="field.field_key" 
+                  class="form-label"
+                >
+                  {{ field.field_label }}
+                  <span v-if="field.required" class="text-danger">*</span>
+                </label>
+                
+                <!-- Text Input -->
+                <input 
+                  v-if="field.field_type === 'text' || field.field_type === 'email' || field.field_type === 'password'"
+                  :type="field.field_type"
+                  :id="field.field_key"
+                  v-model="form.form_data[field.field_key]"
+                  :placeholder="field.placeholder || ''"
+                  :required="field.required || false"
+                  class="form-control"
+                >
+                
+                <!-- Textarea -->
+                <textarea 
+                  v-else-if="field.field_type === 'textarea'"
+                  :id="field.field_key"
+                  v-model="form.form_data[field.field_key]"
+                  :placeholder="field.placeholder || ''"
+                  :required="field.required || false"
+                  :rows="field.rows || 3"
+                  class="form-control"
+                ></textarea>
+                
+                <!-- Select Dropdown -->
+                <select 
+                  v-else-if="field.field_type === 'select'"
+                  :id="field.field_key"
+                  v-model="form.form_data[field.field_key]"
+                  :required="field.required || false"
+                  class="form-select"
+                >
+                  <option value="" selected>All</option>
+                  <option 
+                    v-for="option in field.field_options" 
+                    :value="option.option_text"
+                  >
+                    {{ option.option_text }}
+                  </option>
+                </select>
+                
+                <!-- Checkbox -->
+                <div 
+                  v-else-if="field.field_type === 'checkbox'"
+                  class="form-check"
+                >
+                  <input 
+                    type="checkbox"
+                    :id="field.field_key"
+                    v-model="form.form_data[field.field_key]"
+                    class="form-check-input"
+                  >
+                  <label :for="field.field_key" class="form-check-label">
+                    {{ field.field_label }}
+                  </label>
+                </div>
+                
+                <!-- Radio Buttons -->
+                <div 
+                  v-else-if="field.field_type === 'radio'"
+                  class="form-group"
+                >
+                  <div 
+                    v-for="option in field.field_options" 
+                    :key="option.value"
+                    class="form-check"
+                  >
+                    <input 
+                      type="radio"
+                      :id="`${field.field_key}-${option.value}`"
+                      :value="option.value"
+                      v-model="form.form_data[field.field_key]"
+                      class="form-check-input"
+                    >
+                    <label 
+                      :for="`${field.field_key}-${option.value}`" 
+                      class="form-check-label"
+                    >
+                      {{ option.option_text }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4 d-flex justify-content-end">
+              <button 
+                type="button" 
+                @click="submit"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </template>
+      
+      <!-- Posts Table -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="width: 50%;">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col" class="text-center">Comments</th>
+                <th scope="col">Last Comment</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Pinned Posts -->
+              <tr class="table-warning" v-for="postItm in pinnedPosts">
+                <td>
+                  <a class="h5 font-weight-bold text-dark" :href="route('post.view',postItm.id)">
+                    {{ postItm.title }}
+                  </a>
+                  <p class="text-muted small mb-0">Created: {{ postItm.created_at }}</p>
+                  <div class="mt-2">
+                    <template v-for="(tagItm, kddey) in postItm.form_data">
+                      <span class="badge bg-primary text-white me-1 mb-1">
+                        {{ postFormFieldArr[kddey] }}: {{ tagItm }}
+                      </span>
+                    </template>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <template v-if="postItm.author">
+                    {{ postItm.author.full_name }}
+                  </template>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge rounded-pill bg-info">{{ postItm.comments_count }}</span>
+                </td>
+                <td class="align-middle">
+                  <template v-if="postItm.latest_approved_comment">
+                    <span class="d-block">{{ postItm.latest_approved_comment.user.full_name }}</span>
+                    <span class="text-muted small">{{ postItm.latest_approved_comment.created_at }}</span>
+                  </template>
+                </td>
+                <td class="align-middle">
+                  <div class="btn-group btn-group-sm">
+                    <a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <a :href="route('post.delete',postItm.id)" class="btn btn-outline-danger">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              
+              <!-- Regular Posts -->
+              <tr v-for="postItm in posts.data">
+                <td>
+                  <a class="h5 font-weight-bold text-dark" :href="route('post.view',postItm.id)">
+                    {{ postItm.title }}
+                  </a>
+                  <p class="text-muted small mb-0">Created: {{ postItm.created_at }}</p>
+                  <div class="mt-2">
+                    <template v-for="(tagItm, kddey) in postItm.form_data">
+                      <span class="badge bg-primary text-white me-1 mb-1">
+                        {{ postFormFieldArr[kddey] }}: {{ tagItm }}
+                      </span>
+                    </template>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <template v-if="postItm.author">
+                    {{ postItm.author.full_name }}
+                  </template>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge rounded-pill bg-info">{{ postItm.comments_count }}</span>
+                </td>
+                <td class="align-middle">
+                  <template v-if="postItm.latest_approved_comment">
+                    <span class="d-block">{{ postItm.latest_approved_comment.user.name }}</span>
+                    <span class="text-muted small">{{ postItm.latest_approved_comment.created_at }}</span>
+                  </template>
+                </td>
+                <td class="align-middle">
+                  <div class="btn-group btn-group-sm">
+                    <a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="javascript::void(0)" @click="destroy(postItm.id)" class="btn btn-outline-danger">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Submit Button -->
-  <div class="mt-6 flex justify-end">
-    <a href="javascript::void(0)"
-      type="submit" @click="submit"
-      class="px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150"
-    >
-      Submit
-    </a>
-  </div>
-</form>
-</template>
- 
-				<div class="bg-white shadow-md rounded-lg overflow-hidden">
-				 
-				 
-						
-							 
-										
-										
-										
-										
-										
-										
-										<table class="min-w-full divide-y divide-gray-200">
-										  <thead class="bg-gray-50">
-													<tr>
-														<th scope="col" style="width:80%" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">title</th>
-							 
-														<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
-														<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Comments</th>
-														<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">last comments</th>
-													</tr>
-										   </thead>
-										   
-										   
-										   <tr class="pinnedRow" v-for="postItm in pinnedPosts">
-												<td style="width:80%" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-														<a   class="text-blue-600   hover:text-blue-800 hover:underline text-xl font-bold" :href="route('post.view',postItm.id)">
-															{{ postItm.title }}
-															
-													</a>
-													 		<p>  تاريخ الإنشاء : {{ postItm.created_at }}</p>
-												 
-												<template v-for="(tagItm , kddey) in postItm.form_data">
-													  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-1 mb-1">
-														{{ postFormFieldArr[kddey] }} : {{ tagItm }} 
-													  </span>
-													</template>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-													<template v-if="postItm.author">
-												 {{ postItm.author.name }}
-											 
-														</template>
-												</td>
-												<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ postItm.comments_count }}</td>
-												<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-															<template v-if="postItm.latest_approved_comment">
-															<p>{{ postItm.latest_approved_comment.user.name }}	</p>
-																<p>{{ postItm.latest_approved_comment.created_at }}	</p>
-																</template>
-															</td>
-											</tr>
-											
-											<tr v-for="postItm in posts.data">
-												<td style="width:80%" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-														<a   class="text-blue-600   hover:text-blue-800 hover:underline text-xl font-bold" :href="route('post.view',postItm.id)">
-															{{ postItm.title }}
-													</a>
-													 
-													<p>  تاريخ الإنشاء : {{ postItm.created_at }}</p>
-												 
-												<template v-for="(tagItm , kddey) in postItm.form_data">
-													  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-1 mb-1">
-														{{ postFormFieldArr[kddey] }} : {{ tagItm }} 
-													  </span>
-													</template>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-													<template v-if="postItm.author">
-												 	{{ postItm.author.name }}
-											 
-														</template>
-												</td>
-												<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ postItm.comments_count }}</td>
-												
-												
-												<td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-															<template v-if="postItm.latest_approved_comment">
-															<p>{{ postItm.latest_approved_comment.user.name }}	</p>
-																<p>{{ postItm.latest_approved_comment.created_at }}	</p>
-																</template>
-															</td>
-											</tr>
-										</table>
-
-						 
-				</div>
-			</div>
-		</div>
-		
-		
-    </AppLayout>
-</template>
+</AppLayout></template>

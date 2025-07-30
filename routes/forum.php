@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
- use App\Http\Controllers\Forum\CategoriesController; 
+ use App\Http\Controllers\Forum\CategoryController; 
  use App\Http\Controllers\Forum\SubjectController; 
  use App\Http\Controllers\Forum\SettingController; 
  use App\Http\Controllers\Forum\UserController; 
@@ -64,4 +64,22 @@ use Inertia\Inertia;
 	});
 	
 	 
- 
+ 	    Route::group(['prefix'=>'admin','middleware' => ['auth:admin']], function () {
+		//Route::get('/admin',[DashboardController::class,'show'])->name('admin.login-view');
+   
+		 	Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+		Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+		Route::get('category/index', [CategoryController::class, 'index'])->name('category.index');
+		Route::delete('category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+		Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');		
+		Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');	
+		 
+		Route::get('subject/create', [SubjectController::class, 'create'])->name('subject.create');
+		Route::post('subject/store', [SubjectController::class, 'store'])->name('subject.store');
+		Route::get('subject/index', [SubjectController::class, 'index'])->name('subject.index');
+		Route::delete('subject/delete/{id}', [SubjectController::class, 'destroy'])->name('subject.delete');
+		Route::get('subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');		
+		Route::post('subject/update/{id}', [SubjectController::class, 'update'])->name('subject.update');	
+			 
+		 	  
+		});
