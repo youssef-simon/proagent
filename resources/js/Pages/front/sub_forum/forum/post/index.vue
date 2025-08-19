@@ -7,6 +7,7 @@ import { router } from '@inertiajs/vue3'
 
 
  
+import { usePage } from '@inertiajs/vue3';
 
 
 
@@ -18,7 +19,7 @@ export default{
 	   data() {
 					return {
 						submit_form:false  , 
-					
+						user: usePage().props.auth.user, 
 					}
 		  } 
 	 
@@ -44,8 +45,8 @@ export default{
 			
 			const	breadcrumbs =   [
 								{
-									title: 'Forum',
-									href: '/',
+									title: 'forum',
+									href: '/forums',
 								},
 								{
 									title: props.subject.title,
@@ -95,7 +96,7 @@ export default{
     <ol class="breadcrumb">
       <template v-for="breadcrumb in breadcrumbs">
         <li class="breadcrumb-item">
-          <a :href="breadcrumb.href">{{ breadcrumb.title }}</a>
+          <a :href="breadcrumb.href">{{ __(breadcrumb.title) }}</a>
         </li>
       </template>
     </ol>
@@ -106,7 +107,7 @@ export default{
       <div class="card-headerspec bg-white d-flex justify-between  align-items-center">
         <h2 class="h4 mb-0 text-primary">{{ subject.title }}</h2>
         <a :href="route('post_inside.create',subject.id)" class="btn btn-primary">
-          <i class="fas fa-plus"></i> Create Post
+          <i class="fas fa-plus"></i>  {{ __("create_post") }}
         </a>
       </div>
       
@@ -232,11 +233,11 @@ export default{
           <table class="table table-hover mb-0">
             <thead class="thead-light">
               <tr>
-                <th scope="col" style="width: 50%;">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col" class="text-center">Comments</th>
-                <th scope="col">Last Comment</th>
-                <th scope="col">Actions</th>
+                <th scope="col" style="width: 50%;">{{ __("title") }}</th>
+                <th scope="col"> {{ __("author") }}</th>
+                <th scope="col" class="text-center"> {{ __("comments") }}</th>
+                <th scope="col"> {{ __("last_comment") }}</th>
+                <th scope="col"> </th>
               </tr>
             </thead>
             <tbody>
@@ -270,14 +271,21 @@ export default{
                   </template>
                 </td>
                 <td class="align-middle">
-                  <div class="btn-group btn-group-sm">
-                    <a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <a :href="route('post.delete',postItm.id)" class="btn btn-outline-danger">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </div>
+						
+							<div class="btn-group btn-group-sm">
+								  <template  v-if="postItm.user_id==user.id">
+											<a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
+											  <i class="fas fa-edit"></i>
+											</a>
+											<a :href="route('post.delete',postItm.id)" class="btn btn-outline-danger">
+											  <i class="fas fa-trash"></i>
+											</a>
+										  </template>
+									<a :href="route('post.view',postItm.id)" class="btn btn-outline-danger">
+									  <i class="fas fa-eye"></i>
+									</a> 
+						  </div>
+				  
                 </td>
               </tr>
               
@@ -287,7 +295,7 @@ export default{
                   <a class="h5 font-weight-bold text-dark" :href="route('post.view',postItm.id)">
                     {{ postItm.title }}
                   </a>
-                  <p class="text-muted small mb-0">Created: {{ postItm.created_at }}</p>
+                  <p class="text-muted small mb-0">{{ __("created_at") }} : {{ postItm.created_at }}</p>
                   <div class="mt-2">
                     <template v-for="(tagItm, kddey) in postItm.form_data">
                       <span class="badge bg-primary text-white me-1 mb-1">
@@ -311,14 +319,19 @@ export default{
                   </template>
                 </td>
                 <td class="align-middle">
-                  <div class="btn-group btn-group-sm">
-                    <a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="javascript::void(0)" @click="destroy(postItm.id)" class="btn btn-outline-danger">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </div>
+                <div class="btn-group btn-group-sm">
+								  <template  v-if="postItm.user_id==user.id">
+											<a :href="route('post.edit',postItm.id)" class="btn btn-outline-secondary">
+											  <i class="fas fa-edit"></i>
+											</a>
+											<a :href="route('post.delete',postItm.id)" class="btn btn-outline-danger">
+											  <i class="fas fa-trash"></i>
+											</a>
+										  </template>
+									<a :href="route('post.view',postItm.id)" class="btn btn-outline-danger">
+									  <i class="fas fa-eye"></i>
+									</a> 
+						  </div>
                 </td>
               </tr>
             </tbody>

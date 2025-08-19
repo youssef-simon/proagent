@@ -62,7 +62,7 @@ export default{
 
     <div class="formMainCont">
 	
-     <h2>Add Link</h2>
+     <h2>{{ __("add_link") }}</h2>
 			  
 			   
  
@@ -74,13 +74,13 @@ export default{
       
             <div class="formCont">
               <div class="form-group">
-					  <label for="title">title</label>
+					  <label for="title">{{ __("title") }}</label>
 				 	  <input id="title" class="form-control" v-model="form.title" />
 					 <div class="error_val" v-if="errors.title">{{ errors.title }}</div>
 			   </div>
 			   
 		<div class="form-group">
-					  <label for="link">link</label>
+					  <label for="link">{{ __("link") }}</label>
 				 	  <input id="link" class="form-control" v-model="form.link" />
 					 <div class="error_val" v-if="errors.link">{{ errors.link }}</div>
 			   </div>
@@ -89,7 +89,7 @@ export default{
 			    
                 
               <div class="form-group">
-					  <label for="description">description</label>
+					  <label for="description">{{ __("description") }}</label>
 				 	  <textarea v-model="form.description"  id="description" class="form-control  "  > 
 					   </textarea>
 					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
@@ -100,8 +100,8 @@ export default{
 				
 			   <div class="row">
 							<div class="col-12">
-								 	<button   class="btn btn-primary col-md-12" v-if="submit_form==false"	type="submit">save</button>
-								<button  class="btn btn-primary col-md-12" 	 v-if="submit_form==true" type="submit" disabled>save</button>
+								 	<button   class="btn btn-primary col-md-12" v-if="submit_form==false"	type="submit">{{ __("save") }}</button>
+								<button  class="btn btn-primary col-md-12" 	 v-if="submit_form==true" type="submit" disabled>{{ __("save") }}</button>
 							</div>
 				</div>
             

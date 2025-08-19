@@ -201,6 +201,9 @@ class ServiceController extends Controller
     public function destroy($id)
     {
 			$service=Service::find($id);
+			
+			
+			dd($id);
 			$service->delete();
 			
 			return to_route('service.index');

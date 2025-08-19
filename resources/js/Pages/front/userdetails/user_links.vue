@@ -55,7 +55,7 @@ export default{
 	 
 		 
 	 <div class="col-md-12 myLinks">
-		<h2>My Links</h2>
+		<h2>   {{ __("my_links") }}</h2>
 	      <div class="row">
 		  
 			<div   v-for="userLink in userLinks.data" class="col-md-12">

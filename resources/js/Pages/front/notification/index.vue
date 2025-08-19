@@ -40,7 +40,7 @@ export default {
 				</div>  
 				<div class="col-md-9">
 					 <div class="cards">
-			<h2>Notifictions</h2>
+			<h2> {{ __("notifictions") }}</h2>
 		 
 					  
 		 <ul class="notifyContList">

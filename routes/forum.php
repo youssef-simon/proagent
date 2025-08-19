@@ -54,8 +54,8 @@ use Inertia\Inertia;
  
 	  
 		 	
-	Route::post('/uploadimg', [\App\Http\Controllers\API\ImageUploadController::class, 'uploadimg']); 
-	Route::post('/uploadfile', [\App\Http\Controllers\API\FileUploadController::class, 'uploadfile']); 
+	Route::post('/uploadimgforum', [\App\Http\Controllers\Forum\API\ImageUploadController::class, 'uploadimg']); 
+	Route::post('/uploadfileforum', [\App\Http\Controllers\Forum\API\FileUploadController::class, 'uploadfile']); 
 	 
  
 		 
@@ -81,5 +81,8 @@ use Inertia\Inertia;
 		Route::get('subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');		
 		Route::post('subject/update/{id}', [SubjectController::class, 'update'])->name('subject.update');	
 			 
-		 	  
+		 	  		
+			Route::get('subject_form/create/{id}', [SubjectFormController::class, 'create'])->name('subject_form.create');
+		Route::post('subject_form/store/{id}', [SubjectFormController::class, 'store'])->name('subject_form.store');
+		  
 		});

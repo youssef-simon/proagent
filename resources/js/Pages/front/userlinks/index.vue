@@ -58,7 +58,7 @@ export default{
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" href="/link/create">Link Create</a>
+					<a  class="btn btn-primary" href="/link/create">{{ __("add_link") }}</a>
 			  </div>
               </div>
 			  
@@ -66,16 +66,17 @@ export default{
 <table class="table table-bordered table-hover dataTable dtr-inline">
 
 <tr>
-	<th>ID</th>
-	<th>Title</th> 
+	
+	<th>{{ __("title") }}</th> 
  
-	<th>Status</th> 
+	<th>{{ __("link") }}</th> 
+	<th> </th>  
 	<th> </th>  
 	 
 	 
 </tr>
 <tr  v-for="userLink in userLinks.data">
-	<td>{{ userLink.id }}</td>
+
 	<td><a href="">{{ userLink.title }}</a></td> 
 	<td>{{ userLink.description }}</td> 
  
@@ -107,10 +108,7 @@ export default{
                                             </Link> 
 			
 
-		<Link  class="btn-primary btn"
-                     :href="'/work_view/'+userLink.id"
-                    v-html="'View'"
-                />
+ 
 							
 											
 											

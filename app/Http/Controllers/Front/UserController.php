@@ -194,7 +194,7 @@ class UserController extends Controller
         if ($request->has('tags')) {
             $user->syncTags($request->tags);
         }
-		return to_route('home.user_details',['id'=>$user->slug]);
+		return to_route('user.user_details',['id'=>$user->slug]);
     }
 	
 	

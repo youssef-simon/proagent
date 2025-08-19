@@ -41,7 +41,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 <template>
 <div>  
-<div class="wrapper">
+<div class="wrapper adminDashboard">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
      
@@ -55,7 +55,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
     <!-- Brand Logo -->
     <a href="../index3.html" class="brand-link">
       <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Pro Agent</span>
     </a>
 
     <!-- Sidebar -->
@@ -139,7 +139,25 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 			</li> 
 			
 			
+				
+			 <li class="nav-item">
+					<a href="/admin/category/index"  :class="{ 'active': isCurrentPath('/admin/category/index') }"  class="nav-link">
+					  <i class="nav-icon fas fa-th"></i>
+					  <p>
+						Forum Categories 
+					  </p>
+					</a>
+			</li> 
 			
+					
+			 <li class="nav-item">
+					<a href="/admin/subject/index"  :class="{ 'active': isCurrentPath('/admin/subject/index') }"  class="nav-link">
+					  <i class="nav-icon fas fa-th"></i>
+					  <p>
+						Forum subject 
+					  </p>
+					</a>
+			</li> 
 			
 			
 		 </ul>

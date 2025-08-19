@@ -22,22 +22,22 @@ export default{
   <ul>
     <li>
       <a :href="'/user_details/'+user.slug" :class="{ active: isActive('/user_details/' + user.slug) }">
-        My Details
+        {{ __("cv_tab") }}
       </a>
     </li>
     <li>
       <a :href="'/user_services/'+user.slug" :class="{ active: isActive('/user_services/' + user.slug) }">
-        My Services
+       	 {{ __("my_servcies") }}
       </a>
     </li>
     <li>
       <a :href="'/user_works/'+user.slug" :class="{ active: isActive('/user_works/' + user.slug) }">
-        My Previous Projects / Experiences  
+     	 {{ __("my_previous_projects") }}
       </a>
     </li>
     <li>
       <a :href="'/user_links/'+user.slug" :class="{ active: isActive('/user_links/' + user.slug) }">
-        My Links
+        {{ __("my_links") }}
       </a>
     </li>
   </ul>

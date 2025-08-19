@@ -36,7 +36,7 @@ export default{
 	
       <div class="container">
 	  	<div class="header">
-			<h3>Users</h3>
+			<h3>{{ __("freelancers") }}</h3>
 	</div>
 			<div   v-for="userItm in users.data" class="proItem row">
 						<div class="col-md-2">

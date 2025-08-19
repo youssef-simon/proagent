@@ -62,10 +62,10 @@ class PostController extends Controller
 		
 		$subject = Subject::find($id); 
 			 
-		/* 	if ($request->user()->cannot('create', $subject)) {
+		 if ($request->user()->cannot('create', $subject)) {
 				dd("not allowed");
 			}
-		 */
+	 
 			
 		$postFormFields =	 PostForm::where("subject_id", $id)->get();	 
 	 
@@ -143,15 +143,13 @@ class PostController extends Controller
   
   
 		foreach($data['imgfields'] as $imgItm){
-			$imgData['path'] = $imgItm['image_path'];
-			$imgData['original_name']= $imgItm['original_name'];
+		 
 			
 			  $post->images()->create($imgData);
 		}
 		
 		foreach($data['filefields'] as $fileItm){
-			$imgData['path'] = $fileItm['filepath'];
-			$imgData['original_name']= $fileItm['original_name'];
+		 
 			
 			  $post->files()->create($imgData);
 		}
@@ -167,10 +165,16 @@ class PostController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
 		  $post = Post::where('id',$id)->with('images')->with('files')->first(); 
 		  $categories = Category::all();
+		  
+		  if( $post ->user_id!=$request->user()->id){
+			  print'not allowed';
+			  die();
+			  
+		  }
 		  
 		  return Inertia::render('front/sub_forum/post/edit',[ 'post'=>$post,'categories'=>$categories  ]);
     }
@@ -188,24 +192,24 @@ class PostController extends Controller
 		$post = Post::find($id); 
 		$post->update($data);
 		
-		
+		$post->images()->delete();
 			foreach($data['imgfields'] as $imgItm){
-			$imgData['path'] = $imgItm['image_path'];
-			$imgData['original_name']= $imgItm['original_name'];
+		//	$imgData['path'] = $imgItm['image_path'];
+			//$imgData['original_name']= $imgItm['original_name'];
 			
-			  $post->images()->create($imgData);
+			  $post->images()->create($imgItm);
 		}
-		
+		$post->files()->delete();
 		foreach($data['filefields'] as $fileItm){
-			$imgData['path'] = $fileItm['filepath'];
-			$imgData['original_name']= $fileItm['original_name'];
+		//	$imgData['path'] = $fileItm['filepath'];
+	// 	$imgData['original_name']= $fileItm['original_name'];
 			
-			  $post->files()->create($imgData);
+			  $post->files()->create($fileItm);
 		}
 		
 		
 		
-		return to_route('post.indexu');
+		return to_route('post.index',['id'=>  $post->subject_id ]);
     }
  
     public function destroy($id)

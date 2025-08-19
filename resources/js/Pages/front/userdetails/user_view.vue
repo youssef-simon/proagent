@@ -54,7 +54,7 @@ export default{
 	  <UserTab :user="user" />
 	  <div class="tabBigCont">
 	 <div class="col-md-12 bioCont">
-		<h2>My Bio</h2>
+		<h2> {{ __("cv_tab") }}</h2>
 		<div class="bioContTxt" v-html="user.biograph">
 		 
 		</div>
@@ -62,7 +62,7 @@ export default{
 	 </div>
 	 
 	 <div class="col-md-12 bioCont">
-		<h2>My Services</h2>
+		<h2> {{ __("my_servcies") }}</h2>
 	      <div class="row">
 		  
 			<div   v-for="serviceItm in services" class="col-md-4">
@@ -87,7 +87,7 @@ export default{
 	  </div>
 	  
 		 <div class="col-md-12 bioCont">
-				<h2> My Previous Projects / Experiences </h2>
+				<h2>	 {{ __("my_previous_projects") }}</h2>
 	      <div class="row">
 		  
 			<div   v-for="serviceItm in userprojects" class="col-md-4">

@@ -151,7 +151,7 @@ export default{
 
     <div class="formMainCont">
 	
-     <h2>Add Previos Project / Experince / Achievement</h2>
+     <h2>{{ __("edit_prev_project") }}</h2>
 			  
 			   					
 <div class="refusedReasonCont col-md-6">
@@ -168,7 +168,7 @@ export default{
       
             <div class="formCont">
               <div class="form-group">
-					  <label for="title">title</label>
+					  <label for="title">{{ __("title") }}</label>
 				 	  <input id="title" class="form-control" v-model="form.title" />
 					 <div class="error_val" v-if="errors.title">{{ errors.title }}</div>
 			   </div>
@@ -177,7 +177,7 @@ export default{
 			    
                 
               <div class="form-group">
-					  <label for="description">description</label>
+					<label for="description">{{ __("description") }}</label>
 				 	  <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
 					   
 					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
@@ -195,15 +195,14 @@ export default{
 					
 					
 					 <div class="repeater col-md-12 p15">
-                        <h3>Main Image</h3>
+                       <h3>{{ __("main_image") }}</h3>
 									<p class="descPhoto">Max 2MB</p>
                         <div class="row">
                             <div class="col-md-12" >
                                 <div class="control-group w-100 imgUploadCont">
                                      <label for="file-input">
 									 <i class="fa fa-image"></i>
-									Upload Image
-									  
+									 {{ __("upload_image") }}
 									 
 									 </label>
                                     <input type="file" class="imgfile" accept="image/*" @change="uploadImage($event,index)" id="file-input">
@@ -221,14 +220,14 @@ export default{
 				
 				
 				          <div class="repeater col-md-12 p15">
-                        <h3>Other Images</h3>
+                     <h3>{{ __("other_images") }}</h3>
                         <div class="borders" v-for="(field, index) in form.imgfields">
                             <div class="row">
                                 <div class="col-md-12" >
                                     <div class="control-group w-100 imgUploadCont">
                                            <label :for="'mfile-input'+index"> 
 										   <i class="fa fa-image"></i>
-													Upload Image
+												 {{ __("upload_image") }}
 											</label>
                                         <input type="file" class="imgfile" accept="image/*" @change="uploadMulitImage($event,index)" :id="'mfile-input'+index">
                                      

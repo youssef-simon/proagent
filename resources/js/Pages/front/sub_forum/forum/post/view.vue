@@ -61,8 +61,8 @@ export default{
 			
 			const	breadcrumbs =   [
 								{
-									title: 'Forum',
-									href: '/',
+									title: 'forum',
+									href: '/forums',
 								},
 								{
 									title: props.post.subject.title,
@@ -165,13 +165,15 @@ export default{
 	<AppLayout :breadcrumbs="breadcrumbs">
 
   <!-- Breadcrumb Navigation -->
-  <ol class="breadcrumb">
-    <template v-for="breadcrumb in breadcrumbs">
-      <li class="breadcrumb-item">
-        <a :href="breadcrumb.href">{{ breadcrumb.title }}</a>
-      </li>
-    </template>
-  </ol>
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <template v-for="breadcrumb in breadcrumbs">
+        <li class="breadcrumb-item">
+          <a :href="breadcrumb.href">{{ __(breadcrumb.title) }}</a>
+        </li>
+      </template>
+    </ol>
+  </nav>
 
   <div class="containeraa">
     <!-- Post Content -->
@@ -246,12 +248,16 @@ export default{
             <!-- Comment -->
             <div class="media mb-4 pb-4 border-bottom">
               <!-- Left Column - User Info -->
-              <div class="mr-3 text-center" style="width: 120px">
+			  
+			  
+			  
+			  <div class="row wdth100">
+              <div class="mr-3 text-center col-md-2 userCommDet">
                 <template v-if="comment.user">
-                  <a :href="route('user.user_details',{id: comment.user.slug })">
+                  <a class="userObjDetLnk" :href="route('user.user_details',{id: comment.user.slug })">
                     <img :src="comment.user.image_path_show" class="rounded-circle mb-2" width="60" height="60"/>
                   </a>
-                  <div>
+                  <div class="userObjDet">
                     <a :href="route('user.user_details',{id: comment.user.slug })" class="d-block">
                       {{ comment.user.full_name }}
                     </a>
@@ -261,7 +267,7 @@ export default{
               </div>
               
               <!-- Right Column - Comment Content -->
-              <div class="media-body">
+              <div class="media-body col-md-10">
                 <div class="d-flex justify-content-between mb-2">
                   <small class="text-muted">{{ comment.created_at }}</small>
                   <div v-if="user && comment.user_id==user.id">
@@ -325,6 +331,10 @@ export default{
                   </form>
                 </div>
               </div>
+              </div>
+			  
+			  
+			  
             </div>
           </template>
         </template>

@@ -180,13 +180,13 @@ export default{
 				<div class="formMainCont">
 					 
 			
-     <h1>Add Service</h1>		  
+     <h1>{{ __("add_service") }}</h1>		  
 					   	
 	 <form @submit.prevent="submit">
       <div class="col-md-9"> 
     <div class="formCont">
               <div class="form-group">
-					  <label for="title">title</label>
+					  <label for="title">{{ __("title") }}</label>
 				 	  <input id="title" class="form-control" v-model="form.title" />
 					 <div class="error_val" v-if="errors.title">{{ errors.title }}</div>
 			   </div>
@@ -194,7 +194,7 @@ export default{
 			   
 			    
               <div class="form-group">
-					  <label for="description">description</label>
+					  <label for="description">{{ __("description") }}</label>
 				 	  
 					   <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
 					   
@@ -202,7 +202,7 @@ export default{
 			   </div>
 			   
 			     <div class="form-group">
-					  <label for="price_from">price_from</label>
+					  <label for="price_from">{{ __("price_from") }}</label>
 				 	  <input id="price_from" class="form-control" v-model="form.price_from" />
 					<div class="error_val" v-if="errors.price_from">{{ errors.price_from }}</div>
 			   </div>
@@ -210,7 +210,7 @@ export default{
 			   
 			   
 			     <div class="form-group">
-										<label for="department_id">departement</label>
+										<label for="department_id"> {{ __("departement") }}</label>
 											<select   @change="departmentChange" class="form-control" v-model="form.department_id">
 												 <option v-for="departmentItm in departments"  
 														 :value="departmentItm.id">
@@ -221,7 +221,7 @@ export default{
 				</div>
 			   
 			    <div class="form-group">
-										<label for="category_id">category</label>
+										<label for="category_id">{{ __("category") }}</label>
 											<select   class="form-control" v-model="form.category_id">
 												 <option v-for="serviceCategory in serviceCategories"  
 														 :value="serviceCategory.id">
@@ -234,16 +234,14 @@ export default{
 			     
 				
 			 	 <div class="repeater col-md-12 p15">
-                        <h3>Main Image</h3>
+                        <h3>{{ __("main_image") }}</h3>
 									<p class="descPhoto">Max 3MB / preferable aspcec ratio 1352*740</p>
                         <div class="row">
                             <div class="col-md-12" >
                                 <div class="control-group w-100 imgUploadCont">
                                      <label for="file-input">
 									 <i class="fa fa-image"></i>
-									Upload Image
-									  
-									 
+								 {{ __("upload_image") }}
 									 </label>
                                     <input type="file" class="imgfile" accept="image/*" @change="uploadImage($event,index)" id="file-input">
                                   
@@ -256,14 +254,14 @@ export default{
 
 			  
 			             <div class="repeater col-md-12 p15">
-                        <h3>Other Images</h3>
+                        <h3>{{ __("other_images") }}</h3>
                         <div class="borders" v-for="(field, index) in form.imgfields">
                             <div class="row">
                                 <div class="col-md-12" >
                                     <div class="control-group w-100 imgUploadCont">
                                            <label :for="'mfile-input'+index"> 
 										   <i class="fa fa-image"></i>
-													Upload Image
+												 {{ __("upload_image") }}
 											</label>
                                         <input type="file" class="imgfile" accept="image/*" @change="uploadMulitImage($event,index)" :id="'mfile-input'+index">
                                      
@@ -273,19 +271,19 @@ export default{
                               
                                 <div class="col-md-12">
                                     <a @click="removeField(index)" href="javascript:void(0)" class="removeField btn btn-danger col-md-12"><span class="icon trash-icon"></span>
-                                        Remove
+                                        {{ __("remove") }}
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white  col-md-12 addField">ADD</a>
+                        <a href="javascript:void(0)" @click="AddField" class="btn btn-dark text-white  col-md-12 addField">{{ __("add") }}</a>
                     </div>
 				
 				
 			   <div class="row">
 							<div class="col-12">
-								 	<button   class="btn btn-primary" v-if="submit_form==false"	type="submit">save</button>
-								<button  class="btn btn-primary" 	 v-if="submit_form==true" type="submit" disabled>save</button>
+								 	<button   class="btn btn-primary col-md-12" v-if="submit_form==false"	type="submit">{{ __("save") }}</button>
+								<button  class="btn btn-primary col-md-12" 	 v-if="submit_form==true" type="submit" disabled>{{ __("save") }}</button>
 							</div>
 				</div>
 				</div>

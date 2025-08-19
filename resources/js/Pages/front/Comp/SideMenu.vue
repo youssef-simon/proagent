@@ -29,18 +29,21 @@ export default{
 					<li> <a href="/my_dashboard">
 					
 					<i class="fas fa-th"></i>
-					My Dashboard</a> </li>
+					{{ __("my_dashboard") }}
+					</a> </li>
 				
 				
 					<li> <a href="/my_notifications">
 					
 					<i class="fas fa-th"></i>
-					My Notifications</a> </li>
+				 {{ __("my_notifications") }}
+					</a> </li>
 					
 					<li> <a href="/service_list">
 					
 					<i class="fas fa-th"></i>
-					My Servcies</a> </li>
+						 {{ __("my_servcies") }}
+					 </a> </li>
 					
 					
 				<!--	<li> <a href="/my_requested_service">
@@ -56,24 +59,32 @@ export default{
 					My Page</a> </li>  -->
 					
 					<li> 	<a href="/my_messages">
-					<i class="fas fa-th"></i>
-					My Messages</a> </li> 
+					<i class="fas fa-th"></i> 
+						 {{ __("my_messages") }}
+					</a> </li> 
 				
 					<li><a href="/edit_profile">
 					<i class="fas fa-th"></i>
-					Edit Profile</a> </li> 
+					
+					 {{ __("edit_profile") }}
+					</a> </li> 
 					
 				<li> 	<a href="/my_works">
 					<i class="fas fa-th"></i>
-					  My Previous Projects / Experinces</a> </li> 
+					  
+					 {{ __("my_previous_projects") }}
+					  </a> </li> 
 					  
 									<li> 	<a href="/my_links">
-					<i class="fas fa-th"></i>
-					  My Links</a> </li>   
+					<i class="fas fa-th"></i> 
+					 {{ __("my_links") }}
+					  </a> </li>   
 					
 						<li v-if="user.vertified!=2"> 	<a href="/verify_create">
 					<i class="fas fa-th"></i>
-					verify account</a> </li> 
+					
+					 {{ __("verify_account") }}
+					</a> </li> 
 				</ul>
 		</div>  
 		

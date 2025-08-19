@@ -58,7 +58,7 @@ export default{
 	
 	  <div class="card-header">
                 <div>
-					<a  class="btn btn-primary" href="/create_work">Add Works</a>
+					<a  class="btn btn-primary" href="/create_work">{{ __("add_prev_project") }}</a>
 			  </div>
               </div>
 			  
@@ -67,9 +67,9 @@ export default{
 
 <tr>
 	<th>ID</th>
-	<th>Title</th> 
-	<th>Image</th> 
-	<th>Status</th> 
+	<th>{{ __("title") }}</th> 
+	<th>{{ __("main_image") }}</th> 
+	<th>{{ __("status") }}</th> 
 	<th> </th>  
 	 
 	 
@@ -82,9 +82,9 @@ export default{
 	<td><img :src="userProject.image_path_show" style="width:150px;height:150px;" /></td> 
 	
 	<td> 
-		<span class="badge badge-warning" v-if="userProject.status==1" >Under Review</span>
-		<span  class="badge badge-success"  v-if="userProject.status==2" >Approved</span>
-		<span class="badge badge-danger"  v-if="userProject.status==3" >declined</span>
+		<span class="badge badge-warning" v-if="userProject.status==1" > {{ __("under_review") }}</span>
+		<span  class="badge badge-success"  v-if="userProject.status==2" >{{ __("approved") }}</span>
+		<span class="badge badge-danger"  v-if="userProject.status==3" >{{ __("declined") }}</span>
 
 				<template v-if="userProject.status==3">
 					<Link  class="btn-primary btn"

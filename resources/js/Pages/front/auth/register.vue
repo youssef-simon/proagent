@@ -61,20 +61,20 @@ export default{
       <div class="row">
         <div class="col-md-6 middleReg">
           <div class="card card-primary">
-            	<h2>Register</h2>
+            	<h2> {{ __("register") }}</h2>
             <div class="card-body">
               <div class="form-group">
-					  <label for="name">  first_name:</label>
+					  <label for="name">{{ __("first_name") }}</label>
 					<input id="first_name" class="form-control" v-model="form.first_name" />
 						  <div class="error_val" v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
 			  <div class="form-group">
-					  <label for="name">  last_name:</label>
+					  <label for="name"> {{ __("last_name") }}</label>
 					<input id="last_name" class="form-control" v-model="form.last_name" />
 						  <div class="error_val" v-if="errors.first_name">{{ errors.first_name }}</div>
               </div>
               <div class="form-group">
-					<label for="email">email:</label>
+					<label for="email">{{ __("email") }} </label>
 					<input id="email" class="form-control" v-model="form.email" />
 				  <div class="error_val" v-if="errors.email">{{ errors.email }}</div>
               </div>
@@ -85,19 +85,19 @@ export default{
 			  
 			  
 			    <div class="form-group">
-					<label for="phone">phone:</label>
+					<label for="phone">  {{ __("phone") }} </label>
 					<input id="phone" class="form-control" v-model="form.phone" />
 				  <div class="error_val" v-if="errors.phone">{{ errors.phone }}</div>
               </div>
 			  
               <div class="form-group">
-             			  <label for="password">password:</label>
+             			  <label for="password">  {{ __("password") }} </label>
 						<input id="password" class="form-control" v-model="form.password" type="password" />
 						<div  class="error_val" v-if="errors.password">{{ errors.password }}</div>
               </div>
               
               <div class="form-group">
-                       <label for="password_confirmation">password_confirmation:</label>
+                       <label for="password_confirmation">  {{ __("password_confirmation") }}</label>
 					<input id="password_confirmation" class="form-control" type="password" v-model="form.password_confirmation" />
 							<div class="error_val" v-if="errors.password_confirmation">{{ errors.password_confirmation }}</div>
               </div>

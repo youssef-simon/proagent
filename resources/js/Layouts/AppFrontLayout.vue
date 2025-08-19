@@ -101,20 +101,20 @@ import { usePage } from '@inertiajs/vue3';
         <div class="navbar-collapse proNav">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"   :class="{ 'active': isCurrentPath('/home') }" >
-              <a class="nav-link" href="/home">Home</a>
+              <a class="nav-link" href="/home">{{ __("home") }}</a>
             </li>
             <!--  <li class="nav-item">
               <a class="nav-link"  href="/service">Services</a>
             </li>-->
             <li class="nav-item" :class="{ 'active': isCurrentPath('/users') }">
-              <a class="nav-link" href="/users">Freelancers</a>
+              <a class="nav-link" href="/users">{{ __("freelancers") }}</a>
             </li>
              <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
-              <a class="nav-link" href="/taxservice">Taxanomy</a>
+              <a class="nav-link" href="/taxservice"> {{ __("taxanomy") }}</a>
             </li>
 			
-			   <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
-              <a class="nav-link" href="/forums">Forums</a>
+			<li class="nav-item" :class="{ 'active': isCurrentPath('/forums') }">
+				<a class="nav-link" href="/forums">{{ __("forums") }}</a>
             </li>
 			
 			
@@ -122,18 +122,18 @@ import { usePage } from '@inertiajs/vue3';
 			
 			<template v-if="!user" >
 						<li class="nav-item">
-							<a class="btn btn-outline-dark nav-link" href="/register">Sign up</a>
+							<a class="btn btn-outline-dark nav-link" href="/register">{{ __("register") }}</a>
 					   </li>
 					   <li class="nav-item">
-							<a class="btn btn-outline-dark nav-link" href="/user_login">Login</a>
+							<a class="btn btn-outline-dark nav-link" href="/user_login">{{ __("login") }}</a>
 					     </li>
 					 </template>
 							 <template v-if="user" >
 								<li class="nav-item bgBtm">
-										<a class="btn btn-dark" href="/my_dashboard">My Dashboard</a>
+										<a class="btn btn-dark" href="/my_dashboard">{{ __("my_dashboard") }}</a>
 							     </li>
 							   <li class="nav-item bgBtm">
-									<a class="btn btn-dark" href="/logout_user">Log Out</a>
+									<a class="btn btn-dark" href="/logout_user">{{ __("logout") }}</a>
 							    </li>
 							 </template>
           </ul>

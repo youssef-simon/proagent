@@ -57,7 +57,7 @@ export default{
 	 
 		 
 	 <div class="col-md-12 bioCont">
-				<h2> My Previous Projects / Experiences </h2>
+				<h2>  {{ __("my_previous_projects") }} </h2>
 	      <div class="row">
 		  
 			<div   v-for="serviceItm in userprojects.data" class="col-md-4">

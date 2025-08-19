@@ -67,9 +67,9 @@ export default{
                         <table class="table table-hover mb-0">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style="width:60%" class="align-middle">Forum</th>
-                                    <th scope="col" class="text-center align-middle">Posts</th>
-                                    <th scope="col" class="align-middle">Latest Post</th>
+                                    <th scope="col" style="width:60%" class="align-middle">{{ __("title") }}</th>
+                                    <th scope="col" class="text-center align-middle">{{ __("posts_number") }}</th>
+                                    <th scope="col" class="align-middle">{{ __("latest_post") }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,7 +93,7 @@ export default{
                                                     {{ subject.latest_approved_post.title }}
                                                 </span>
                                                 <small class="text-muted">
-                                                    By: {{ subject.latest_approved_post.author.full_name }}
+                                                    {{ __("by") }} : {{ subject.latest_approved_post.author.full_name }}
                                                 </small>
                                             </div>
                                         </template>

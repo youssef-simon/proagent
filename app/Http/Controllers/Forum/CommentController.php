@@ -29,7 +29,7 @@ class CommentController extends Controller
 			$post = Post::find($id);
 			$subject=$post->subject ;
 	 
-	  	if ($request->user()->cannot('comment', $subject)) {
+			if ($request->user()->cannot('comment', $subject)) {
 				dd("not allowed");
 			}
 		  

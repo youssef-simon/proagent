@@ -57,27 +57,27 @@ export default{
 			<div class="loginCont">
 						<h6 class="error_val" v-if="errorscode">{{ errorscode }}</h6>
 						<h6 class="error_val green" v-if="verf==1">You will get Vertification mail verify it before login</h6>
-						<h2>Login</h2>
+						<h2>{{ __("login") }}</h2>
 					   <form @submit.prevent="submit">
 										<div class="form-group">
-											<label for="title"> Email</label>
+											<label for="title"> {{ __("email") }}</label>
 											<input id="title" class="form-control" v-model="form.email" />
 											  <div v-if="errors.email">{{ errors.email }}</div>
 										</div>
 										
 											<div class="form-group margZero">
-											<label for="title"> Password</label>
+											<label for="title">{{ __("password") }}</label>
 											<input id="title" class="form-control" type="password" v-model="form.password" />
 											  <div v-if="errors.password">{{ errors.password }}</div>
 										</div>
 										
 										 <div class="col-md-12">
-								<a class="forgetPass" href="/forgot-password">Forget Password</a>						 
+								<a class="forgetPass" href="/forgot-password">{{ __("forget_password") }}</a>						 
 										 </div>
 										 <div class="btmCont">
 										<button  
 										class="btn btn-primary"
-										type="submit">Login</button>
+										type="submit">{{ __("login") }}</button>
 										</div>
 							  </form>
 							<div class="regisCont">

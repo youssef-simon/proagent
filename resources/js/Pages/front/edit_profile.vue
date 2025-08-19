@@ -101,10 +101,7 @@ export default{
 				   return false;
 				 }
 
-
-
-
-
+ 
                 const URL = '/api/uploadimg';
 
                 let data = new FormData();
@@ -183,25 +180,25 @@ export default{
           
             <div class="card-body">
               <div class="form-group">
-					  <label for="name">  first_name:</label>
+					  <label for="name">{{ __("first_name") }}</label>
 					<input id="first_name" class="form-control" v-model="form.first_name" />
               </div>
 			  <div class="form-group">
-					  <label for="name">  last_name:</label>
+					  <label for="name">{{ __("last_name") }}</label>
 					<input id="last_name" class="form-control" v-model="form.last_name" />
               </div>
 			   <div class="form-group">
-					  <label for="name">  work_title:</label>
+					  <label for="name"> {{ __("work_title") }}</label>
 					<input id="work_title" class="form-control" v-model="form.work_title" />
               </div>
 			  
 			 <div class="form-group">
-					  <label for="name">small_bio:</label>
+					  <label for="name">{{ __("small_bio") }} </label>
 					<textarea id="small_bio" class="form-control" v-model="form.small_bio"  ></textarea>
               </div>
 			  
 			    <div class="form-group">
-					  <label for="name">biograph:</label>
+					  <label for="name">{{ __("biograph") }}</label>
 				 
 						  <QuillEditor v-model:content="form.biograph"  id="biograph" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
 					   
@@ -211,7 +208,7 @@ export default{
               </div>
 			  
 			    <div class="form-group">
-					<label for="phone">phone:</label>
+					<label for="phone">{{ __("phone") }}</label>
 					<input id="phone" class="form-control" v-model="form.phone" />
 				  <div v-if="errors.phone">{{ errors.phone }}</div>
               </div>
@@ -221,7 +218,7 @@ export default{
 			  
  
 					 <div class="form-group">
-								  <label for="name">  Tags:</label>
+								  <label for="name"> {{ __("skills") }}</label>
 								<Multiselect
 						 
 						  placeholder="Choose or Write Tags"
@@ -245,7 +242,7 @@ export default{
 			  
 			  <div class="form-group">
 			  <div class="repeater col-md-12 p15 editImgProfile">
-                        <h3>photo</h3> 
+                        <h3>{{ __("photo") }}</h3> 
                         <div class="row">
                             <div class="col-md-6" >
                                 <div class="control-group w-100">
@@ -332,7 +329,7 @@ export default{
 		  
 		  
 		  
-		    <button   class="btn btn-success float-right col-md-12" type="submit">Save</button>
+		    <button   class="btn btn-success float-right col-md-12" type="submit">{{ __("save") }}</button>
           </div>
           <!-- /.card -->
         </div>

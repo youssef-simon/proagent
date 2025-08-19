@@ -61,7 +61,7 @@ export default{
 	 
 		 
 	 <div class="col-md-12 bioCont">
-		<h2>My Services</h2>
+		<h2> {{ __("my_servcies") }}</h2>
 	      <div class="row">
 		  
 			<div   v-for="serviceItm in services.data" class="col-md-4">

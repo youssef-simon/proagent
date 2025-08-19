@@ -52,7 +52,7 @@ export default{
 			
 			  <div class="card-header">
 						<div>
-							<a  class="btn btn-primary" href="/create_service">Add Service</a>
+							<a  class="btn btn-primary" href="/create_service">{{ __("add_service") }}</a>
 					  </div>
 					  </div>
 					  
@@ -61,11 +61,11 @@ export default{
 
 		<tr>
 			<th>ID</th>
-			<th>Title</th>  
-			<th>Price</th> 
-			<th>Image</th> 
-			<th>Status</th>  
-			<th>Acion</th> 
+			<th>{{ __("title") }}</th>  
+			<th>{{ __("price_from") }}</th> 
+			<th>{{ __("main_image") }}</th> 
+			<th>{{ __("status") }}</th>  
+			<th> </th> 
 		</tr>
 		<tr  v-for="service in services.data">
 					<td>{{ service.id }}</td>
@@ -73,9 +73,9 @@ export default{
 					<td>{{ service.price_from }}</td> 
 					<td><img :src="service.image_path_show" style="width:150px;height:150px;" /></td> 
 				<td> 
-		<span class="badge badge-warning" v-if="service.status==1" >Under Review</span>
-		<span  class="badge badge-success"  v-if="service.status==2" >Approved</span>
-		<span class="badge badge-danger"  v-if="service.status==3" >declined</span>
+		<span class="badge badge-warning" v-if="service.status==1" >{{ __("under_review") }}</span>
+		<span  class="badge badge-success"  v-if="service.status==2" >{{ __("approved") }}</span>
+		<span class="badge badge-danger"  v-if="service.status==3" > {{ __("declined") }}</span>
 
 
 <template v-if="service.status==3">
