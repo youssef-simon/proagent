@@ -158,7 +158,7 @@ export default{
                   :id="field.field_key"
                   v-model="form.form_data[field.field_key]"
                   :required="field.required || false"
-                  class="form-select"
+                  class="form-control"
                 >
                   <option value="" selected>All</option>
                   <option 
@@ -220,7 +220,7 @@ export default{
                 @click="submit"
                 class="btn btn-primary"
               >
-                Submit
+                {{ __("search") }}
               </button>
             </div>
           </form>

@@ -60,7 +60,7 @@ export default{
 				  
 				  
 				  
-					<h4>Other Departements : </h4>	
+					<h4 class="other_departements">{{ __("other_departements") }} </h4>	
 				  	<template  v-for="departItm in alldepartments">
 							<template v-if="dep_id!=departItm.slug">
 								<h6 class="serviceDep">

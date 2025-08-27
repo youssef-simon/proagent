@@ -143,19 +143,27 @@ class UserProjectController extends Controller
 
 		 $userProjectLnkHref ="/work_view/".$userProject->id;
 		 $userProjectLnk='<a href="'. $userProjectLnkHref.'">'.$userProject ->title.'</a>';
+			
+				 $reasonLnk ="/edit_work/".$userProject->id;
+		 $reasonLnk='<a href="'. $reasonLnk.'">'.__('app.know_the_reason').'</a>';
 
 
 		if($status==UserProject::STATUS_ACCEPTED){
-		 $data['description']= "your Experience  $userProjectLnk has been accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		 //$data['description']= "your Experience  $userProjectLnk has been accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		 $data['description']=  $userProjectLnk." - ".__('app.your_work_you_put_is_accepted');
+		  
 		 }
 		 
 		 
 		if($status==UserProject::STATUS_REFUSED){
-		 $data['description']= "your Experience  $userProjectLnk you put doesnt accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		 //$data['description']= "your Experience  $userProjectLnk you put doesnt accepted check your Experiences page"." <a href='/my_works'>Experiences page</a>";
+		  $data['description']=  $userProjectLnk." - ".__('app.your_work_you_put_is_refused').' '.$reasonLnk;
 		 }
 		 
 		 if($status==UserProject::STATUS_PENDING){
-		 $data['description']= "your Experience  $userProjectLnk is under Invertigating"." <a href='/my_works'>Experiences page</a>";
+		// $data['description']= "your Experience  $userProjectLnk is under Invertigating"." <a href='/my_works'>Experiences page</a>";
+		 $data['description']=  $userProjectLnk." - ".__('app.your_work_you_put_is_under_review');
+		 
 		 }
 		
 		 $data['user_id'] = $userProject->user_id;

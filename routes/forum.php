@@ -11,6 +11,7 @@ use Inertia\Inertia;
  use App\Http\Controllers\Forum\PostController; 
  use App\Http\Controllers\Forum\CommentController;   
  use App\Http\Controllers\Forum\ReplyController;  
+ use App\Http\Controllers\Forum\SubjectFormController;  
  
 /* Route::get('/', function () {
     return Inertia::render('Welcome');

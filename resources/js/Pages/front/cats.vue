@@ -26,7 +26,7 @@ export default{
 <AppLayout title="Dashboard">
     <div class="container whContAll taxaPage">
 	<div class="colHeader">
-			<h2>Taxanomy</h2>
+			<h2>{{ __("taxonomy") }}</h2>
 	</div>
       <div class="row">
 	  

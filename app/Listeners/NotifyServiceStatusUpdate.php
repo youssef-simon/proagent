@@ -30,16 +30,18 @@ class NotifyServiceStatusUpdate
 		  $serviceLnkHref ="/service_view/".$service->id;
 		 $serviceLnk='<a href="'. $serviceLnkHref.'">'.$service ->title.'</a>';
 		 if($status==Service::STATUS_ACCEPTED){
-		 $data['description']= "your service  $serviceLnk has been accepted check your service page"." <a href='/service_list'>services page</a>";
-		 }
+		 $data['description']= $serviceLnk." - ".__('app.your_service_you_put_is_accepted');
 		 
+		 }
+		  $reasonLnk ="/service_edit/".$service->id;
+		 $reasonLnk='<a href="'. $reasonLnk.'">'.__('app.know_the_reason').'</a>';
 		 
 		if($status==Service::STATUS_REFUSED){
-		 $data['description']= "your service  $serviceLnk you put doesnt accepted check your service page"." <a href='/service_list'>services page</a>";
+		 $data['description']= $serviceLnk." - ".__('app.your_service_you_put_is_refused').' '.$reasonLnk;
 		 }
 		 
 		 if($status==Service::STATUS_PENDING){
-		 $data['description']= "your service  $serviceLnk is under Invertigating"." <a href='/service_list'>services page</a>";
+		 $data['description']=  $serviceLnk." - ".__('app.your_service_you_put_is_under_review');
 		 }
 		
 		 $data['user_id'] = $service->user_id;

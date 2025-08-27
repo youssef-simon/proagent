@@ -60,7 +60,8 @@ class MyProjectController extends Controller
 			$serviceImage = UserProjectImage::create($subData);
 		}
 
-		  $ndata['description']= "your Experience you put is under Review"." <a href='/my_works'>Experience page</a>";
+		//  $ndata['description']= "your Experience you put is under Review"." <a href='/my_works'>Experience page</a>";
+		   $ndata['description']=  "<a href='/user_works/".$userProject->id."'>$userProject->title</a> - ". __('app.your_experience_you_put_is_under_review')." <a href='/my_works'>	</a>";
 		  $ndata['user_id']= 	$userProject->user_id;
 	 
 	 		Notification::create($ndata);

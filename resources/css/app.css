@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notokufiarabic.css); 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -567,8 +569,7 @@ div.carts {
 
 
 .whContAll ul li.taxItmCont a { padding: 5px; }
-.whContAll ul li.taxItmCont a.active{ background: black;
-    color: #fff;  }
+.whContAll ul li.taxItmCont a.active{  color: #000; text-decoration:underline; }
 	
 	.header h2 a{ color:#212529; } 
 	
@@ -961,4 +962,44 @@ body{ direction:rtl;	 }
     content: "/";
 }
 .adminDashboard{ direction:ltr; }
+
+
+
+
+ body { font-family: 'Noto Kufi Arabic', sans-serif; }
+ body  header ul.nav li a { font-family: 'Noto Kufi Arabic', sans-serif; }
+  body h1,body h2,body h3,body h4,body h5,body h6 {  font-family: 'Noto Kufi Arabic', sans-serif; }
+    a,span {  font-family: 'Noto Kufi Arabic', sans-serif; }
+   table td{  font-family: 'Noto Kufi Arabic', sans-serif; }
+ p{  font-family: 'Noto Kufi Arabic', sans-serif; }
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{  font-family: 'Noto Kufi Arabic', sans-serif; }
+
+h2{  font-family: 'Noto Kufi Arabic', sans-serif!important; }
+label{  font-family: 'Noto Kufi Arabic', sans-serif!important; text-align:right; }
+
+.notifyContList li{   font-family: 'Noto Kufi Arabic', sans-serif ;} 
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.serviceDep a{ background:#fff; color:#000; }
+.serviceDep a:hover{  text-decoration:underline; }
+
+.other_departements{ padding-bottom:20px; }
+ .headTxtCont h1{ text-align:center; }
+ .headTxtCont h4{ text-align:center; }
+ select {
+     background-position: left 0.5rem center; 
+	  font-family: 'Noto Kufi Arabic', sans-serif ;
+}
+
+.tagCont{ text-align:right; }
+.bodyCont{ text-align:right; }
+
+.media-body{ text-align:right;  }
 /*****************************************************/

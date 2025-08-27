@@ -76,11 +76,38 @@
 							"posts_number":"عدد المنشورات" ,
 							"by":" بواسطة" ,
 							"author":"بواسطة" ,
-							"comments":"عدد التعليقات" ,
+							"comments":" التعليقات" ,
 							"last_comment":"اخر تعليق" ,
 							"forum":"المنتدى" ,
 							"create_post":"اضف منشور" ,
 							"created_at":"تاريخ الانشاء" ,
+							
+							"create_comment":"انشاء تعليق" ,
+							"send":"ارسال" ,
+							"no_comments":" لايوجد تعليقات" ,
+							
+							"taxonomy":"التصنيف" ,
+							"other_departements":"اقسام اخرى" ,
+							"you_page":"صفحتى" ,
+							"verfied":"موثق" ,
+							"services_count":"عدد الخدمات" ,
+							"works_count":"عدد المشروعات / الخبرة / انجاز سابق" ,
+							"edit_prev_project":"تعديل المشروع او الخبرة السابقة" ,
+							
+							
+							"edit_service":"تعديل الخدمة" ,
+							"edit":"تعديل" ,
+							"view":"اظهار" ,
+							"know_the_reason":"اعرف السبب" ,
+							"under_review":" تحت المراجعة" ,
+							"approved":"تمت الموافقة" ,
+							"declined":"تم الرفض " ,
+							"body":"التفاصيل" ,
+							"image_gallery":"الصور" ,
+							"files":"الملفات" ,
+							"add_image":" اضف صورة" ,
+							"add_file":"اضف ملف" ,
+							"search":"ابحث" ,
 				};
 		</script>
 	@else
@@ -141,6 +168,16 @@
 									"forum":"forum" ,
 									"create_post":"Create Post" ,
 											"created_at":"created at" ,
+											"no comments":"No Comments Available" ,
+											"taxonomy":"Taxonomy" ,
+											"other_departements":"Other Departements" ,
+											
+											"you_page":"your Page" ,
+											"verfied":"verfied" ,
+											"services_count":"services count" ,
+											"edit_prev_project":"Edit previous project / Experinces" ,
+											"edit_service":"Edit Servcie" ,
+												"search":"Search" ,
 				};
 		</script>
 	@endif

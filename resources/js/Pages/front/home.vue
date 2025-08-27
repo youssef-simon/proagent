@@ -104,9 +104,9 @@ export default{
 		<div class="container">
 				<div class="headerContainer">
 						<div class="headTxtCont">
-						<h1>Professional Online Profile Builder</h1>
-						<h4>You Can Now Build your Profile Online For Free For limited time</h4>
-						<h4>Make your portfolio to show your Experince and Past Projects , your paid Services</h4>
+					<h1>انشئ صفحتك الاحترافية عى الانترنت  </h1> 
+						<h4>يمكنك الآن بناء ملفك الشخصي عبر الإنترنت مجانًا لفترة محدودة</h4> 
+						<h4>اصنع ملفك الشخصي لعرض خبراتك ومشاريعك السابقة، وخدماتك المدفوعة</h4>
 						</div>
 				</div>
 		</div>
@@ -114,24 +114,24 @@ export default{
  
   <section class="howto">
 		<div class="container">
-				 <h1>How It Works</h1>
+				 <h1>كيف يعمل</h1>
 				 
 				 <div class="row howtoList">
 					 <div class="col-md-4"> 
 						<div class="itmHow">
-							<h4>Register</h4>
+							<h4>قم بالتسجيل</h4>
 								<img src="/img/reg.png" />
 						</div>
 					 </div>
 					 <div class="col-md-4"> 
 						<div class="itmHow">
-							<h4>Validation</h4>
+							<h4>وثق نفسك</h4>
 								<img src="/img/val.png" />
 						</div>
 					 </div>
 					 <div class="col-md-4"> 
 							<div class="itmHow">
-							<h4>Build your cv</h4>
+							<h4>ابنى السيرة الذاتية</h4>
 							
 								<img src="/img/cv.png" />
 						</div>				
@@ -139,19 +139,19 @@ export default{
 					 
 					 	 <div class="col-md-4"> 
 						<div class="itmHow">
-							<h4>Add your Past Projects</h4>
+							<h4>اضف مشروع او خبرة او انجاز سابق</h4>
 							<img src="/img/p.png" />
 						</div>
 					 </div>
 					 <div class="col-md-4"> 
 						<div class="itmHow">
-						 <h4>Add your Past Services</h4>
+						 <h4>اضف خدماتك</h4>
 						 <img src="/img/s.png" />
 						</div>
 					 </div>
 					 <div class="col-md-4"> 
 							<div class="itmHow">
-								 <h4>Get Customer</h4>
+								 <h4>احصل على عملاء</h4>
 								  <img src="/img/m.png" />
 						</div>				
 					 </div>

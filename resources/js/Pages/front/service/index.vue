@@ -80,26 +80,17 @@ export default{
 
 <template v-if="service.status==3">
 					<Link  class="btn-primary btn"
-									 :href="'/service/'+service.id"
-									v-html="'view reason'"
-								/> 
+									 :href="'/service_edit/'+service.id"
+									 
+								 > 	{{ __("know_the_reason") }} </Link>
 				</template>
 				</td>
 				 
 			<td class="actionBtn"> 
-			<Link  class="btn-primary btn"
-							  :href="'/service_edit/'+service.id"
-							v-html="'edit'"
-						/>
-						
-					 <Link class="btn-primary btn" @click="destroy( service.id)" >
-														Delete
-													</Link> 
-						
-						
-						 <Link class="btn-primary btn"     :href="'/service_view/'+service.id"
-							v-html="'View'" />
-					 </td>
+					<Link  class="btn-primary btn"  :href="'/service_edit/'+service.id"  > {{ __("edit") }} 	 </Link>
+						<Link class="btn-primary btn" @click="destroy( service.id)" > 	{{ __("remove") }} 	</Link> 
+					  <Link class="btn-primary btn"     :href="'/service_view/'+service.id"> 	{{ __("view") }}  </Link>
+				</td>
 					 
 		</tr>
 		</table>

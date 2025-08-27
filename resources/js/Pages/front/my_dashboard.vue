@@ -62,17 +62,17 @@ export default{
 								 
 											<h2>{{ user.full_name	 }}</h2>  
 											<h5>{{ user.work_title	 }}</h5>  
-											<h5>Your Page : <a target="_blank" :href="'/user_details/'+user.slug">{{ protocol }}//{{ curr_domain }}/user_details/{{ user.slug }}</a></h5>  
+											<h5>{{ __("you_page") }} : <a target="_blank" :href="'/user_details/'+user.slug">{{ protocol }}//{{ curr_domain }}/user_details/{{ user.slug }}</a></h5>  
 											<div class="col-md-12">
 									 
 							 
 											</div>
 											
 											<template v-if="user.vertified==2">
-												<span class="verfiedUser"><i class="fa fa-check-circle"></i>Verfied</span>
+												<span class="verfiedUser"><i class="fa fa-check-circle"></i>{{ __("verfied") }}</span>
 											</template>
 											<template v-if="user.vertified!=2">
-												<span class="unverfiedUser"><i class="fa fa-flushed"></i>Not Verfied</span>
+												<span class="unverfiedUser"><i class="fa fa-flushed"></i>{{ __("not_verfied") }}</span>
 												 
 											</template>
 									</div>		
@@ -127,14 +127,14 @@ export default{
 					<div class="col-md-6">
 						<div class="cardCont">
 						
-						<h3>Servcies Count</h3>
+						<h3> {{ __("services_count") }}</h3>
 						<h4>{{ servicesCount }}</h4	>
 						</div>
 					</div>
 					
 					<div class="col-md-6">
 						<div class="cardCont">
-							<h3>Works/Achievement</h3>
+							<h3> {{ __("works_count") }} </h3>
 						<h4>{{ worksCount }}</h4	>
 						
 						</div>

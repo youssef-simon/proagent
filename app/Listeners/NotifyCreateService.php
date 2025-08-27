@@ -24,10 +24,10 @@ class NotifyCreateService
     {
 			$service = $event->service;
 			 
-			
-		  $ndata['description']= "your service you create is under review";
-		  $ndata['user_id']= 	$service->user_id;
-	 
+			   $ndata['description']=  "<a href='/service_view/".$service->id."'>$service->title</a> - ". __('app.your_service_you_put_is_under_review');
+		
+		   $ndata['user_id']= 	$service->user_id;
+	// dd( $ndata);
 	 		Notification::create($ndata);
     }
 }

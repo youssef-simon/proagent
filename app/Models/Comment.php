@@ -11,6 +11,14 @@ use App\Models\Comment;
 
 class Comment extends Model
 {
+	
+	
+	
+	protected $casts = [
+		'created_at' => 'datetime:Y-m-d H:i:s',
+	 ];
+ 
+	
   	protected $fillable = [ 
         'body',  	   
         'post_id',  	   

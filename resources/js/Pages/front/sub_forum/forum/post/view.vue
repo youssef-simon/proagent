@@ -185,7 +185,7 @@ export default{
       </div>  
       </div>  
         <!-- Tags -->
-        <div class="mb-3">
+        <div class="mb-3 tagCont">
           <template v-for="(tagItm, kddey) in post.form_data">
             <span class="badge bg-primary mr-1 mb-1">
               {{ postFormFieldArr[kddey] }}: {{ tagItm }}
@@ -194,7 +194,7 @@ export default{
         </div>
         
         <!-- Post Content -->
-        <div class="mb-4" v-html="post.description"></div>
+        <div class="mb-4 bodyCont" v-html="post.description"></div>
         
         <!-- Images -->
         <div class="row mb-4">
@@ -231,7 +231,7 @@ export default{
         
         <div class="text-right">
           <a :href="route('post.create_comment',post.id)" class="btn btn-primary">
-            <i class="fas fa-plus mr-1"></i> Create Comment
+            <i class="fas fa-plus mr-1"></i> {{ __("create_comment") }} 
           </a>
         </div>
       </div>
@@ -240,7 +240,7 @@ export default{
     <!-- Comments Section -->
     <div class="card mb-4">
       <div class="card-header">
-        <h2>Comments</h2>
+        <h2>{{ __("comments") }} </h2>
       </div>
       <div class="card-body">
         <template v-if="comments.data.length > 0">
@@ -285,7 +285,7 @@ export default{
                 <!-- Replies -->
                 <template v-if="comment.replies && comment.replies.length > 0">
                   <div class="pl-3 border-left">
-                    <h6 class="text-muted mb-3">Replies</h6>
+                    <h6 class="text-muted mb-3">{{ __("replies") }}</h6>
                     <template v-for="reply in comment.replies">
                       <div class="media mb-3">
 					  
@@ -325,7 +325,7 @@ export default{
                       ></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">
-                      <span v-if="!submit_form">Submit Reply</span>
+                      <span v-if="!submit_form">{{ __("send") }}</span>
                       <span v-else>Submitting...</span>
                     </button>
                   </form>
@@ -340,7 +340,7 @@ export default{
         </template>
         <template v-else>
           <div class="text-center text-muted py-4">
-            No comments yet. Be the first to comment!
+      {{ __("no_comments") }}
           </div>
         </template>
       </div>
@@ -349,7 +349,7 @@ export default{
     <!-- Create Comment Form -->
     <div class="card">
       <div class="card-header">
-        <h2>Create Comment</h2>
+        <h2> </h2>
       </div>
       <div class="card-body">
         <form @submit.prevent="submit">
@@ -363,7 +363,7 @@ export default{
             ></textarea>
           </div>
           <button type="submit" class="btn btn-primary">
-            <span v-if="!submit_form">Submit Comment</span>
+            <span v-if="!submit_form">{{ __("send") }}</span>
             <span v-else>Submitting...</span>
           </button>
         </form>
