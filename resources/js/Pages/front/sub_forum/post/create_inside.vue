@@ -192,7 +192,7 @@ export default{
                 axios.post(URL,data,config).then(function (response) { 
 				 
                     self.form.filefields[index].original_name =  response.data.file_name;
-                    self.form.filefields[index].filepath =  response.data.path;
+                    self.form.filefields[index].path =  response.data.path;
                     self.form.filefields[index].filepathshow =  response.data.pathshow;
                     self.form.filefields[index].filetype =  response.data.filetype;
 				 
@@ -252,22 +252,7 @@ export default{
     <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ __("create_post") }}</h2>
     <form class="space-y-6" @submit.prevent="submit"> 
 	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	
 	
 	
@@ -283,112 +268,142 @@ export default{
         >
       </div>
       
-      <div>
-	  
-	  <label for="title" class="block text-sm font-medium text-gray-700 mb-1">{{ __("body") }}</label>
-     <div class="flex flex-wrap gap-1 p-2 border rounded-md bg-gray-50">
-  <!-- Text Formatting -->
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleBold().run()" 
-    :disabled="!editor.can().chain().focus().toggleBold().run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('bold') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Bold
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleItalic().run()" 
-    :disabled="!editor.can().chain().focus().toggleItalic().run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('italic') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Italic
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleStrike().run()" 
-    :disabled="!editor.can().chain().focus().toggleStrike().run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('strike') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Strike
-  </a>
-  
-  <!-- Headings -->
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('heading', { level: 1 }) }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200"
-  >
-    H1
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('heading', { level: 2 }) }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200"
-  >
-    H2
-  </a>
-  
-  <!-- Lists -->
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleBulletList().run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('bulletList') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200"
-  >
-    Bullet List
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().toggleOrderedList().run()" 
-    :class="{ 'bg-gray-200 text-gray-800': editor.isActive('orderedList') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200"
-  >
-    Ordered List
-  </a>
-  
-  <!-- Other controls -->
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().setHorizontalRule().run()" 
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200"
-  >
-    HR
-  </a>
-  
-  <a href="javascript::void(0)" 
-  @click="editor.chain().focus().toggleHighlight().run()" 
-  :class="{ 'is-active': editor.isActive('highlight') }"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-   HighLight
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().undo().run()" 
-    :disabled="!editor.can().chain().focus().undo().run()"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Undo
-  </a>
-  
-  <a href="javascript::void(0)" 
-    @click="editor.chain().focus().redo().run()" 
-    :disabled="!editor.can().chain().focus().redo().run()"
-    class="px-2 py-1 text-sm font-medium rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Redo
-  </a>
-</div>
-	  <div class="textEditor no-tailwind reset-tailwind border border-gray-300  p-4">
-		   <editor-content
-		   :editor="editor" /> 
-		</div>
-			
-      </div>
-      
-	  
+     
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	          <label for="title" class="block text-sm font-medium text-gray-700 mb-1">{{ __("body") }}</label>
+        <!-- شريط الأدوات المحسن -->
+        <div class="toolbar flex flex-wrap gap-2 p-3 border border-gray-300 rounded-t-lg bg-gray-50">
+            <!-- Text Formatting -->
+            <button type="button"
+                @click="editor.chain().focus().toggleBold().run()" 
+                :disabled="!editor.can().chain().focus().toggleBold().run()" 
+                :class="{ 'is-active': editor.isActive('bold') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="عريض"
+            >
+                <i class="fa-solid fa-bold"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleItalic().run()" 
+                :disabled="!editor.can().chain().focus().toggleItalic().run()" 
+                :class="{ 'is-active': editor.isActive('italic') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="مائل"
+            >
+                <i class="fa-solid fa-italic"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleStrike().run()" 
+                :disabled="!editor.can().chain().focus().toggleStrike().run()" 
+                :class="{ 'is-active': editor.isActive('strike') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="يتوسطه خط"
+            >
+                <i class="fa-solid fa-strikethrough"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Headings -->
+            <button type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" 
+                :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="عنوان رئيسي"
+            >
+                <i class="fa-solid fa-heading"></i> 1
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" 
+                :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="عنوان فرعي"
+            >
+                <i class="fa-solid fa-heading"></i> 2
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Lists -->
+            <button type="button"
+                @click="editor.chain().focus().toggleBulletList().run()" 
+                :class="{ 'is-active': editor.isActive('bulletList') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="قائمة نقطية"
+            >
+                <i class="fa-solid fa-list-ul"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleOrderedList().run()" 
+                :class="{ 'is-active': editor.isActive('orderedList') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="قائمة رقمية"
+            >
+                <i class="fa-solid fa-list-ol"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Other controls -->
+            <button type="button"
+                @click="editor.chain().focus().setHorizontalRule().run()" 
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="خط أفقي"
+            >
+                <i class="fa-solid fa-ruler-horizontal"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleHighlight().run()" 
+                :class="{ 'is-active': editor.isActive('highlight') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="تمييز"
+            >
+                <i class="fa-solid fa-highlighter"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <button type="button"
+                @click="editor.chain().focus().undo().run()" 
+                :disabled="!editor.can().chain().focus().undo().run()"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="تراجع"
+            >
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().redo().run()" 
+                :disabled="!editor.can().chain().focus().redo().run()"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="إعادة"
+            >
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+        </div>
+        
+        <!-- منطقة المحرر -->
+        <div class="editor-container border border-gray-300 border-t-0 rounded-b-lg bg-white">
+            <editor-content :editor="editor" class="block p-4 min-h-[200px] prose max-w-none" />
+        </div>
+        
+        <!-- معلومات إضافية -->
+        <div class="mt-3 text-xs text-gray-500 flex justify-between">
+            <div>يدعم التنسيق المتقدم والوسائط</div>
+            <div> </div>
+        </div>
+       
 	  <div>
 	  
 	  

@@ -79,8 +79,7 @@ class PostController extends Controller
     {
 		 
         $data = $request->all(); 
-		  
-		  
+		   
 		$getSubject = Subject::find($id);
 		  
         $data['subject_id']=$id;  
@@ -91,13 +90,7 @@ class PostController extends Controller
 		} else{
 			 $data['status']='accepted'; 			
 		}
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	  
 		$request->validate([
 					  'title' => 'required', 
 					  'description' => 'required', 
@@ -107,17 +100,17 @@ class PostController extends Controller
   
   
 		foreach($data['imgfields'] as $imgItm){
-			$imgData['path'] = $imgItm['image_path'];
-			$imgData['original_name']= $imgItm['original_name'];
-			
-			  $post->images()->create($imgData);
+			if(isset($imgItm['path']) && $imgItm['path']!=null){
+				 
+				$post->images()->create($imgData);
+			}
 		}
 		
 		foreach($data['filefields'] as $fileItm){
-			$imgData['path'] = $fileItm['filepath'];
-			$imgData['original_name']= $fileItm['original_name'];
-			
-			  $post->files()->create($imgData);
+					if(isset($fileItm['path']) && $fileItm['path']!=null){
+			 
+						  $post->files()->create($imgData);
+					}
 		}
 	
 		
@@ -145,13 +138,13 @@ class PostController extends Controller
 		foreach($data['imgfields'] as $imgItm){
 		 
 			
-			  $post->images()->create($imgData);
+			  $post->images()->create($imgItm);
 		}
 		
 		foreach($data['filefields'] as $fileItm){
 		 
 			
-			  $post->files()->create($imgData);
+			  $post->files()->create($fileItm);
 		}
 		
 		
@@ -193,18 +186,20 @@ class PostController extends Controller
 		$post->update($data);
 		
 		$post->images()->delete();
+		
+		
+		
 			foreach($data['imgfields'] as $imgItm){
-		//	$imgData['path'] = $imgItm['image_path'];
-			//$imgData['original_name']= $imgItm['original_name'];
-			
-			  $post->images()->create($imgItm);
-		}
+					if(isset($imgItm['path']) && $imgItm['path']!=null){
+						$post->images()->create($imgItm);
+					}
+			}
 		$post->files()->delete();
+		
 		foreach($data['filefields'] as $fileItm){
-		//	$imgData['path'] = $fileItm['filepath'];
-	// 	$imgData['original_name']= $fileItm['original_name'];
-			
+			if(isset($fileItm['path']) && $fileItm['path']!=null){
 			  $post->files()->create($fileItm);
+			}
 		}
 		
 		

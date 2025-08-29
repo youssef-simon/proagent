@@ -56,7 +56,9 @@ export default{
 			
 			<div class="loginCont">
 						<h6 class="error_val" v-if="errorscode">{{ errorscode }}</h6>
-						<h6 class="error_val green" v-if="verf==1">You will get Vertification mail verify it before login</h6>
+						<h6 class="error_val green" v-if="verf==1">
+						{{ __("you_will_get_vertification_mail_login") }}
+						</h6>
 						<h2>{{ __("login") }}</h2>
 					   <form @submit.prevent="submit">
 										<div class="form-group">
@@ -81,8 +83,8 @@ export default{
 										</div>
 							  </form>
 							<div class="regisCont">
-							<p>Do u Have Account?</p>
-							<a href="/register">Register</a>
+							<p>{{ __("do_u_have_account") }}</p>
+							<a href="/register">{{ __("register") }}</a>
 							</div>
 				</div>	  
 					  

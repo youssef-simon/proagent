@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
@@ -108,6 +108,10 @@
 							"add_image":" اضف صورة" ,
 							"add_file":"اضف ملف" ,
 							"search":"ابحث" ,
+							"you_will_get_vertification_mail_login":"سوف تتلقى بريدًا إلكترونيًا للتحقق من حسابك." ,
+							"do_u_have_account":" هل تملك حساب؟" ,
+							"edit_post":" تعديل المنشور" ,
+							"no_file_selected":" لم يتم اختيار اى ملف"  ,
 				};
 		</script>
 	@else
@@ -178,6 +182,7 @@
 											"edit_prev_project":"Edit previous project / Experinces" ,
 											"edit_service":"Edit Servcie" ,
 												"search":"Search" ,
+													"you_will_get_vertification_mail_login":"you will get email to verifiy your account " ,
 				};
 		</script>
 	@endif

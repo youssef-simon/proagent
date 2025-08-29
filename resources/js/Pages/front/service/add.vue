@@ -10,15 +10,30 @@ import SideMenu from '@/Pages/front/Comp/SideMenu.vue';
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
+
+
+
+
+
+
+
+import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit' 
+
+import Highlight from '@tiptap/extension-highlight'
+
+
+
 export default{
 	components:{
-		AppLayout,reactive,router,Multiselect,SideMenu,QuillEditor
+		AppLayout,reactive,router,Multiselect,SideMenu,QuillEditor,EditorContent
 	 }
 	  ,
 	   data() {
 					return {
 						submit_form:false,   
-						serviceCategories:[]
+						serviceCategories:[],
+						   editor: null,
 					}
 		  } 
 	 
@@ -37,80 +52,80 @@ export default{
                 main_image_id: null,
 			})
 			return { form }
-	 }, methods:{
-	 
-	 submit() {
-		   router.post('/add_service', this.form, {
-															onProgress: () => (this.submit_form=true),
-															  onError: () =>(this.submit_form=false),
-						});
-		}
-		,departmentChange(){
-		
-		 
-		  var self = this;
-				   axios.get("/changedepart/"+ this.form.department_id)
-					  .then( function(response) {
-											const getData =response.data.data;
-											 
-											self.serviceCategories = getData;
-											 
-									}
-							)
-					  .catch(error => {
-						console.error(error);
-					  });
-		}
-		,async searhCompanies(query){
-					  const response = await fetch('/searchusers?term=' + query);
-					  const dataa = await response.json();; // Here you have the data that you need
-	 
-					  return dataa.data.map((item) => {
-						return { value: item.id, label: item.full_name }
-					  });
-					}  
-		/***************************/ 
-		, uploadImage(event, index) {
-			
-			
-				 if(event.target.files[0].size > 3297152) {
-				   alert("file should not be bigger then 3MB");
-				   return false;
-				 }
-
-                var self = this;
-                // this.form.refields[index].img="Ddd";
-
-                const URL = '/api/uploadimg';
-
-                let data = new FormData();
-                data.append('name', 'my-picture');
-                data.append('file', event.target.files[0]);
-
-                let config = {
-                    header: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                };
-
-                axios.post(URL,data,config).then(function (response) { 
-								 //let result = response.data.path.replace("public", "storage");
-								self.form.imagpathshow =  response.data.pathshow;
-								self.form.imagpath =  response.data.path;
-								self.form.main_image_id = response.data.img_id;
-								return true; 
-					}
-                )
-            }, 	   
-            uploadMulitImage(event, index) {
-                var self = this;
-                // this.form.refields[index].img="Ddd";
-
-
-				if(event.target.files[0].size > 3297152) {
+	 }, methods:{ 
+			 submit() {
+				   this.form.description=this.editor.getHTML(); 
+				   router.post('/add_service', this.form, {
+																	onProgress: () => (this.submit_form=true),
+																	  onError: () =>(this.submit_form=false),
+								});
+				}
+				,departmentChange(){
+				
+				 
+				  var self = this;
+						   axios.get("/changedepart/"+ this.form.department_id)
+							  .then( function(response) {
+													const getData =response.data.data;
+													 
+													self.serviceCategories = getData;
+													 
+											}
+									)
+							  .catch(error => {
+								console.error(error);
+							  });
+				}
+				,async searhCompanies(query){
+							  const response = await fetch('/searchusers?term=' + query);
+							  const dataa = await response.json();; // Here you have the data that you need
+			 
+							  return dataa.data.map((item) => {
+								return { value: item.id, label: item.full_name }
+							  });
+							}  
+				/***************************/ 
+				, uploadImage(event, index) {
+					
+					
+						 if(event.target.files[0].size > 3297152) {
 						   alert("file should not be bigger then 3MB");
 						   return false;
-				 }
+						 }
+
+						var self = this;
+						// this.form.refields[index].img="Ddd";
+
+						const URL = '/api/uploadimg';
+
+						let data = new FormData();
+						data.append('name', 'my-picture');
+						data.append('file', event.target.files[0]);
+
+						let config = {
+							header: {
+								'Content-Type': 'multipart/form-data'
+							}
+						};
+
+						axios.post(URL,data,config).then(function (response) { 
+										 //let result = response.data.path.replace("public", "storage");
+										self.form.imagpathshow =  response.data.pathshow;
+										self.form.imagpath =  response.data.path;
+										self.form.main_image_id = response.data.img_id;
+										return true; 
+							}
+						)
+					}, 	   
+					uploadMulitImage(event, index) {
+						var self = this;
+						// this.form.refields[index].img="Ddd";
+
+
+						if(event.target.files[0].size > 3297152) {
+								   alert("file should not be bigger then 3MB");
+								   return false;
+						 }
 
 
 
@@ -118,54 +133,64 @@ export default{
 
 
 
-                const URL = '/api/uploadimg';
+						const URL = '/api/uploadimg';
 
 
-                let data = new FormData();
-                data.append('name', 'my-picture');
-                data.append('file', event.target.files[0]);
+						let data = new FormData();
+						data.append('name', 'my-picture');
+						data.append('file', event.target.files[0]);
 
-                let config = {
-                    header: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                };
+						let config = {
+							header: {
+								'Content-Type': 'multipart/form-data'
+							}
+						};
 
-                axios.post(
-                        URL,
-                        data,
-                        config
-                        ).then(function (response) {
-                    console.log(self.form.imgfields[index].img);
-						//let result = response.data.path.replace("public", "storage");
-                    self.form.imgfields[index].path =  response.data.path;
-                    self.form.imgfields[index].imagpathshow =  response.data.pathshow;
-				 
-                    self.form.imgfields[index].img_id = response.data.img_id;
-                    return true;
+						axios.post(
+								URL,
+								data,
+								config
+								).then(function (response) {
+							console.log(self.form.imgfields[index].img);
+								//let result = response.data.path.replace("public", "storage");
+							self.form.imgfields[index].path =  response.data.path;
+							self.form.imgfields[index].imagpathshow =  response.data.pathshow;
+						 
+							self.form.imgfields[index].img_id = response.data.img_id;
+							return true;
 
-                }
-                )
-            } 
-		 ,AddField: function () {
-                this.form.imgfields.push({
-                    title: '',
-                    img: '',
-                    img_id: 0,
+						}
+						)
+					} 
+				 ,AddField: function () {
+						this.form.imgfields.push({
+							title: '',
+							img: '',
+							img_id: 0,
 
-                });
+						});
 
-            }, removeField: function (index) {
-                this.form.imgfields.splice(index, 1);
-            },
-		/***************************/
-		
-		
-		
-		
-		
-		
+					}, removeField: function (index) {
+						this.form.imgfields.splice(index, 1);
+					},
+				/***************************/
+		 
 	 }
+	  
+	 , created() {
+					  this.editor = new Editor({
+					  extensions: [
+						StarterKit,
+						Highlight
+					  ],
+					  content: '',
+					});
+					
+					console.log(this.editor);
+    }, 
+    beforeUnmount() {
+       this.editor.destroy();
+    }
 }
 </script>
 
@@ -193,13 +218,139 @@ export default{
 			   
 			   
 			    
-              <div class="form-group">
-					  <label for="description">{{ __("description") }}</label>
-				 	  
-					   <QuillEditor v-model:content="form.description"  id="description" class="form-control txtEdior"  contentType="html"  theme="snow" /> 
-					   
-					 <div class="error_val" v-if="errors.description">{{ errors.description }}</div>
-			   </div>
+           
+            
+	 
+	          <label for="title" class="block text-sm font-medium text-gray-700 mb-1">{{ __("description") }}</label>
+        <!-- شريط الأدوات المحسن -->
+        <div class="toolbar flex flex-wrap gap-2 p-3 border border-gray-300 rounded-t-lg bg-gray-50">
+            <!-- Text Formatting -->
+            <button type="button"
+                @click="editor.chain().focus().toggleBold().run()" 
+                :disabled="!editor.can().chain().focus().toggleBold().run()" 
+                :class="{ 'is-active': editor.isActive('bold') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="عريض"
+            >
+                <i class="fa-solid fa-bold"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleItalic().run()" 
+                :disabled="!editor.can().chain().focus().toggleItalic().run()" 
+                :class="{ 'is-active': editor.isActive('italic') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="مائل"
+            >
+                <i class="fa-solid fa-italic"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleStrike().run()" 
+                :disabled="!editor.can().chain().focus().toggleStrike().run()" 
+                :class="{ 'is-active': editor.isActive('strike') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="يتوسطه خط"
+            >
+                <i class="fa-solid fa-strikethrough"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Headings -->
+            <button type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" 
+                :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="عنوان رئيسي"
+            >
+                <i class="fa-solid fa-heading"></i> 1
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" 
+                :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="عنوان فرعي"
+            >
+                <i class="fa-solid fa-heading"></i> 2
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Lists -->
+            <button type="button"
+                @click="editor.chain().focus().toggleBulletList().run()" 
+                :class="{ 'is-active': editor.isActive('bulletList') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="قائمة نقطية"
+            >
+                <i class="fa-solid fa-list-ul"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleOrderedList().run()" 
+                :class="{ 'is-active': editor.isActive('orderedList') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="قائمة رقمية"
+            >
+                <i class="fa-solid fa-list-ol"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <!-- Other controls -->
+            <button type="button"
+                @click="editor.chain().focus().setHorizontalRule().run()" 
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200"
+                title="خط أفقي"
+            >
+                <i class="fa-solid fa-ruler-horizontal"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().toggleHighlight().run()" 
+                :class="{ 'is-active': editor.isActive('highlight') }"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="تمييز"
+            >
+                <i class="fa-solid fa-highlighter"></i>
+            </button>
+            
+            <div class="border-r border-gray-300 h-6 my-auto"></div>
+            
+            <button type="button"
+                @click="editor.chain().focus().undo().run()" 
+                :disabled="!editor.can().chain().focus().undo().run()"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="تراجع"
+            >
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            
+            <button type="button"
+                @click="editor.chain().focus().redo().run()" 
+                :disabled="!editor.can().chain().focus().redo().run()"
+                class="toolbar-btn p-2 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="إعادة"
+            >
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+        </div>
+        
+        <!-- منطقة المحرر -->
+        <div class="editor-container border border-gray-300 border-t-0 rounded-b-lg bg-white">
+            <editor-content :editor="editor" class="block p-4 min-h-[200px] prose max-w-none" />
+        </div>
+        
+        <!-- معلومات إضافية -->
+        <div class="mt-3 text-xs text-gray-500 flex justify-between">
+            <div>يدعم التنسيق المتقدم والوسائط</div>
+            <div> </div>
+        </div>
+			    
+			   
+			   
 			   
 			     <div class="form-group">
 					  <label for="price_from">{{ __("price_from") }}</label>

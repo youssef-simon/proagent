@@ -176,7 +176,7 @@ import { usePage } from '@inertiajs/vue3';
 											  <i class="fa fa-envelope"></i> 
 											   <template v-if="msg_count">
 													  <span class="notCount">{{ msg_count }}</span>
-													My Messages
+												 {{ __("my_messages") }}
 													  </template>
 									</a>           
 						</li>
@@ -185,43 +185,47 @@ import { usePage } from '@inertiajs/vue3';
 													  <i class="fa fa-bell"></i>
 													  <template v-if="notifications_count">
 													  <span class="notCount">{{ notifications_count }}</span>
-													  My Notifications
+													  
+													   {{ __("my_notifications") }}
 													  </template>
 									</a>
 						  </li>
 				</template>	  
 		  
             <li class="nav-item"   :class="{ 'active': isCurrentPath('/home') }" >
-              <a class="nav-link" href="/home">Home</a>
+              <a class="nav-link" href="/home">{{ __("home") }}</a>
             </li>
             <!--  <li class="nav-item">
               <a class="nav-link"  href="/service">Services</a>
             </li>-->
             <li class="nav-item" :class="{ 'active': isCurrentPath('/users') }">
-              <a class="nav-link" href="/users">Freelancers</a>
+              <a class="nav-link" href="/users">{{ __("freelancers") }}</a>
             </li>
              <li class="nav-item" :class="{ 'active': isCurrentPath('/taxservice') }">
-              <a class="nav-link" href="/taxservice">Taxanomy</a>
+              <a class="nav-link" href="/taxservice">{{ __("taxanomy") }}</a>
             </li>
 			
 			
 			
+			<li class="nav-item" :class="{ 'active': isCurrentPath('/forums') }">
+				<a class="nav-link" href="/forums">{{ __("forums") }}</a>
+            </li>
 			
 			
 			<template v-if="!user" >
 						<li class="nav-item">
-							<a class="btn btn-outline-dark nav-link" href="/register">Sign up</a>
+							<a class="btn btn-outline-dark nav-link" href="/register">{{ __("register") }}</a>
 					   </li>
 					   <li class="nav-item">
-							<a class="btn btn-outline-dark nav-link" href="/user_login">Login</a>
+							<a class="btn btn-outline-dark nav-link" href="/user_login">{{ __("login") }}</a>
 					     </li>
 					 </template>
 							 <template v-if="user" >
 								<li class="nav-item bgBtm">
-										<a class="btn btn-dark" href="/my_dashboard">My Dashboard</a>
+										<a class="btn btn-dark" href="/my_dashboard">{{ __("my_dashboard") }}</a>
 							     </li>
 							   <li class="nav-item bgBtm">
-									<a class="btn btn-dark" href="/logout_user">Log Out</a>
+									<a class="btn btn-dark" href="/logout_user">{{ __("logout") }}</a>
 							    </li>
 							 </template>
           </ul>
@@ -273,7 +277,7 @@ import { usePage } from '@inertiajs/vue3';
    
    <ul class="social">
 		<li>
-		<a href="https://www.facebook.com/profile.php?id=100067640081473">
+		<a href="https://www.facebook.com/almo7tarifEg">
 		<img src="/img/f.png" />
 		</a>
 		</li>
